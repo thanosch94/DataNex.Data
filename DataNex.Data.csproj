@@ -23,4 +23,8 @@
     <ProjectReference Include="..\DataNex.Model\DataNex.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="SqlScripts\" />
+  </ItemGroup>
+
 </Project>

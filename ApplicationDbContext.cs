@@ -16,5 +16,7 @@ namespace DataNex.Data
         }
 
         DbSet<User> Users { get; set; } 
+
+        DbSet<Customer> Customers { get; set; } 
     }
 }
