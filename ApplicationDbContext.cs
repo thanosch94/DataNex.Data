@@ -17,6 +17,8 @@ namespace DataNex.Data
 
         public virtual DbSet<User> Users { get; set; }
 
-        public virtual DbSet<Customer> Customers { get; set; } 
+        public virtual DbSet<Customer> Customers { get; set; }
+
+        public virtual DbSet<Document> Documents { get; set; }
     }
 }

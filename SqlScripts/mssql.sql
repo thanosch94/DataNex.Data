@@ -351,3 +351,114 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240203112737_ChangedPhoneNumberToLong'
+)
+BEGIN
+    DECLARE @var8 sysname;
+    SELECT @var8 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_customers]') AND [c].[name] = N'Phone2');
+    IF @var8 IS NOT NULL EXEC(N'ALTER TABLE [datanex_customers] DROP CONSTRAINT [' + @var8 + '];');
+    ALTER TABLE [datanex_customers] ALTER COLUMN [Phone2] bigint NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240203112737_ChangedPhoneNumberToLong'
+)
+BEGIN
+    DECLARE @var9 sysname;
+    SELECT @var9 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_customers]') AND [c].[name] = N'Phone1');
+    IF @var9 IS NOT NULL EXEC(N'ALTER TABLE [datanex_customers] DROP CONSTRAINT [' + @var9 + '];');
+    ALTER TABLE [datanex_customers] ALTER COLUMN [Phone1] bigint NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240203112737_ChangedPhoneNumberToLong'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240203112737_ChangedPhoneNumberToLong', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240203153810_AddedDocumemt'
+)
+BEGIN
+    CREATE TABLE [DocumentType] (
+        [Id] uniqueidentifier NOT NULL,
+        [Name] nvarchar(max) NOT NULL,
+        CONSTRAINT [PK_DocumentType] PRIMARY KEY ([Id])
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240203153810_AddedDocumemt'
+)
+BEGIN
+    CREATE TABLE [datanex_documents] (
+        [Id] uniqueidentifier NOT NULL,
+        [DocumentTypeId] uniqueidentifier NOT NULL,
+        [DocumentNumber] int NOT NULL,
+        [CustomerId] uniqueidentifier NOT NULL,
+        [DocumentTotal] decimal(18,2) NULL,
+        CONSTRAINT [PK_datanex_documents] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_datanex_documents_DocumentType_DocumentTypeId] FOREIGN KEY ([DocumentTypeId]) REFERENCES [DocumentType] ([Id]) ON DELETE CASCADE,
+        CONSTRAINT [FK_datanex_documents_datanex_customers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [datanex_customers] ([Id]) ON DELETE CASCADE
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240203153810_AddedDocumemt'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_documents_CustomerId] ON [datanex_documents] ([CustomerId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240203153810_AddedDocumemt'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_documents_DocumentTypeId] ON [datanex_documents] ([DocumentTypeId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240203153810_AddedDocumemt'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240203153810_AddedDocumemt', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
