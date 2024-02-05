@@ -462,3 +462,140 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240205195901_AddedDocumentShippingDetails'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [DocumentDateTime] datetimeoffset NOT NULL DEFAULT '0001-01-01T00:00:00.0000000+00:00';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240205195901_AddedDocumentShippingDetails'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [DocumentStatusId] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240205195901_AddedDocumentShippingDetails'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [ShippingAddress] nvarchar(255) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240205195901_AddedDocumentShippingDetails'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [ShippingCity] nvarchar(50) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240205195901_AddedDocumentShippingDetails'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [ShippingCountry] nvarchar(50) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240205195901_AddedDocumentShippingDetails'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [ShippingEmail] nvarchar(255) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240205195901_AddedDocumentShippingDetails'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [ShippingPhone1] bigint NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240205195901_AddedDocumentShippingDetails'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [ShippingPhone2] bigint NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240205195901_AddedDocumentShippingDetails'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [ShippingPostalCode] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240205195901_AddedDocumentShippingDetails'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [ShippingRegion] nvarchar(50) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240205195901_AddedDocumentShippingDetails'
+)
+BEGIN
+    CREATE TABLE [datanex_statuses] (
+        [Id] uniqueidentifier NOT NULL,
+        [Name] nvarchar(50) NOT NULL,
+        CONSTRAINT [PK_datanex_statuses] PRIMARY KEY ([Id])
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240205195901_AddedDocumentShippingDetails'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_documents_DocumentStatusId] ON [datanex_documents] ([DocumentStatusId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240205195901_AddedDocumentShippingDetails'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD CONSTRAINT [FK_datanex_documents_datanex_statuses_DocumentStatusId] FOREIGN KEY ([DocumentStatusId]) REFERENCES [datanex_statuses] ([Id]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240205195901_AddedDocumentShippingDetails'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240205195901_AddedDocumentShippingDetails', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
