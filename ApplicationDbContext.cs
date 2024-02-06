@@ -20,5 +20,13 @@ namespace DataNex.Data
         public virtual DbSet<Customer> Customers { get; set; }
 
         public virtual DbSet<Document> Documents { get; set; }
+
+        public virtual DbSet<DocumentType> DocumentTypes { get; set; }  
+
+        public virtual DbSet<Product> Products { get; set; }
+
+        public virtual DbSet<Brand> Brands { get; set; }
+
+
     }
 }
