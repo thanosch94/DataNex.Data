@@ -599,3 +599,226 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240206210028_AddedBrandsAndProducts'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] DROP CONSTRAINT [FK_datanex_documents_DocumentType_DocumentTypeId];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240206210028_AddedBrandsAndProducts'
+)
+BEGIN
+    ALTER TABLE [DocumentType] DROP CONSTRAINT [PK_DocumentType];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240206210028_AddedBrandsAndProducts'
+)
+BEGIN
+    EXEC sp_rename N'[DocumentType]', N'DocumentTypes';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240206210028_AddedBrandsAndProducts'
+)
+BEGIN
+    ALTER TABLE [DocumentTypes] ADD CONSTRAINT [PK_DocumentTypes] PRIMARY KEY ([Id]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240206210028_AddedBrandsAndProducts'
+)
+BEGIN
+    CREATE TABLE [datanex_brands] (
+        [Id] uniqueidentifier NOT NULL,
+        [Name] nvarchar(50) NOT NULL,
+        CONSTRAINT [PK_datanex_brands] PRIMARY KEY ([Id])
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240206210028_AddedBrandsAndProducts'
+)
+BEGIN
+    CREATE TABLE [datanex_products] (
+        [Id] uniqueidentifier NOT NULL,
+        [Sku] nvarchar(max) NULL,
+        [Name] nvarchar(255) NOT NULL,
+        [Description] nvarchar(max) NULL,
+        [Image] varbinary(max) NULL,
+        [Price] decimal(18,2) NULL,
+        [BrandId] uniqueidentifier NULL,
+        CONSTRAINT [PK_datanex_products] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_datanex_products_datanex_brands_BrandId] FOREIGN KEY ([BrandId]) REFERENCES [datanex_brands] ([Id])
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240206210028_AddedBrandsAndProducts'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_products_BrandId] ON [datanex_products] ([BrandId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240206210028_AddedBrandsAndProducts'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD CONSTRAINT [FK_datanex_documents_DocumentTypes_DocumentTypeId] FOREIGN KEY ([DocumentTypeId]) REFERENCES [DocumentTypes] ([Id]) ON DELETE CASCADE;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240206210028_AddedBrandsAndProducts'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240206210028_AddedBrandsAndProducts', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240206220455_AddedDocumentProductsAndProductSizes'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] DROP CONSTRAINT [FK_datanex_documents_DocumentTypes_DocumentTypeId];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240206220455_AddedDocumentProductsAndProductSizes'
+)
+BEGIN
+    ALTER TABLE [DocumentTypes] DROP CONSTRAINT [PK_DocumentTypes];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240206220455_AddedDocumentProductsAndProductSizes'
+)
+BEGIN
+    EXEC sp_rename N'[DocumentTypes]', N'datanex_documenttypes';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240206220455_AddedDocumentProductsAndProductSizes'
+)
+BEGIN
+    ALTER TABLE [datanex_documenttypes] ADD CONSTRAINT [PK_datanex_documenttypes] PRIMARY KEY ([Id]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240206220455_AddedDocumentProductsAndProductSizes'
+)
+BEGIN
+    CREATE TABLE [datanex_product_sizes] (
+        [Id] uniqueidentifier NOT NULL,
+        [Name] nvarchar(50) NOT NULL,
+        [Abbreviation] nvarchar(10) NULL,
+        CONSTRAINT [PK_datanex_product_sizes] PRIMARY KEY ([Id])
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240206220455_AddedDocumentProductsAndProductSizes'
+)
+BEGIN
+    CREATE TABLE [datanex_documentproducts] (
+        [Id] uniqueidentifier NOT NULL,
+        [DocumentId] uniqueidentifier NOT NULL,
+        [ProductId] uniqueidentifier NOT NULL,
+        [ProductQuantity] int NOT NULL,
+        [ProductSizeId] uniqueidentifier NULL,
+        CONSTRAINT [PK_datanex_documentproducts] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_datanex_documentproducts_datanex_documents_DocumentId] FOREIGN KEY ([DocumentId]) REFERENCES [datanex_documents] ([Id]) ON DELETE CASCADE,
+        CONSTRAINT [FK_datanex_documentproducts_datanex_product_sizes_ProductSizeId] FOREIGN KEY ([ProductSizeId]) REFERENCES [datanex_product_sizes] ([Id]),
+        CONSTRAINT [FK_datanex_documentproducts_datanex_products_ProductId] FOREIGN KEY ([ProductId]) REFERENCES [datanex_products] ([Id]) ON DELETE CASCADE
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240206220455_AddedDocumentProductsAndProductSizes'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_documentproducts_DocumentId] ON [datanex_documentproducts] ([DocumentId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240206220455_AddedDocumentProductsAndProductSizes'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_documentproducts_ProductId] ON [datanex_documentproducts] ([ProductId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240206220455_AddedDocumentProductsAndProductSizes'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_documentproducts_ProductSizeId] ON [datanex_documentproducts] ([ProductSizeId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240206220455_AddedDocumentProductsAndProductSizes'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD CONSTRAINT [FK_datanex_documents_datanex_documenttypes_DocumentTypeId] FOREIGN KEY ([DocumentTypeId]) REFERENCES [datanex_documenttypes] ([Id]) ON DELETE CASCADE;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240206220455_AddedDocumentProductsAndProductSizes'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240206220455_AddedDocumentProductsAndProductSizes', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
