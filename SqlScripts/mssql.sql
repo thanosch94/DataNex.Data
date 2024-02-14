@@ -822,3 +822,94 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240208204036_AddedDescriptiononDocumentTypes'
+)
+BEGIN
+    DECLARE @var10 sysname;
+    SELECT @var10 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_documenttypes]') AND [c].[name] = N'Name');
+    IF @var10 IS NOT NULL EXEC(N'ALTER TABLE [datanex_documenttypes] DROP CONSTRAINT [' + @var10 + '];');
+    ALTER TABLE [datanex_documenttypes] ALTER COLUMN [Name] nvarchar(50) NOT NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240208204036_AddedDescriptiononDocumentTypes'
+)
+BEGIN
+    ALTER TABLE [datanex_documenttypes] ADD [Description] nvarchar(50) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240208204036_AddedDescriptiononDocumentTypes'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240208204036_AddedDescriptiononDocumentTypes', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240214214903_AddedProductBarcode'
+)
+BEGIN
+    CREATE TABLE [datanex_product_barcodes] (
+        [Id] uniqueidentifier NOT NULL,
+        [ProductId] uniqueidentifier NOT NULL,
+        [SizeId] uniqueidentifier NULL,
+        [Barcode] bigint NULL,
+        CONSTRAINT [PK_datanex_product_barcodes] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_datanex_product_barcodes_datanex_product_sizes_SizeId] FOREIGN KEY ([SizeId]) REFERENCES [datanex_product_sizes] ([Id]),
+        CONSTRAINT [FK_datanex_product_barcodes_datanex_products_ProductId] FOREIGN KEY ([ProductId]) REFERENCES [datanex_products] ([Id]) ON DELETE CASCADE
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240214214903_AddedProductBarcode'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_product_barcodes_ProductId] ON [datanex_product_barcodes] ([ProductId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240214214903_AddedProductBarcode'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_product_barcodes_SizeId] ON [datanex_product_barcodes] ([SizeId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240214214903_AddedProductBarcode'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240214214903_AddedProductBarcode', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
