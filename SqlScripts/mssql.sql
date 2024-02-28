@@ -913,3 +913,34 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240218115632_ChangedBarcodeToString'
+)
+BEGIN
+    DECLARE @var11 sysname;
+    SELECT @var11 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_product_barcodes]') AND [c].[name] = N'Barcode');
+    IF @var11 IS NOT NULL EXEC(N'ALTER TABLE [datanex_product_barcodes] DROP CONSTRAINT [' + @var11 + '];');
+    ALTER TABLE [datanex_product_barcodes] ALTER COLUMN [Barcode] nvarchar(255) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240218115632_ChangedBarcodeToString'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240218115632_ChangedBarcodeToString', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
