@@ -26,6 +26,7 @@ namespace DataNex.Data
         public virtual DbSet<Product> Products { get; set; }
 
         public virtual DbSet<Brand> Brands { get; set; }
+        public virtual DbSet<Status> Statuses { get; set; }
 
         public virtual DbSet<ProductSize> ProductSizes { get; set; }
 
