@@ -944,3 +944,345 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240324151132_AddedUserInputs'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [UserDate1] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240324151132_AddedUserInputs'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [UserDate2] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240324151132_AddedUserInputs'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [UserDate3] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240324151132_AddedUserInputs'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [UserDate4] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240324151132_AddedUserInputs'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [UserNumber1] bigint NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240324151132_AddedUserInputs'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [UserNumber2] bigint NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240324151132_AddedUserInputs'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [UserNumber3] bigint NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240324151132_AddedUserInputs'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [UserNumber4] bigint NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240324151132_AddedUserInputs'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [UserText1] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240324151132_AddedUserInputs'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [UserText2] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240324151132_AddedUserInputs'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [UserText3] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240324151132_AddedUserInputs'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [UserText4] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240324151132_AddedUserInputs'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240324151132_AddedUserInputs', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240327205121_ChangedImageToImagePath'
+)
+BEGIN
+    DECLARE @var12 sysname;
+    SELECT @var12 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_products]') AND [c].[name] = N'Image');
+    IF @var12 IS NOT NULL EXEC(N'ALTER TABLE [datanex_products] DROP CONSTRAINT [' + @var12 + '];');
+    ALTER TABLE [datanex_products] DROP COLUMN [Image];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240327205121_ChangedImageToImagePath'
+)
+BEGIN
+    ALTER TABLE [datanex_products] ADD [ImagePath] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240327205121_ChangedImageToImagePath'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240327205121_ChangedImageToImagePath', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240411201431_DisableCascadeDelete'
+)
+BEGIN
+    ALTER TABLE [datanex_documentproducts] DROP CONSTRAINT [FK_datanex_documentproducts_datanex_documents_DocumentId];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240411201431_DisableCascadeDelete'
+)
+BEGIN
+    ALTER TABLE [datanex_documentproducts] DROP CONSTRAINT [FK_datanex_documentproducts_datanex_product_sizes_ProductSizeId];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240411201431_DisableCascadeDelete'
+)
+BEGIN
+    ALTER TABLE [datanex_documentproducts] DROP CONSTRAINT [FK_datanex_documentproducts_datanex_products_ProductId];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240411201431_DisableCascadeDelete'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] DROP CONSTRAINT [FK_datanex_documents_datanex_customers_CustomerId];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240411201431_DisableCascadeDelete'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] DROP CONSTRAINT [FK_datanex_documents_datanex_documenttypes_DocumentTypeId];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240411201431_DisableCascadeDelete'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] DROP CONSTRAINT [FK_datanex_documents_datanex_statuses_DocumentStatusId];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240411201431_DisableCascadeDelete'
+)
+BEGIN
+    ALTER TABLE [datanex_product_barcodes] DROP CONSTRAINT [FK_datanex_product_barcodes_datanex_product_sizes_SizeId];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240411201431_DisableCascadeDelete'
+)
+BEGIN
+    ALTER TABLE [datanex_product_barcodes] DROP CONSTRAINT [FK_datanex_product_barcodes_datanex_products_ProductId];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240411201431_DisableCascadeDelete'
+)
+BEGIN
+    ALTER TABLE [datanex_products] DROP CONSTRAINT [FK_datanex_products_datanex_brands_BrandId];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240411201431_DisableCascadeDelete'
+)
+BEGIN
+    ALTER TABLE [datanex_documentproducts] ADD CONSTRAINT [FK_datanex_documentproducts_datanex_documents_DocumentId] FOREIGN KEY ([DocumentId]) REFERENCES [datanex_documents] ([Id]) ON DELETE NO ACTION;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240411201431_DisableCascadeDelete'
+)
+BEGIN
+    ALTER TABLE [datanex_documentproducts] ADD CONSTRAINT [FK_datanex_documentproducts_datanex_product_sizes_ProductSizeId] FOREIGN KEY ([ProductSizeId]) REFERENCES [datanex_product_sizes] ([Id]) ON DELETE NO ACTION;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240411201431_DisableCascadeDelete'
+)
+BEGIN
+    ALTER TABLE [datanex_documentproducts] ADD CONSTRAINT [FK_datanex_documentproducts_datanex_products_ProductId] FOREIGN KEY ([ProductId]) REFERENCES [datanex_products] ([Id]) ON DELETE NO ACTION;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240411201431_DisableCascadeDelete'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD CONSTRAINT [FK_datanex_documents_datanex_customers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [datanex_customers] ([Id]) ON DELETE NO ACTION;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240411201431_DisableCascadeDelete'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD CONSTRAINT [FK_datanex_documents_datanex_documenttypes_DocumentTypeId] FOREIGN KEY ([DocumentTypeId]) REFERENCES [datanex_documenttypes] ([Id]) ON DELETE NO ACTION;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240411201431_DisableCascadeDelete'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD CONSTRAINT [FK_datanex_documents_datanex_statuses_DocumentStatusId] FOREIGN KEY ([DocumentStatusId]) REFERENCES [datanex_statuses] ([Id]) ON DELETE NO ACTION;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240411201431_DisableCascadeDelete'
+)
+BEGIN
+    ALTER TABLE [datanex_product_barcodes] ADD CONSTRAINT [FK_datanex_product_barcodes_datanex_product_sizes_SizeId] FOREIGN KEY ([SizeId]) REFERENCES [datanex_product_sizes] ([Id]) ON DELETE NO ACTION;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240411201431_DisableCascadeDelete'
+)
+BEGIN
+    ALTER TABLE [datanex_product_barcodes] ADD CONSTRAINT [FK_datanex_product_barcodes_datanex_products_ProductId] FOREIGN KEY ([ProductId]) REFERENCES [datanex_products] ([Id]) ON DELETE NO ACTION;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240411201431_DisableCascadeDelete'
+)
+BEGIN
+    ALTER TABLE [datanex_products] ADD CONSTRAINT [FK_datanex_products_datanex_brands_BrandId] FOREIGN KEY ([BrandId]) REFERENCES [datanex_brands] ([Id]) ON DELETE NO ACTION;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240411201431_DisableCascadeDelete'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240411201431_DisableCascadeDelete', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+

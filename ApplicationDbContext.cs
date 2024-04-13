@@ -34,5 +34,19 @@ namespace DataNex.Data
 
         public virtual DbSet<ProductBarcode> ProductBarcodes { get; set; }
 
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            var eTypes = modelBuilder.Model.GetEntityTypes();
+            foreach (var type in eTypes)
+            {
+                var foreignKeys = type.GetForeignKeys();
+                foreach (var foreignKey in foreignKeys)
+                {
+                    foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
+                }
+            }
+
+        }
     }
 }
