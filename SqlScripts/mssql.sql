@@ -1286,3 +1286,46 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240413221223_AddedPricePropertiesOnDocumentProduct'
+)
+BEGIN
+    EXEC sp_rename N'[datanex_documentproducts].[ProductQuantity]', N'Quantity', N'COLUMN';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240413221223_AddedPricePropertiesOnDocumentProduct'
+)
+BEGIN
+    ALTER TABLE [datanex_documentproducts] ADD [Price] decimal(18,2) NOT NULL DEFAULT 0.0;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240413221223_AddedPricePropertiesOnDocumentProduct'
+)
+BEGIN
+    ALTER TABLE [datanex_documentproducts] ADD [TotalPrice] decimal(18,2) NOT NULL DEFAULT 0.0;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240413221223_AddedPricePropertiesOnDocumentProduct'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240413221223_AddedPricePropertiesOnDocumentProduct', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
