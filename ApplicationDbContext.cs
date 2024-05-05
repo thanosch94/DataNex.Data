@@ -34,7 +34,7 @@ namespace DataNex.Data
 
         public virtual DbSet<ProductBarcode> ProductBarcodes { get; set; }
 
-
+       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var eTypes = modelBuilder.Model.GetEntityTypes();
