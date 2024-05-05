@@ -1329,3 +1329,586 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_users] ADD [DateAdded] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_users] ADD [DateUpdated] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_users] ADD [IsActive] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_users] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_users] ADD [PasswordHash] nvarchar(max) NOT NULL DEFAULT N'';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_users] ADD [UserAdded] uniqueidentifier NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_users] ADD [UserRole] int NOT NULL DEFAULT 0;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_users] ADD [UserUpdated] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_users] ADD [Username] nvarchar(max) NOT NULL DEFAULT N'';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_statuses] ADD [DateAdded] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_statuses] ADD [DateUpdated] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_statuses] ADD [IsActive] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_statuses] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_statuses] ADD [UserAdded] uniqueidentifier NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_statuses] ADD [UserUpdated] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_products] ADD [DateAdded] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_products] ADD [DateUpdated] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_products] ADD [IsActive] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_products] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_products] ADD [UserAdded] uniqueidentifier NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_products] ADD [UserUpdated] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_product_sizes] ADD [DateAdded] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_product_sizes] ADD [DateUpdated] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_product_sizes] ADD [IsActive] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_product_sizes] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_product_sizes] ADD [UserAdded] uniqueidentifier NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_product_sizes] ADD [UserUpdated] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_product_barcodes] ADD [DateAdded] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_product_barcodes] ADD [DateUpdated] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_product_barcodes] ADD [IsActive] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_product_barcodes] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_product_barcodes] ADD [UserAdded] uniqueidentifier NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_product_barcodes] ADD [UserUpdated] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_documenttypes] ADD [DateAdded] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_documenttypes] ADD [DateUpdated] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_documenttypes] ADD [IsActive] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_documenttypes] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_documenttypes] ADD [UserAdded] uniqueidentifier NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_documenttypes] ADD [UserUpdated] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [DateAdded] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [DateUpdated] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [IsActive] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [UserAdded] uniqueidentifier NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [UserUpdated] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_documentproducts] ADD [DateAdded] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_documentproducts] ADD [DateUpdated] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_documentproducts] ADD [IsActive] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_documentproducts] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_documentproducts] ADD [UserAdded] uniqueidentifier NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_documentproducts] ADD [UserUpdated] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [DateAdded] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [DateUpdated] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [IsActive] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [UserAdded] uniqueidentifier NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [UserUpdated] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_brands] ADD [DateAdded] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_brands] ADD [DateUpdated] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_brands] ADD [IsActive] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_brands] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_brands] ADD [UserAdded] uniqueidentifier NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    ALTER TABLE [datanex_brands] ADD [UserUpdated] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240504155508_AddedUserPropertiesAndBaseModel'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240504155508_AddedUserPropertiesAndBaseModel', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
