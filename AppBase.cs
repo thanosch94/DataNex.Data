@@ -8,6 +8,6 @@ namespace DataNex.Data
 {
     public static class AppBase
     {
-        public static decimal Version = 1.00M;
+        public static decimal Version = 1.01M;
     }
 }
