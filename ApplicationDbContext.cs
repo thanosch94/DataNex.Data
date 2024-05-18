@@ -1,4 +1,5 @@
 ﻿using DataNex.Model.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataNex.Data
 {
-    public class ApplicationDbContext:DbContext
+    public class ApplicationDbContext : IdentityDbContext<User, Roles, Guid>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> contextOptions):base(contextOptions)
         {
@@ -37,6 +38,7 @@ namespace DataNex.Data
        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             var eTypes = modelBuilder.Model.GetEntityTypes();
             foreach (var type in eTypes)
             {
