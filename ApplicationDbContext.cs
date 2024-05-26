@@ -34,8 +34,9 @@ namespace DataNex.Data
         public virtual DbSet<DocumentProduct> DocumentProducts { get; set; }
 
         public virtual DbSet<ProductBarcode> ProductBarcodes { get; set; }
+        public virtual DbSet<Log> Logs { get; set; }
 
-       
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

@@ -2120,7 +2120,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20240517203323_AddedIdentityDbContext'
+    WHERE [MigrationId] = N'20240517214000_AddedIdentityDbContext'
 )
 BEGIN
     ALTER TABLE [datanex_users] DROP CONSTRAINT [PK_datanex_users];
@@ -2129,7 +2129,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20240517203323_AddedIdentityDbContext'
+    WHERE [MigrationId] = N'20240517214000_AddedIdentityDbContext'
 )
 BEGIN
     EXEC sp_rename N'[datanex_users]', N'AspNetUsers';
@@ -2138,7 +2138,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20240517203323_AddedIdentityDbContext'
+    WHERE [MigrationId] = N'20240517214000_AddedIdentityDbContext'
 )
 BEGIN
     DECLARE @var16 sysname;
@@ -2153,7 +2153,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20240517203323_AddedIdentityDbContext'
+    WHERE [MigrationId] = N'20240517214000_AddedIdentityDbContext'
 )
 BEGIN
     DECLARE @var17 sysname;
@@ -2168,7 +2168,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20240517203323_AddedIdentityDbContext'
+    WHERE [MigrationId] = N'20240517214000_AddedIdentityDbContext'
 )
 BEGIN
     DECLARE @var18 sysname;
@@ -2183,7 +2183,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20240517203323_AddedIdentityDbContext'
+    WHERE [MigrationId] = N'20240517214000_AddedIdentityDbContext'
 )
 BEGIN
     DECLARE @var19 sysname;
@@ -2198,7 +2198,22 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20240517203323_AddedIdentityDbContext'
+    WHERE [MigrationId] = N'20240517214000_AddedIdentityDbContext'
+)
+BEGIN
+    DECLARE @var20 sysname;
+    SELECT @var20 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[AspNetUsers]') AND [c].[name] = N'Id');
+    IF @var20 IS NOT NULL EXEC(N'ALTER TABLE [AspNetUsers] DROP CONSTRAINT [' + @var20 + '];');
+    ALTER TABLE [AspNetUsers] ALTER COLUMN [Id] uniqueidentifier NOT NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240517214000_AddedIdentityDbContext'
 )
 BEGIN
     ALTER TABLE [AspNetUsers] ADD CONSTRAINT [PK_AspNetUsers] PRIMARY KEY ([Id]);
@@ -2207,11 +2222,11 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20240517203323_AddedIdentityDbContext'
+    WHERE [MigrationId] = N'20240517214000_AddedIdentityDbContext'
 )
 BEGIN
     CREATE TABLE [AspNetRoles] (
-        [Id] nvarchar(450) NOT NULL,
+        [Id] uniqueidentifier NOT NULL,
         [Name] nvarchar(256) NULL,
         [NormalizedName] nvarchar(256) NULL,
         [ConcurrencyStamp] nvarchar(max) NULL,
@@ -2222,12 +2237,12 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20240517203323_AddedIdentityDbContext'
+    WHERE [MigrationId] = N'20240517214000_AddedIdentityDbContext'
 )
 BEGIN
     CREATE TABLE [AspNetUserClaims] (
         [Id] int NOT NULL IDENTITY,
-        [UserId] nvarchar(450) NOT NULL,
+        [UserId] uniqueidentifier NOT NULL,
         [ClaimType] nvarchar(max) NULL,
         [ClaimValue] nvarchar(max) NULL,
         CONSTRAINT [PK_AspNetUserClaims] PRIMARY KEY ([Id]),
@@ -2238,14 +2253,14 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20240517203323_AddedIdentityDbContext'
+    WHERE [MigrationId] = N'20240517214000_AddedIdentityDbContext'
 )
 BEGIN
     CREATE TABLE [AspNetUserLogins] (
         [LoginProvider] nvarchar(450) NOT NULL,
         [ProviderKey] nvarchar(450) NOT NULL,
         [ProviderDisplayName] nvarchar(max) NULL,
-        [UserId] nvarchar(450) NOT NULL,
+        [UserId] uniqueidentifier NOT NULL,
         CONSTRAINT [PK_AspNetUserLogins] PRIMARY KEY ([LoginProvider], [ProviderKey]),
         CONSTRAINT [FK_AspNetUserLogins_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE NO ACTION
     );
@@ -2254,11 +2269,11 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20240517203323_AddedIdentityDbContext'
+    WHERE [MigrationId] = N'20240517214000_AddedIdentityDbContext'
 )
 BEGIN
     CREATE TABLE [AspNetUserTokens] (
-        [UserId] nvarchar(450) NOT NULL,
+        [UserId] uniqueidentifier NOT NULL,
         [LoginProvider] nvarchar(450) NOT NULL,
         [Name] nvarchar(450) NOT NULL,
         [Value] nvarchar(max) NULL,
@@ -2270,12 +2285,12 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20240517203323_AddedIdentityDbContext'
+    WHERE [MigrationId] = N'20240517214000_AddedIdentityDbContext'
 )
 BEGIN
     CREATE TABLE [AspNetRoleClaims] (
         [Id] int NOT NULL IDENTITY,
-        [RoleId] nvarchar(450) NOT NULL,
+        [RoleId] uniqueidentifier NOT NULL,
         [ClaimType] nvarchar(max) NULL,
         [ClaimValue] nvarchar(max) NULL,
         CONSTRAINT [PK_AspNetRoleClaims] PRIMARY KEY ([Id]),
@@ -2286,12 +2301,12 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20240517203323_AddedIdentityDbContext'
+    WHERE [MigrationId] = N'20240517214000_AddedIdentityDbContext'
 )
 BEGIN
     CREATE TABLE [AspNetUserRoles] (
-        [UserId] nvarchar(450) NOT NULL,
-        [RoleId] nvarchar(450) NOT NULL,
+        [UserId] uniqueidentifier NOT NULL,
+        [RoleId] uniqueidentifier NOT NULL,
         CONSTRAINT [PK_AspNetUserRoles] PRIMARY KEY ([UserId], [RoleId]),
         CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [AspNetRoles] ([Id]) ON DELETE NO ACTION,
         CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE NO ACTION
@@ -2301,7 +2316,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20240517203323_AddedIdentityDbContext'
+    WHERE [MigrationId] = N'20240517214000_AddedIdentityDbContext'
 )
 BEGIN
     CREATE INDEX [EmailIndex] ON [AspNetUsers] ([NormalizedEmail]);
@@ -2310,7 +2325,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20240517203323_AddedIdentityDbContext'
+    WHERE [MigrationId] = N'20240517214000_AddedIdentityDbContext'
 )
 BEGIN
     EXEC(N'CREATE UNIQUE INDEX [UserNameIndex] ON [AspNetUsers] ([NormalizedUserName]) WHERE [NormalizedUserName] IS NOT NULL');
@@ -2319,7 +2334,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20240517203323_AddedIdentityDbContext'
+    WHERE [MigrationId] = N'20240517214000_AddedIdentityDbContext'
 )
 BEGIN
     CREATE INDEX [IX_AspNetRoleClaims_RoleId] ON [AspNetRoleClaims] ([RoleId]);
@@ -2328,7 +2343,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20240517203323_AddedIdentityDbContext'
+    WHERE [MigrationId] = N'20240517214000_AddedIdentityDbContext'
 )
 BEGIN
     EXEC(N'CREATE UNIQUE INDEX [RoleNameIndex] ON [AspNetRoles] ([NormalizedName]) WHERE [NormalizedName] IS NOT NULL');
@@ -2337,7 +2352,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20240517203323_AddedIdentityDbContext'
+    WHERE [MigrationId] = N'20240517214000_AddedIdentityDbContext'
 )
 BEGIN
     CREATE INDEX [IX_AspNetUserClaims_UserId] ON [AspNetUserClaims] ([UserId]);
@@ -2346,7 +2361,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20240517203323_AddedIdentityDbContext'
+    WHERE [MigrationId] = N'20240517214000_AddedIdentityDbContext'
 )
 BEGIN
     CREATE INDEX [IX_AspNetUserLogins_UserId] ON [AspNetUserLogins] ([UserId]);
@@ -2355,7 +2370,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20240517203323_AddedIdentityDbContext'
+    WHERE [MigrationId] = N'20240517214000_AddedIdentityDbContext'
 )
 BEGIN
     CREATE INDEX [IX_AspNetUserRoles_RoleId] ON [AspNetUserRoles] ([RoleId]);
@@ -2364,11 +2379,48 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20240517203323_AddedIdentityDbContext'
+    WHERE [MigrationId] = N'20240517214000_AddedIdentityDbContext'
 )
 BEGIN
     INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-    VALUES (N'20240517203323_AddedIdentityDbContext', N'8.0.1');
+    VALUES (N'20240517214000_AddedIdentityDbContext', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240526135453_AddedLogs'
+)
+BEGIN
+    CREATE TABLE [datanex_logs] (
+        [Id] uniqueidentifier NOT NULL,
+        [LogName] nvarchar(max) NOT NULL,
+        [LogType] int NOT NULL,
+        [LogOrigin] int NOT NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NOT NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        CONSTRAINT [PK_datanex_logs] PRIMARY KEY ([Id])
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240526135453_AddedLogs'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240526135453_AddedLogs', N'8.0.1');
 END;
 GO
 
