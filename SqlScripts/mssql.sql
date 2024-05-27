@@ -2427,3 +2427,169 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240526153612_MakeUserAddedNullable'
+)
+BEGIN
+    DECLARE @var21 sysname;
+    SELECT @var21 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_statuses]') AND [c].[name] = N'UserAdded');
+    IF @var21 IS NOT NULL EXEC(N'ALTER TABLE [datanex_statuses] DROP CONSTRAINT [' + @var21 + '];');
+    ALTER TABLE [datanex_statuses] ALTER COLUMN [UserAdded] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240526153612_MakeUserAddedNullable'
+)
+BEGIN
+    DECLARE @var22 sysname;
+    SELECT @var22 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_products]') AND [c].[name] = N'UserAdded');
+    IF @var22 IS NOT NULL EXEC(N'ALTER TABLE [datanex_products] DROP CONSTRAINT [' + @var22 + '];');
+    ALTER TABLE [datanex_products] ALTER COLUMN [UserAdded] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240526153612_MakeUserAddedNullable'
+)
+BEGIN
+    DECLARE @var23 sysname;
+    SELECT @var23 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_product_sizes]') AND [c].[name] = N'UserAdded');
+    IF @var23 IS NOT NULL EXEC(N'ALTER TABLE [datanex_product_sizes] DROP CONSTRAINT [' + @var23 + '];');
+    ALTER TABLE [datanex_product_sizes] ALTER COLUMN [UserAdded] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240526153612_MakeUserAddedNullable'
+)
+BEGIN
+    DECLARE @var24 sysname;
+    SELECT @var24 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_product_barcodes]') AND [c].[name] = N'UserAdded');
+    IF @var24 IS NOT NULL EXEC(N'ALTER TABLE [datanex_product_barcodes] DROP CONSTRAINT [' + @var24 + '];');
+    ALTER TABLE [datanex_product_barcodes] ALTER COLUMN [UserAdded] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240526153612_MakeUserAddedNullable'
+)
+BEGIN
+    DECLARE @var25 sysname;
+    SELECT @var25 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_logs]') AND [c].[name] = N'UserAdded');
+    IF @var25 IS NOT NULL EXEC(N'ALTER TABLE [datanex_logs] DROP CONSTRAINT [' + @var25 + '];');
+    ALTER TABLE [datanex_logs] ALTER COLUMN [UserAdded] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240526153612_MakeUserAddedNullable'
+)
+BEGIN
+    DECLARE @var26 sysname;
+    SELECT @var26 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_documenttypes]') AND [c].[name] = N'UserAdded');
+    IF @var26 IS NOT NULL EXEC(N'ALTER TABLE [datanex_documenttypes] DROP CONSTRAINT [' + @var26 + '];');
+    ALTER TABLE [datanex_documenttypes] ALTER COLUMN [UserAdded] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240526153612_MakeUserAddedNullable'
+)
+BEGIN
+    DECLARE @var27 sysname;
+    SELECT @var27 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_documents]') AND [c].[name] = N'UserAdded');
+    IF @var27 IS NOT NULL EXEC(N'ALTER TABLE [datanex_documents] DROP CONSTRAINT [' + @var27 + '];');
+    ALTER TABLE [datanex_documents] ALTER COLUMN [UserAdded] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240526153612_MakeUserAddedNullable'
+)
+BEGIN
+    DECLARE @var28 sysname;
+    SELECT @var28 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_documentproducts]') AND [c].[name] = N'UserAdded');
+    IF @var28 IS NOT NULL EXEC(N'ALTER TABLE [datanex_documentproducts] DROP CONSTRAINT [' + @var28 + '];');
+    ALTER TABLE [datanex_documentproducts] ALTER COLUMN [UserAdded] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240526153612_MakeUserAddedNullable'
+)
+BEGIN
+    DECLARE @var29 sysname;
+    SELECT @var29 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_customers]') AND [c].[name] = N'UserAdded');
+    IF @var29 IS NOT NULL EXEC(N'ALTER TABLE [datanex_customers] DROP CONSTRAINT [' + @var29 + '];');
+    ALTER TABLE [datanex_customers] ALTER COLUMN [UserAdded] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240526153612_MakeUserAddedNullable'
+)
+BEGIN
+    DECLARE @var30 sysname;
+    SELECT @var30 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_brands]') AND [c].[name] = N'UserAdded');
+    IF @var30 IS NOT NULL EXEC(N'ALTER TABLE [datanex_brands] DROP CONSTRAINT [' + @var30 + '];');
+    ALTER TABLE [datanex_brands] ALTER COLUMN [UserAdded] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240526153612_MakeUserAddedNullable'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240526153612_MakeUserAddedNullable', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
