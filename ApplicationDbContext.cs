@@ -11,6 +11,11 @@ namespace DataNex.Data
 {
     public class ApplicationDbContext : IdentityDbContext<User, Roles, Guid>
     {
+        private string _connectionString;
+        public ApplicationDbContext(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> contextOptions):base(contextOptions)
         {
            
@@ -36,7 +41,17 @@ namespace DataNex.Data
         public virtual DbSet<ProductBarcode> ProductBarcodes { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
 
-
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                if (!string.IsNullOrEmpty(_connectionString))
+                {
+                    optionsBuilder.UseSqlServer(_connectionString);
+                }
+                
+            }
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
