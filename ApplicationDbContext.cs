@@ -40,6 +40,8 @@ namespace DataNex.Data
 
         public virtual DbSet<ProductBarcode> ProductBarcodes { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
+        public virtual DbSet<ConnectorParameters> ConnectorParameters { get; set; }
+        public virtual DbSet<WooConnectionsData> WooConnectionsData { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

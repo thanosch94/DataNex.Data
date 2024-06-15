@@ -2593,3 +2593,50 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240615085249_AddedConnectorParametersAndWooConnectionData'
+)
+BEGIN
+    CREATE TABLE [connector_parameters] (
+        [Id] uniqueidentifier NOT NULL,
+        [CompanyId] uniqueidentifier NULL,
+        [WooBaseUrl] nvarchar(max) NULL,
+        [WooConsumerKey] nvarchar(max) NULL,
+        [WooConsumerSecret] nvarchar(max) NULL,
+        CONSTRAINT [PK_connector_parameters] PRIMARY KEY ([Id])
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240615085249_AddedConnectorParametersAndWooConnectionData'
+)
+BEGIN
+    CREATE TABLE [connector_wooconnectionsdata] (
+        [Id] uniqueidentifier NOT NULL,
+        [Name] nvarchar(50) NOT NULL,
+        [RequestType] int NOT NULL,
+        [Endpoint] nvarchar(max) NOT NULL,
+        CONSTRAINT [PK_connector_wooconnectionsdata] PRIMARY KEY ([Id])
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240615085249_AddedConnectorParametersAndWooConnectionData'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240615085249_AddedConnectorParametersAndWooConnectionData', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
