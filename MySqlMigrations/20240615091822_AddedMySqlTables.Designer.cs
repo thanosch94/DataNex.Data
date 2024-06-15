@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataNex.Data.MySqlMigrations
 {
     [DbContext(typeof(MySqlDbContext))]
-    [Migration("20240505231520_AddPreviousMigrations")]
-    partial class AddPreviousMigrations
+    [Migration("20240615091822_AddedMySqlTables")]
+    partial class AddedMySqlTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,7 +48,7 @@ namespace DataNex.Data.MySqlMigrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<Guid>("UserAdded")
+                    b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("UserUpdated")
@@ -57,6 +57,29 @@ namespace DataNex.Data.MySqlMigrations
                     b.HasKey("Id");
 
                     b.ToTable("datanex_brands");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.ConnectorParameters", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid?>("CompanyId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("WooBaseUrl")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("WooConsumerKey")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("WooConsumerSecret")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("connector_parameters");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Customer", b =>
@@ -108,7 +131,7 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<string>("TaxOffice")
                         .HasColumnType("longtext");
 
-                    b.Property<Guid>("UserAdded")
+                    b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("UserUpdated")
@@ -188,7 +211,7 @@ namespace DataNex.Data.MySqlMigrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<Guid>("UserAdded")
+                    b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime?>("UserDate1")
@@ -279,7 +302,7 @@ namespace DataNex.Data.MySqlMigrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid>("UserAdded")
+                    b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("UserUpdated")
@@ -323,7 +346,7 @@ namespace DataNex.Data.MySqlMigrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<Guid>("UserAdded")
+                    b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("UserUpdated")
@@ -332,6 +355,45 @@ namespace DataNex.Data.MySqlMigrations
                     b.HasKey("Id");
 
                     b.ToTable("datanex_documenttypes");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.Log", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("LogName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("LogOrigin")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LogType")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("UserAdded")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid?>("UserUpdated")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("datanex_logs");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Product", b =>
@@ -373,7 +435,7 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<string>("Sku")
                         .HasColumnType("longtext");
 
-                    b.Property<Guid>("UserAdded")
+                    b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("UserUpdated")
@@ -414,7 +476,7 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<Guid?>("SizeId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("UserAdded")
+                    b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("UserUpdated")
@@ -456,7 +518,7 @@ namespace DataNex.Data.MySqlMigrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<Guid>("UserAdded")
+                    b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("UserUpdated")
@@ -465,6 +527,33 @@ namespace DataNex.Data.MySqlMigrations
                     b.HasKey("Id");
 
                     b.ToTable("datanex_product_sizes");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.Roles", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex");
+
+                    b.ToTable("AspNetRoles", (string)null);
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Status", b =>
@@ -490,7 +579,7 @@ namespace DataNex.Data.MySqlMigrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<Guid>("UserAdded")
+                    b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("UserUpdated")
@@ -507,8 +596,15 @@ namespace DataNex.Data.MySqlMigrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
                     b.Property<Guid?>("CompanyId")
                         .HasColumnType("char(36)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
@@ -517,7 +613,11 @@ namespace DataNex.Data.MySqlMigrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("longtext");
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("tinyint(1)");
@@ -525,16 +625,45 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<Guid>("UserAdded")
                         .HasColumnType("char(36)");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
 
                     b.Property<int>("UserRole")
                         .HasColumnType("int");
@@ -542,13 +671,142 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<Guid?>("UserUpdated")
                         .HasColumnType("char(36)");
 
-                    b.Property<string>("Username")
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex");
+
+                    b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.WooConnectionsData", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Endpoint")
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<int>("RequestType")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("datanex_users");
+                    b.ToTable("connector_wooconnectionsdata");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("longtext");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("longtext");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("longtext");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Document", b =>
@@ -629,6 +887,57 @@ namespace DataNex.Data.MySqlMigrations
                     b.Navigation("Product");
 
                     b.Navigation("Size");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.Roles", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.Roles", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("DataNex.Model.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Brand", b =>

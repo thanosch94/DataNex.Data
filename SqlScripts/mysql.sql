@@ -10,7 +10,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240505231520_AddPreviousMigrations') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
 
     ALTER DATABASE CHARACTER SET utf8mb4;
 
@@ -24,7 +24,108 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240505231520_AddPreviousMigrations') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
+
+    CREATE TABLE `AspNetRoles` (
+        `Id` char(36) COLLATE ascii_general_ci NOT NULL,
+        `Name` varchar(256) CHARACTER SET utf8mb4 NULL,
+        `NormalizedName` varchar(256) CHARACTER SET utf8mb4 NULL,
+        `ConcurrencyStamp` longtext CHARACTER SET utf8mb4 NULL,
+        CONSTRAINT `PK_AspNetRoles` PRIMARY KEY (`Id`)
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
+
+    CREATE TABLE `AspNetUsers` (
+        `Id` char(36) COLLATE ascii_general_ci NOT NULL,
+        `Name` longtext CHARACTER SET utf8mb4 NOT NULL,
+        `IsActive` tinyint(1) NOT NULL,
+        `IsDeleted` tinyint(1) NOT NULL,
+        `DateAdded` datetime(6) NOT NULL,
+        `UserAdded` char(36) COLLATE ascii_general_ci NOT NULL,
+        `DateUpdated` datetime(6) NULL,
+        `UserUpdated` char(36) COLLATE ascii_general_ci NULL,
+        `UserRole` int NOT NULL,
+        `CompanyId` char(36) COLLATE ascii_general_ci NULL,
+        `UserName` varchar(256) CHARACTER SET utf8mb4 NULL,
+        `NormalizedUserName` varchar(256) CHARACTER SET utf8mb4 NULL,
+        `Email` varchar(256) CHARACTER SET utf8mb4 NULL,
+        `NormalizedEmail` varchar(256) CHARACTER SET utf8mb4 NULL,
+        `EmailConfirmed` tinyint(1) NOT NULL,
+        `PasswordHash` longtext CHARACTER SET utf8mb4 NULL,
+        `SecurityStamp` longtext CHARACTER SET utf8mb4 NULL,
+        `ConcurrencyStamp` longtext CHARACTER SET utf8mb4 NULL,
+        `PhoneNumber` longtext CHARACTER SET utf8mb4 NULL,
+        `PhoneNumberConfirmed` tinyint(1) NOT NULL,
+        `TwoFactorEnabled` tinyint(1) NOT NULL,
+        `LockoutEnd` datetime(6) NULL,
+        `LockoutEnabled` tinyint(1) NOT NULL,
+        `AccessFailedCount` int NOT NULL,
+        CONSTRAINT `PK_AspNetUsers` PRIMARY KEY (`Id`)
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
+
+    CREATE TABLE `connector_parameters` (
+        `Id` char(36) COLLATE ascii_general_ci NOT NULL,
+        `CompanyId` char(36) COLLATE ascii_general_ci NULL,
+        `WooBaseUrl` longtext CHARACTER SET utf8mb4 NULL,
+        `WooConsumerKey` longtext CHARACTER SET utf8mb4 NULL,
+        `WooConsumerSecret` longtext CHARACTER SET utf8mb4 NULL,
+        CONSTRAINT `PK_connector_parameters` PRIMARY KEY (`Id`)
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
+
+    CREATE TABLE `connector_wooconnectionsdata` (
+        `Id` char(36) COLLATE ascii_general_ci NOT NULL,
+        `Name` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+        `RequestType` int NOT NULL,
+        `Endpoint` longtext CHARACTER SET utf8mb4 NOT NULL,
+        CONSTRAINT `PK_connector_wooconnectionsdata` PRIMARY KEY (`Id`)
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
 
     CREATE TABLE `datanex_brands` (
         `Id` char(36) COLLATE ascii_general_ci NOT NULL,
@@ -32,7 +133,7 @@ BEGIN
         `IsActive` tinyint(1) NOT NULL,
         `IsDeleted` tinyint(1) NOT NULL,
         `DateAdded` datetime(6) NOT NULL,
-        `UserAdded` char(36) COLLATE ascii_general_ci NOT NULL,
+        `UserAdded` char(36) COLLATE ascii_general_ci NULL,
         `DateUpdated` datetime(6) NULL,
         `UserUpdated` char(36) COLLATE ascii_general_ci NULL,
         CONSTRAINT `PK_datanex_brands` PRIMARY KEY (`Id`)
@@ -48,7 +149,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240505231520_AddPreviousMigrations') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
 
     CREATE TABLE `datanex_customers` (
         `Id` char(36) COLLATE ascii_general_ci NOT NULL,
@@ -66,7 +167,7 @@ BEGIN
         `IsActive` tinyint(1) NOT NULL,
         `IsDeleted` tinyint(1) NOT NULL,
         `DateAdded` datetime(6) NOT NULL,
-        `UserAdded` char(36) COLLATE ascii_general_ci NOT NULL,
+        `UserAdded` char(36) COLLATE ascii_general_ci NULL,
         `DateUpdated` datetime(6) NULL,
         `UserUpdated` char(36) COLLATE ascii_general_ci NULL,
         CONSTRAINT `PK_datanex_customers` PRIMARY KEY (`Id`)
@@ -82,7 +183,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240505231520_AddPreviousMigrations') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
 
     CREATE TABLE `datanex_documenttypes` (
         `Id` char(36) COLLATE ascii_general_ci NOT NULL,
@@ -91,7 +192,7 @@ BEGIN
         `IsActive` tinyint(1) NOT NULL,
         `IsDeleted` tinyint(1) NOT NULL,
         `DateAdded` datetime(6) NOT NULL,
-        `UserAdded` char(36) COLLATE ascii_general_ci NOT NULL,
+        `UserAdded` char(36) COLLATE ascii_general_ci NULL,
         `DateUpdated` datetime(6) NULL,
         `UserUpdated` char(36) COLLATE ascii_general_ci NULL,
         CONSTRAINT `PK_datanex_documenttypes` PRIMARY KEY (`Id`)
@@ -107,7 +208,33 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240505231520_AddPreviousMigrations') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
+
+    CREATE TABLE `datanex_logs` (
+        `Id` char(36) COLLATE ascii_general_ci NOT NULL,
+        `LogName` longtext CHARACTER SET utf8mb4 NOT NULL,
+        `LogType` int NOT NULL,
+        `LogOrigin` int NOT NULL,
+        `IsActive` tinyint(1) NOT NULL,
+        `IsDeleted` tinyint(1) NOT NULL,
+        `DateAdded` datetime(6) NOT NULL,
+        `UserAdded` char(36) COLLATE ascii_general_ci NULL,
+        `DateUpdated` datetime(6) NULL,
+        `UserUpdated` char(36) COLLATE ascii_general_ci NULL,
+        CONSTRAINT `PK_datanex_logs` PRIMARY KEY (`Id`)
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
 
     CREATE TABLE `datanex_product_sizes` (
         `Id` char(36) COLLATE ascii_general_ci NOT NULL,
@@ -116,7 +243,7 @@ BEGIN
         `IsActive` tinyint(1) NOT NULL,
         `IsDeleted` tinyint(1) NOT NULL,
         `DateAdded` datetime(6) NOT NULL,
-        `UserAdded` char(36) COLLATE ascii_general_ci NOT NULL,
+        `UserAdded` char(36) COLLATE ascii_general_ci NULL,
         `DateUpdated` datetime(6) NULL,
         `UserUpdated` char(36) COLLATE ascii_general_ci NULL,
         CONSTRAINT `PK_datanex_product_sizes` PRIMARY KEY (`Id`)
@@ -132,7 +259,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240505231520_AddPreviousMigrations') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
 
     CREATE TABLE `datanex_statuses` (
         `Id` char(36) COLLATE ascii_general_ci NOT NULL,
@@ -140,7 +267,7 @@ BEGIN
         `IsActive` tinyint(1) NOT NULL,
         `IsDeleted` tinyint(1) NOT NULL,
         `DateAdded` datetime(6) NOT NULL,
-        `UserAdded` char(36) COLLATE ascii_general_ci NOT NULL,
+        `UserAdded` char(36) COLLATE ascii_general_ci NULL,
         `DateUpdated` datetime(6) NULL,
         `UserUpdated` char(36) COLLATE ascii_general_ci NULL,
         CONSTRAINT `PK_datanex_statuses` PRIMARY KEY (`Id`)
@@ -156,23 +283,15 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240505231520_AddPreviousMigrations') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
 
-    CREATE TABLE `datanex_users` (
-        `Id` char(36) COLLATE ascii_general_ci NOT NULL,
-        `Name` longtext CHARACTER SET utf8mb4 NOT NULL,
-        `Email` longtext CHARACTER SET utf8mb4 NULL,
-        `Username` longtext CHARACTER SET utf8mb4 NOT NULL,
-        `PasswordHash` longtext CHARACTER SET utf8mb4 NOT NULL,
-        `UserRole` int NOT NULL,
-        `CompanyId` char(36) COLLATE ascii_general_ci NULL,
-        `IsActive` tinyint(1) NOT NULL,
-        `IsDeleted` tinyint(1) NOT NULL,
-        `DateAdded` datetime(6) NOT NULL,
-        `UserAdded` char(36) COLLATE ascii_general_ci NOT NULL,
-        `DateUpdated` datetime(6) NULL,
-        `UserUpdated` char(36) COLLATE ascii_general_ci NULL,
-        CONSTRAINT `PK_datanex_users` PRIMARY KEY (`Id`)
+    CREATE TABLE `AspNetRoleClaims` (
+        `Id` int NOT NULL AUTO_INCREMENT,
+        `RoleId` char(36) COLLATE ascii_general_ci NOT NULL,
+        `ClaimType` longtext CHARACTER SET utf8mb4 NULL,
+        `ClaimValue` longtext CHARACTER SET utf8mb4 NULL,
+        CONSTRAINT `PK_AspNetRoleClaims` PRIMARY KEY (`Id`),
+        CONSTRAINT `FK_AspNetRoleClaims_AspNetRoles_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `AspNetRoles` (`Id`) ON DELETE RESTRICT
     ) CHARACTER SET=utf8mb4;
 
     END IF;
@@ -185,7 +304,90 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240505231520_AddPreviousMigrations') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
+
+    CREATE TABLE `AspNetUserClaims` (
+        `Id` int NOT NULL AUTO_INCREMENT,
+        `UserId` char(36) COLLATE ascii_general_ci NOT NULL,
+        `ClaimType` longtext CHARACTER SET utf8mb4 NULL,
+        `ClaimValue` longtext CHARACTER SET utf8mb4 NULL,
+        CONSTRAINT `PK_AspNetUserClaims` PRIMARY KEY (`Id`),
+        CONSTRAINT `FK_AspNetUserClaims_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE RESTRICT
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
+
+    CREATE TABLE `AspNetUserLogins` (
+        `LoginProvider` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+        `ProviderKey` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+        `ProviderDisplayName` longtext CHARACTER SET utf8mb4 NULL,
+        `UserId` char(36) COLLATE ascii_general_ci NOT NULL,
+        CONSTRAINT `PK_AspNetUserLogins` PRIMARY KEY (`LoginProvider`, `ProviderKey`),
+        CONSTRAINT `FK_AspNetUserLogins_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE RESTRICT
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
+
+    CREATE TABLE `AspNetUserRoles` (
+        `UserId` char(36) COLLATE ascii_general_ci NOT NULL,
+        `RoleId` char(36) COLLATE ascii_general_ci NOT NULL,
+        CONSTRAINT `PK_AspNetUserRoles` PRIMARY KEY (`UserId`, `RoleId`),
+        CONSTRAINT `FK_AspNetUserRoles_AspNetRoles_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `AspNetRoles` (`Id`) ON DELETE RESTRICT,
+        CONSTRAINT `FK_AspNetUserRoles_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE RESTRICT
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
+
+    CREATE TABLE `AspNetUserTokens` (
+        `UserId` char(36) COLLATE ascii_general_ci NOT NULL,
+        `LoginProvider` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+        `Name` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+        `Value` longtext CHARACTER SET utf8mb4 NULL,
+        CONSTRAINT `PK_AspNetUserTokens` PRIMARY KEY (`UserId`, `LoginProvider`, `Name`),
+        CONSTRAINT `FK_AspNetUserTokens_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE RESTRICT
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
 
     CREATE TABLE `datanex_products` (
         `Id` char(36) COLLATE ascii_general_ci NOT NULL,
@@ -198,7 +400,7 @@ BEGIN
         `IsActive` tinyint(1) NOT NULL,
         `IsDeleted` tinyint(1) NOT NULL,
         `DateAdded` datetime(6) NOT NULL,
-        `UserAdded` char(36) COLLATE ascii_general_ci NOT NULL,
+        `UserAdded` char(36) COLLATE ascii_general_ci NULL,
         `DateUpdated` datetime(6) NULL,
         `UserUpdated` char(36) COLLATE ascii_general_ci NULL,
         CONSTRAINT `PK_datanex_products` PRIMARY KEY (`Id`),
@@ -215,7 +417,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240505231520_AddPreviousMigrations') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
 
     CREATE TABLE `datanex_documents` (
         `Id` char(36) COLLATE ascii_general_ci NOT NULL,
@@ -248,7 +450,7 @@ BEGIN
         `IsActive` tinyint(1) NOT NULL,
         `IsDeleted` tinyint(1) NOT NULL,
         `DateAdded` datetime(6) NOT NULL,
-        `UserAdded` char(36) COLLATE ascii_general_ci NOT NULL,
+        `UserAdded` char(36) COLLATE ascii_general_ci NULL,
         `DateUpdated` datetime(6) NULL,
         `UserUpdated` char(36) COLLATE ascii_general_ci NULL,
         CONSTRAINT `PK_datanex_documents` PRIMARY KEY (`Id`),
@@ -267,7 +469,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240505231520_AddPreviousMigrations') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
 
     CREATE TABLE `datanex_product_barcodes` (
         `Id` char(36) COLLATE ascii_general_ci NOT NULL,
@@ -277,7 +479,7 @@ BEGIN
         `IsActive` tinyint(1) NOT NULL,
         `IsDeleted` tinyint(1) NOT NULL,
         `DateAdded` datetime(6) NOT NULL,
-        `UserAdded` char(36) COLLATE ascii_general_ci NOT NULL,
+        `UserAdded` char(36) COLLATE ascii_general_ci NULL,
         `DateUpdated` datetime(6) NULL,
         `UserUpdated` char(36) COLLATE ascii_general_ci NULL,
         CONSTRAINT `PK_datanex_product_barcodes` PRIMARY KEY (`Id`),
@@ -295,7 +497,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240505231520_AddPreviousMigrations') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
 
     CREATE TABLE `datanex_documentproducts` (
         `Id` char(36) COLLATE ascii_general_ci NOT NULL,
@@ -308,7 +510,7 @@ BEGIN
         `IsActive` tinyint(1) NOT NULL,
         `IsDeleted` tinyint(1) NOT NULL,
         `DateAdded` datetime(6) NOT NULL,
-        `UserAdded` char(36) COLLATE ascii_general_ci NOT NULL,
+        `UserAdded` char(36) COLLATE ascii_general_ci NULL,
         `DateUpdated` datetime(6) NULL,
         `UserUpdated` char(36) COLLATE ascii_general_ci NULL,
         CONSTRAINT `PK_datanex_documentproducts` PRIMARY KEY (`Id`),
@@ -327,7 +529,105 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240505231520_AddPreviousMigrations') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
+
+    CREATE INDEX `IX_AspNetRoleClaims_RoleId` ON `AspNetRoleClaims` (`RoleId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
+
+    CREATE UNIQUE INDEX `RoleNameIndex` ON `AspNetRoles` (`NormalizedName`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
+
+    CREATE INDEX `IX_AspNetUserClaims_UserId` ON `AspNetUserClaims` (`UserId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
+
+    CREATE INDEX `IX_AspNetUserLogins_UserId` ON `AspNetUserLogins` (`UserId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
+
+    CREATE INDEX `IX_AspNetUserRoles_RoleId` ON `AspNetUserRoles` (`RoleId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
+
+    CREATE INDEX `EmailIndex` ON `AspNetUsers` (`NormalizedEmail`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
+
+    CREATE UNIQUE INDEX `UserNameIndex` ON `AspNetUsers` (`NormalizedUserName`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
 
     CREATE INDEX `IX_datanex_documentproducts_DocumentId` ON `datanex_documentproducts` (`DocumentId`);
 
@@ -341,7 +641,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240505231520_AddPreviousMigrations') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
 
     CREATE INDEX `IX_datanex_documentproducts_ProductId` ON `datanex_documentproducts` (`ProductId`);
 
@@ -355,7 +655,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240505231520_AddPreviousMigrations') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
 
     CREATE INDEX `IX_datanex_documentproducts_ProductSizeId` ON `datanex_documentproducts` (`ProductSizeId`);
 
@@ -369,7 +669,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240505231520_AddPreviousMigrations') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
 
     CREATE INDEX `IX_datanex_documents_CustomerId` ON `datanex_documents` (`CustomerId`);
 
@@ -383,7 +683,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240505231520_AddPreviousMigrations') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
 
     CREATE INDEX `IX_datanex_documents_DocumentStatusId` ON `datanex_documents` (`DocumentStatusId`);
 
@@ -397,7 +697,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240505231520_AddPreviousMigrations') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
 
     CREATE INDEX `IX_datanex_documents_DocumentTypeId` ON `datanex_documents` (`DocumentTypeId`);
 
@@ -411,7 +711,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240505231520_AddPreviousMigrations') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
 
     CREATE INDEX `IX_datanex_product_barcodes_ProductId` ON `datanex_product_barcodes` (`ProductId`);
 
@@ -425,7 +725,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240505231520_AddPreviousMigrations') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
 
     CREATE INDEX `IX_datanex_product_barcodes_SizeId` ON `datanex_product_barcodes` (`SizeId`);
 
@@ -439,7 +739,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240505231520_AddPreviousMigrations') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
 
     CREATE INDEX `IX_datanex_products_BrandId` ON `datanex_products` (`BrandId`);
 
@@ -453,10 +753,10 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240505231520_AddPreviousMigrations') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240615091822_AddedMySqlTables') THEN
 
     INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
-    VALUES ('20240505231520_AddPreviousMigrations', '8.0.1');
+    VALUES ('20240615091822_AddedMySqlTables', '8.0.1');
 
     END IF;
 END //
