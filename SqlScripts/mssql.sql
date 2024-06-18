@@ -2640,3 +2640,127 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240618191036_AddedBaseModelOnConnectorModels'
+)
+BEGIN
+    ALTER TABLE [connector_wooconnectionsdata] ADD [DateAdded] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240618191036_AddedBaseModelOnConnectorModels'
+)
+BEGIN
+    ALTER TABLE [connector_wooconnectionsdata] ADD [DateUpdated] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240618191036_AddedBaseModelOnConnectorModels'
+)
+BEGIN
+    ALTER TABLE [connector_wooconnectionsdata] ADD [IsActive] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240618191036_AddedBaseModelOnConnectorModels'
+)
+BEGIN
+    ALTER TABLE [connector_wooconnectionsdata] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240618191036_AddedBaseModelOnConnectorModels'
+)
+BEGIN
+    ALTER TABLE [connector_wooconnectionsdata] ADD [UserAdded] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240618191036_AddedBaseModelOnConnectorModels'
+)
+BEGIN
+    ALTER TABLE [connector_wooconnectionsdata] ADD [UserUpdated] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240618191036_AddedBaseModelOnConnectorModels'
+)
+BEGIN
+    ALTER TABLE [connector_parameters] ADD [DateAdded] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240618191036_AddedBaseModelOnConnectorModels'
+)
+BEGIN
+    ALTER TABLE [connector_parameters] ADD [DateUpdated] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240618191036_AddedBaseModelOnConnectorModels'
+)
+BEGIN
+    ALTER TABLE [connector_parameters] ADD [IsActive] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240618191036_AddedBaseModelOnConnectorModels'
+)
+BEGIN
+    ALTER TABLE [connector_parameters] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240618191036_AddedBaseModelOnConnectorModels'
+)
+BEGIN
+    ALTER TABLE [connector_parameters] ADD [UserAdded] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240618191036_AddedBaseModelOnConnectorModels'
+)
+BEGIN
+    ALTER TABLE [connector_parameters] ADD [UserUpdated] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240618191036_AddedBaseModelOnConnectorModels'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240618191036_AddedBaseModelOnConnectorModels', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
