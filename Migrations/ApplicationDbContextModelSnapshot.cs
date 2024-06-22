@@ -22,6 +22,40 @@ namespace DataNex.Data.MsSql.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("DataNex.Model.Models.AdditionalCharge", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<Guid?>("UserAdded")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserUpdated")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("datanex_additional_charges");
+                });
+
             modelBuilder.Entity("DataNex.Model.Models.Brand", b =>
                 {
                     b.Property<Guid>("Id")
@@ -277,6 +311,48 @@ namespace DataNex.Data.MsSql.Migrations
                     b.HasIndex("DocumentTypeId");
 
                     b.ToTable("datanex_documents");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.DocumentAdditionalCharge", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("AdditionalChargeAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("AdditionalChargeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("DocumentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("UserAdded")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserUpdated")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdditionalChargeId");
+
+                    b.HasIndex("DocumentId");
+
+                    b.ToTable("datanex_document_additional_charges");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.DocumentProduct", b =>
@@ -870,6 +946,25 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Navigation("DocumentType");
                 });
 
+            modelBuilder.Entity("DataNex.Model.Models.DocumentAdditionalCharge", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.AdditionalCharge", "AdditionalCharge")
+                        .WithMany("DocumentAdditionalCharges")
+                        .HasForeignKey("AdditionalChargeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("DataNex.Model.Models.Document", "Document")
+                        .WithMany("DocumentAdditionalCharges")
+                        .HasForeignKey("DocumentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("AdditionalCharge");
+
+                    b.Navigation("Document");
+                });
+
             modelBuilder.Entity("DataNex.Model.Models.DocumentProduct", b =>
                 {
                     b.HasOne("DataNex.Model.Models.Document", "Document")
@@ -975,6 +1070,11 @@ namespace DataNex.Data.MsSql.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("DataNex.Model.Models.AdditionalCharge", b =>
+                {
+                    b.Navigation("DocumentAdditionalCharges");
+                });
+
             modelBuilder.Entity("DataNex.Model.Models.Brand", b =>
                 {
                     b.Navigation("Products");
@@ -987,6 +1087,8 @@ namespace DataNex.Data.MsSql.Migrations
 
             modelBuilder.Entity("DataNex.Model.Models.Document", b =>
                 {
+                    b.Navigation("DocumentAdditionalCharges");
+
                     b.Navigation("DocumentProducts");
                 });
 

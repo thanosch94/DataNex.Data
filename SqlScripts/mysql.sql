@@ -953,3 +953,102 @@ DROP PROCEDURE MigrationsScript;
 
 COMMIT;
 
+START TRANSACTION;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240622150437_AddedAdditionalCharges') THEN
+
+    CREATE TABLE `datanex_additional_charges` (
+        `Id` char(36) COLLATE ascii_general_ci NOT NULL,
+        `Name` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
+        `IsActive` tinyint(1) NOT NULL,
+        `IsDeleted` tinyint(1) NOT NULL,
+        `DateAdded` datetime(6) NOT NULL,
+        `UserAdded` char(36) COLLATE ascii_general_ci NULL,
+        `DateUpdated` datetime(6) NULL,
+        `UserUpdated` char(36) COLLATE ascii_general_ci NULL,
+        CONSTRAINT `PK_datanex_additional_charges` PRIMARY KEY (`Id`)
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240622150437_AddedAdditionalCharges') THEN
+
+    CREATE TABLE `datanex_document_additional_charges` (
+        `Id` char(36) COLLATE ascii_general_ci NOT NULL,
+        `DocumentId` char(36) COLLATE ascii_general_ci NOT NULL,
+        `AdditionalChargeId` char(36) COLLATE ascii_general_ci NOT NULL,
+        `AdditionalChargeAmount` decimal(65,30) NOT NULL,
+        `IsActive` tinyint(1) NOT NULL,
+        `IsDeleted` tinyint(1) NOT NULL,
+        `DateAdded` datetime(6) NOT NULL,
+        `UserAdded` char(36) COLLATE ascii_general_ci NULL,
+        `DateUpdated` datetime(6) NULL,
+        `UserUpdated` char(36) COLLATE ascii_general_ci NULL,
+        CONSTRAINT `PK_datanex_document_additional_charges` PRIMARY KEY (`Id`),
+        CONSTRAINT `FK_datanex_document_additional_charges_datanex_additional_charg~` FOREIGN KEY (`AdditionalChargeId`) REFERENCES `datanex_additional_charges` (`Id`) ON DELETE RESTRICT,
+        CONSTRAINT `FK_datanex_document_additional_charges_datanex_documents_Docume~` FOREIGN KEY (`DocumentId`) REFERENCES `datanex_documents` (`Id`) ON DELETE RESTRICT
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240622150437_AddedAdditionalCharges') THEN
+
+    CREATE INDEX `IX_datanex_document_additional_charges_AdditionalChargeId` ON `datanex_document_additional_charges` (`AdditionalChargeId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240622150437_AddedAdditionalCharges') THEN
+
+    CREATE INDEX `IX_datanex_document_additional_charges_DocumentId` ON `datanex_document_additional_charges` (`DocumentId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240622150437_AddedAdditionalCharges') THEN
+
+    INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+    VALUES ('20240622150437_AddedAdditionalCharges', '8.0.1');
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+COMMIT;
+

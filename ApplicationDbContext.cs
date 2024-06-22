@@ -1,4 +1,5 @@
-﻿using DataNex.Model.Models;
+﻿using DataNex.Model.Dtos;
+using DataNex.Model.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -42,6 +43,8 @@ namespace DataNex.Data
         public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<ConnectorParameters> ConnectorParameters { get; set; }
         public virtual DbSet<WooConnectionsData> WooConnectionsData { get; set; }
+        public virtual DbSet<AdditionalCharge> AdditionalCharges{ get; set; }
+        public virtual DbSet<DocumentAdditionalCharge> DocumentAdditionalCharges { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

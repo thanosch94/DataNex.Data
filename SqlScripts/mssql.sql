@@ -2764,3 +2764,79 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240622150027_AddedAdditionalCharges'
+)
+BEGIN
+    CREATE TABLE [datanex_additional_charges] (
+        [Id] uniqueidentifier NOT NULL,
+        [Name] nvarchar(100) NOT NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        CONSTRAINT [PK_datanex_additional_charges] PRIMARY KEY ([Id])
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240622150027_AddedAdditionalCharges'
+)
+BEGIN
+    CREATE TABLE [datanex_document_additional_charges] (
+        [Id] uniqueidentifier NOT NULL,
+        [DocumentId] uniqueidentifier NOT NULL,
+        [AdditionalChargeId] uniqueidentifier NOT NULL,
+        [AdditionalChargeAmount] decimal(18,2) NOT NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        CONSTRAINT [PK_datanex_document_additional_charges] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_datanex_document_additional_charges_datanex_additional_charges_AdditionalChargeId] FOREIGN KEY ([AdditionalChargeId]) REFERENCES [datanex_additional_charges] ([Id]) ON DELETE NO ACTION,
+        CONSTRAINT [FK_datanex_document_additional_charges_datanex_documents_DocumentId] FOREIGN KEY ([DocumentId]) REFERENCES [datanex_documents] ([Id]) ON DELETE NO ACTION
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240622150027_AddedAdditionalCharges'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_document_additional_charges_AdditionalChargeId] ON [datanex_document_additional_charges] ([AdditionalChargeId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240622150027_AddedAdditionalCharges'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_document_additional_charges_DocumentId] ON [datanex_document_additional_charges] ([DocumentId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240622150027_AddedAdditionalCharges'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240622150027_AddedAdditionalCharges', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
