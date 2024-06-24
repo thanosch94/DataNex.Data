@@ -2889,3 +2889,28 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240624170942_AddedIconOnConnectorJob'
+)
+BEGIN
+    ALTER TABLE [connector_jobs] ADD [Icon] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240624170942_AddedIconOnConnectorJob'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240624170942_AddedIconOnConnectorJob', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
