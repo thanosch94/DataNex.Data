@@ -1052,3 +1052,65 @@ DROP PROCEDURE MigrationsScript;
 
 COMMIT;
 
+START TRANSACTION;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240624142331_AddedConnectorJob') THEN
+
+    CREATE TABLE `connector_jobs` (
+        `Id` char(36) COLLATE ascii_general_ci NOT NULL,
+        `Name` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
+        `Description` varchar(250) CHARACTER SET utf8mb4 NULL,
+        `JobType` int NOT NULL,
+        `DataSourceId` char(36) COLLATE ascii_general_ci NOT NULL,
+        `WooConnectionDataSourceId` char(36) COLLATE ascii_general_ci NULL,
+        `IsActive` tinyint(1) NOT NULL,
+        `IsDeleted` tinyint(1) NOT NULL,
+        `DateAdded` datetime(6) NOT NULL,
+        `UserAdded` char(36) COLLATE ascii_general_ci NULL,
+        `DateUpdated` datetime(6) NULL,
+        `UserUpdated` char(36) COLLATE ascii_general_ci NULL,
+        CONSTRAINT `PK_connector_jobs` PRIMARY KEY (`Id`),
+        CONSTRAINT `FK_connector_jobs_connector_wooconnectionsdata_WooConnectionDat~` FOREIGN KEY (`WooConnectionDataSourceId`) REFERENCES `connector_wooconnectionsdata` (`Id`) ON DELETE RESTRICT
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240624142331_AddedConnectorJob') THEN
+
+    CREATE INDEX `IX_connector_jobs_WooConnectionDataSourceId` ON `connector_jobs` (`WooConnectionDataSourceId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240624142331_AddedConnectorJob') THEN
+
+    INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+    VALUES ('20240624142331_AddedConnectorJob', '8.0.1');
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+COMMIT;
+

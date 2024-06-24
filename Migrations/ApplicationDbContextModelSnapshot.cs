@@ -90,6 +90,55 @@ namespace DataNex.Data.MsSql.Migrations
                     b.ToTable("datanex_brands");
                 });
 
+            modelBuilder.Entity("DataNex.Model.Models.ConnectorJob", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("DataSourceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("JobType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<Guid?>("UserAdded")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserUpdated")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("WooConnectionDataSourceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WooConnectionDataSourceId");
+
+                    b.ToTable("connector_jobs");
+                });
+
             modelBuilder.Entity("DataNex.Model.Models.ConnectorParameters", b =>
                 {
                     b.Property<Guid>("Id")
@@ -920,6 +969,16 @@ namespace DataNex.Data.MsSql.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("DataNex.Model.Models.ConnectorJob", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.WooConnectionsData", "WooConnectionDataSource")
+                        .WithMany("ConnectorJobs")
+                        .HasForeignKey("WooConnectionDataSourceId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("WooConnectionDataSource");
+                });
+
             modelBuilder.Entity("DataNex.Model.Models.Document", b =>
                 {
                     b.HasOne("DataNex.Model.Models.Customer", "Customer")
@@ -1112,6 +1171,11 @@ namespace DataNex.Data.MsSql.Migrations
             modelBuilder.Entity("DataNex.Model.Models.Status", b =>
                 {
                     b.Navigation("Documnents");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.WooConnectionsData", b =>
+                {
+                    b.Navigation("ConnectorJobs");
                 });
 #pragma warning restore 612, 618
         }

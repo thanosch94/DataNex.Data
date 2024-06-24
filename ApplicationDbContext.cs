@@ -45,6 +45,7 @@ namespace DataNex.Data
         public virtual DbSet<WooConnectionsData> WooConnectionsData { get; set; }
         public virtual DbSet<AdditionalCharge> AdditionalCharges{ get; set; }
         public virtual DbSet<DocumentAdditionalCharge> DocumentAdditionalCharges { get; set; }
+        public virtual DbSet<ConnectorJob> ConnectorJobs { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

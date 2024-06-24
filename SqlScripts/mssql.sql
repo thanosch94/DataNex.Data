@@ -2840,3 +2840,52 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240624142133_AddedConnectorJob'
+)
+BEGIN
+    CREATE TABLE [connector_jobs] (
+        [Id] uniqueidentifier NOT NULL,
+        [Name] nvarchar(100) NOT NULL,
+        [Description] nvarchar(250) NULL,
+        [JobType] int NOT NULL,
+        [DataSourceId] uniqueidentifier NOT NULL,
+        [WooConnectionDataSourceId] uniqueidentifier NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        CONSTRAINT [PK_connector_jobs] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_connector_jobs_connector_wooconnectionsdata_WooConnectionDataSourceId] FOREIGN KEY ([WooConnectionDataSourceId]) REFERENCES [connector_wooconnectionsdata] ([Id]) ON DELETE NO ACTION
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240624142133_AddedConnectorJob'
+)
+BEGIN
+    CREATE INDEX [IX_connector_jobs_WooConnectionDataSourceId] ON [connector_jobs] ([WooConnectionDataSourceId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240624142133_AddedConnectorJob'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240624142133_AddedConnectorJob', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
