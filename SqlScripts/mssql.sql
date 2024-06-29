@@ -2914,3 +2914,28 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240629132242_AddedWooEntityOnWooConnectionsData'
+)
+BEGIN
+    ALTER TABLE [connector_wooconnectionsdata] ADD [WooEntity] int NOT NULL DEFAULT 0;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240629132242_AddedWooEntityOnWooConnectionsData'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240629132242_AddedWooEntityOnWooConnectionsData', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+

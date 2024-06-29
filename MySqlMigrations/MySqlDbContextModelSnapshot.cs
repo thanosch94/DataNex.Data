@@ -862,6 +862,9 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<Guid?>("UserUpdated")
                         .HasColumnType("char(36)");
 
+                    b.Property<int>("WooEntity")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("connector_wooconnectionsdata");
