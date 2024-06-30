@@ -1,10 +1,12 @@
 ﻿using DataNex.Model.Dtos;
+using DataNex.Model.Enums;
 using DataNex.Model.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -61,6 +63,7 @@ namespace DataNex.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
             var eTypes = modelBuilder.Model.GetEntityTypes();
             foreach (var type in eTypes)
             {
@@ -70,7 +73,8 @@ namespace DataNex.Data
                     foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
                 }
             }
-
         }
+        
+       
     }
 }
