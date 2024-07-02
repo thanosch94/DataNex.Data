@@ -53,7 +53,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("datanex_additional_charges", (string)null);
+                    b.ToTable("datanex_additional_charges");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Brand", b =>
@@ -87,7 +87,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("datanex_brands", (string)null);
+                    b.ToTable("datanex_brands");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.ConnectorJob", b =>
@@ -139,7 +139,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("WooConnectionDataSourceId");
 
-                    b.ToTable("connector_jobs", (string)null);
+                    b.ToTable("connector_jobs");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.ConnectorParameters", b =>
@@ -180,7 +180,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("connector_parameters", (string)null);
+                    b.ToTable("connector_parameters");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Customer", b =>
@@ -243,7 +243,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("datanex_customers", (string)null);
+                    b.ToTable("datanex_customers");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Document", b =>
@@ -362,7 +362,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("DocumentTypeId");
 
-                    b.ToTable("datanex_documents", (string)null);
+                    b.ToTable("datanex_documents");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.DocumentAdditionalCharge", b =>
@@ -404,7 +404,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("DocumentId");
 
-                    b.ToTable("datanex_document_additional_charges", (string)null);
+                    b.ToTable("datanex_document_additional_charges");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.DocumentProduct", b =>
@@ -459,7 +459,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("ProductSizeId");
 
-                    b.ToTable("datanex_documentproducts", (string)null);
+                    b.ToTable("datanex_documentproducts");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.DocumentType", b =>
@@ -497,7 +497,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("datanex_documenttypes", (string)null);
+                    b.ToTable("datanex_documenttypes");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Log", b =>
@@ -536,7 +536,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("datanex_logs", (string)null);
+                    b.ToTable("datanex_logs");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Product", b =>
@@ -588,7 +588,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("BrandId");
 
-                    b.ToTable("datanex_products", (string)null);
+                    b.ToTable("datanex_products");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.ProductBarcode", b =>
@@ -631,7 +631,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("SizeId");
 
-                    b.ToTable("datanex_product_barcodes", (string)null);
+                    b.ToTable("datanex_product_barcodes");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.ProductSize", b =>
@@ -669,7 +669,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("datanex_product_sizes", (string)null);
+                    b.ToTable("datanex_product_sizes");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Roles", b =>
@@ -731,7 +731,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("datanex_statuses", (string)null);
+                    b.ToTable("datanex_statuses");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.User", b =>
@@ -828,6 +828,51 @@ namespace DataNex.Data.MsSql.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("DataNex.Model.Models.WareHouse", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<Guid?>("CompanyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDefault")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<Guid?>("UserAdded")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserUpdated")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("datanex_warehouses");
+                });
+
             modelBuilder.Entity("DataNex.Model.Models.WooConnectionsData", b =>
                 {
                     b.Property<Guid>("Id")
@@ -869,7 +914,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("connector_wooconnectionsdata", (string)null);
+                    b.ToTable("connector_wooconnectionsdata");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

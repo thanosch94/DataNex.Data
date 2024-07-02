@@ -2939,3 +2939,41 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240702201505_AddedWarehouses'
+)
+BEGIN
+    CREATE TABLE [datanex_warehouses] (
+        [Id] uniqueidentifier NOT NULL,
+        [Code] nvarchar(10) NOT NULL,
+        [Name] nvarchar(50) NOT NULL,
+        [IsDefault] bit NOT NULL,
+        [CompanyId] uniqueidentifier NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        CONSTRAINT [PK_datanex_warehouses] PRIMARY KEY ([Id])
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240702201505_AddedWarehouses'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240702201505_AddedWarehouses', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+

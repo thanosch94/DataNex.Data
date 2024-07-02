@@ -1180,3 +1180,49 @@ DROP PROCEDURE MigrationsScript;
 
 COMMIT;
 
+START TRANSACTION;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240702203047_AddedWarehouses') THEN
+
+    CREATE TABLE `datanex_warehouses` (
+        `Id` char(36) COLLATE ascii_general_ci NOT NULL,
+        `Code` varchar(10) CHARACTER SET utf8mb4 NOT NULL,
+        `Name` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+        `IsDefault` tinyint(1) NOT NULL,
+        `CompanyId` char(36) COLLATE ascii_general_ci NULL,
+        `IsActive` tinyint(1) NOT NULL,
+        `IsDeleted` tinyint(1) NOT NULL,
+        `DateAdded` datetime(6) NOT NULL,
+        `UserAdded` char(36) COLLATE ascii_general_ci NULL,
+        `DateUpdated` datetime(6) NULL,
+        `UserUpdated` char(36) COLLATE ascii_general_ci NULL,
+        CONSTRAINT `PK_datanex_warehouses` PRIMARY KEY (`Id`)
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240702203047_AddedWarehouses') THEN
+
+    INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+    VALUES ('20240702203047_AddedWarehouses', '8.0.1');
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+COMMIT;
+
