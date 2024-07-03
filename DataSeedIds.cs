@@ -13,9 +13,10 @@ namespace DataNex.Data
         public static Guid ProformaInvoice = Guid.Parse("3a7da7f5-93e7-40a6-8e62-6a2836ecec96");
         public static Guid Receipt = Guid.Parse("115f1623-c161-4b4f-8dc6-abbbd875d618");
         public static Guid Invoice = Guid.Parse("976ed3dc-e0ee-43a4-a4ec-cf1c0a88dd07");
-        public static Guid SalesDeliveryNote = Guid.Parse("976ed3dc-e0ee-43a4-a4ec-cf1c0a88dd07");
+        public static Guid SalesDeliveryNote = Guid.Parse("bdde347b-e4b5-477f-8246-439b2bf6a946");
         public static Guid PurchaseDeliveryNote = Guid.Parse("a8a278ef-d5de-4a1e-b29b-652177d04d5e");
         public static Guid PurchaseOrder = Guid.Parse("270dce95-9562-4c63-86ee-0aeca760ab9b");
+        public static Guid PurchaseInvoice = Guid.Parse("c7825a32-6007-48b4-936d-f558c9b788c3");
         public static Guid CreditNote = Guid.Parse("4437b7c7-c4a1-4de9-ace3-4e807b9a5f13");
 
     }

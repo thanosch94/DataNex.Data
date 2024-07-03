@@ -40,6 +40,9 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsSeeded")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -72,6 +75,9 @@ namespace DataNex.Data.MsSql.Migrations
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSeeded")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
@@ -118,6 +124,9 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsSeeded")
+                        .HasColumnType("bit");
+
                     b.Property<int>("JobType")
                         .HasColumnType("int");
 
@@ -161,6 +170,9 @@ namespace DataNex.Data.MsSql.Migrations
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSeeded")
                         .HasColumnType("bit");
 
                     b.Property<Guid?>("UserAdded")
@@ -211,6 +223,9 @@ namespace DataNex.Data.MsSql.Migrations
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSeeded")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
@@ -281,6 +296,9 @@ namespace DataNex.Data.MsSql.Migrations
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSeeded")
                         .HasColumnType("bit");
 
                     b.Property<string>("ShippingAddress")
@@ -392,6 +410,9 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsSeeded")
+                        .HasColumnType("bit");
+
                     b.Property<Guid?>("UserAdded")
                         .HasColumnType("uniqueidentifier");
 
@@ -426,6 +447,9 @@ namespace DataNex.Data.MsSql.Migrations
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSeeded")
                         .HasColumnType("bit");
 
                     b.Property<decimal>("Price")
@@ -492,6 +516,9 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsSeeded")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -524,6 +551,9 @@ namespace DataNex.Data.MsSql.Migrations
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSeeded")
                         .HasColumnType("bit");
 
                     b.Property<string>("LogName")
@@ -574,6 +604,9 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsSeeded")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -621,6 +654,9 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsSeeded")
+                        .HasColumnType("bit");
+
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
@@ -662,6 +698,9 @@ namespace DataNex.Data.MsSql.Migrations
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSeeded")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
@@ -724,6 +763,9 @@ namespace DataNex.Data.MsSql.Migrations
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSeeded")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
@@ -865,6 +907,9 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsSeeded")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -901,6 +946,9 @@ namespace DataNex.Data.MsSql.Migrations
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSeeded")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")

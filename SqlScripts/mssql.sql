@@ -3011,3 +3011,163 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240703183159_AddedIsSeeded'
+)
+BEGIN
+    ALTER TABLE [datanex_warehouses] ADD [IsSeeded] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240703183159_AddedIsSeeded'
+)
+BEGIN
+    ALTER TABLE [datanex_statuses] ADD [IsSeeded] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240703183159_AddedIsSeeded'
+)
+BEGIN
+    ALTER TABLE [datanex_products] ADD [IsSeeded] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240703183159_AddedIsSeeded'
+)
+BEGIN
+    ALTER TABLE [datanex_product_sizes] ADD [IsSeeded] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240703183159_AddedIsSeeded'
+)
+BEGIN
+    ALTER TABLE [datanex_product_barcodes] ADD [IsSeeded] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240703183159_AddedIsSeeded'
+)
+BEGIN
+    ALTER TABLE [datanex_logs] ADD [IsSeeded] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240703183159_AddedIsSeeded'
+)
+BEGIN
+    ALTER TABLE [datanex_documenttypes] ADD [IsSeeded] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240703183159_AddedIsSeeded'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [IsSeeded] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240703183159_AddedIsSeeded'
+)
+BEGIN
+    ALTER TABLE [datanex_documentproducts] ADD [IsSeeded] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240703183159_AddedIsSeeded'
+)
+BEGIN
+    ALTER TABLE [datanex_document_additional_charges] ADD [IsSeeded] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240703183159_AddedIsSeeded'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [IsSeeded] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240703183159_AddedIsSeeded'
+)
+BEGIN
+    ALTER TABLE [datanex_brands] ADD [IsSeeded] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240703183159_AddedIsSeeded'
+)
+BEGIN
+    ALTER TABLE [datanex_additional_charges] ADD [IsSeeded] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240703183159_AddedIsSeeded'
+)
+BEGIN
+    ALTER TABLE [connector_wooconnectionsdata] ADD [IsSeeded] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240703183159_AddedIsSeeded'
+)
+BEGIN
+    ALTER TABLE [connector_parameters] ADD [IsSeeded] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240703183159_AddedIsSeeded'
+)
+BEGIN
+    ALTER TABLE [connector_jobs] ADD [IsSeeded] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240703183159_AddedIsSeeded'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240703183159_AddedIsSeeded', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
