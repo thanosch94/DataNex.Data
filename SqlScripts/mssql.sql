@@ -2977,3 +2977,37 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240703181028_AddedDocumentTypeGroupAndAbbreviation'
+)
+BEGIN
+    ALTER TABLE [datanex_documenttypes] ADD [Abbreviation] nvarchar(10) NOT NULL DEFAULT N'';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240703181028_AddedDocumentTypeGroupAndAbbreviation'
+)
+BEGIN
+    ALTER TABLE [datanex_documenttypes] ADD [DocumentTypeGroup] int NOT NULL DEFAULT 0;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240703181028_AddedDocumentTypeGroupAndAbbreviation'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240703181028_AddedDocumentTypeGroupAndAbbreviation', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+

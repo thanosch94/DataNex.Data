@@ -1226,3 +1226,50 @@ DROP PROCEDURE MigrationsScript;
 
 COMMIT;
 
+START TRANSACTION;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240703181449_AddedDocumentTypeGroupAndAbbreviation') THEN
+
+    ALTER TABLE `datanex_documenttypes` ADD `Abbreviation` varchar(10) CHARACTER SET utf8mb4 NOT NULL DEFAULT '';
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240703181449_AddedDocumentTypeGroupAndAbbreviation') THEN
+
+    ALTER TABLE `datanex_documenttypes` ADD `DocumentTypeGroup` int NOT NULL DEFAULT 0;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240703181449_AddedDocumentTypeGroupAndAbbreviation') THEN
+
+    INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+    VALUES ('20240703181449_AddedDocumentTypeGroupAndAbbreviation', '8.0.1');
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+COMMIT;
+

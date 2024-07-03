@@ -468,6 +468,11 @@ namespace DataNex.Data.MsSql.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Abbreviation")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime2");
 
@@ -477,6 +482,9 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("DocumentTypeGroup")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -1044,7 +1052,7 @@ namespace DataNex.Data.MsSql.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("DataNex.Model.Models.DocumentType", "DocumentType")
-                        .WithMany("Documnents")
+                        .WithMany("Documents")
                         .HasForeignKey("DocumentTypeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1204,7 +1212,7 @@ namespace DataNex.Data.MsSql.Migrations
 
             modelBuilder.Entity("DataNex.Model.Models.DocumentType", b =>
                 {
-                    b.Navigation("Documnents");
+                    b.Navigation("Documents");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Product", b =>
