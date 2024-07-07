@@ -276,6 +276,11 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("DocumentCode")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<DateTimeOffset>("DocumentDateTime")
                         .HasColumnType("datetimeoffset");
 
@@ -390,6 +395,7 @@ namespace DataNex.Data.MsSql.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("AdditionalChargeAmount")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<Guid>("AdditionalChargeId")
@@ -784,6 +790,72 @@ namespace DataNex.Data.MsSql.Migrations
                     b.ToTable("datanex_statuses");
                 });
 
+            modelBuilder.Entity("DataNex.Model.Models.Supplier", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSeeded")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("Phone1")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("Phone2")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("PostalCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Region")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TaxOffice")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("UserAdded")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserUpdated")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("VatNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("datanex_suppliers");
+                });
+
             modelBuilder.Entity("DataNex.Model.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1089,7 +1161,7 @@ namespace DataNex.Data.MsSql.Migrations
             modelBuilder.Entity("DataNex.Model.Models.Document", b =>
                 {
                     b.HasOne("DataNex.Model.Models.Customer", "Customer")
-                        .WithMany("Documnents")
+                        .WithMany("Documents")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1248,7 +1320,7 @@ namespace DataNex.Data.MsSql.Migrations
 
             modelBuilder.Entity("DataNex.Model.Models.Customer", b =>
                 {
-                    b.Navigation("Documnents");
+                    b.Navigation("Documents");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Document", b =>

@@ -3171,3 +3171,74 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240706204518_AddedDocumentCode'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [DocumentCode] nvarchar(20) NOT NULL DEFAULT N'';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240706204518_AddedDocumentCode'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240706204518_AddedDocumentCode', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240707121628_AddedSuppliers'
+)
+BEGIN
+    CREATE TABLE [datanex_suppliers] (
+        [Id] uniqueidentifier NOT NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [IsSeeded] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        [Name] nvarchar(max) NOT NULL,
+        [Address] nvarchar(max) NULL,
+        [Region] nvarchar(max) NULL,
+        [PostalCode] nvarchar(max) NULL,
+        [City] nvarchar(max) NULL,
+        [Country] nvarchar(max) NULL,
+        [Phone1] bigint NULL,
+        [Phone2] bigint NULL,
+        [Email] nvarchar(max) NULL,
+        [VatNumber] int NULL,
+        [TaxOffice] nvarchar(max) NULL,
+        CONSTRAINT [PK_datanex_suppliers] PRIMARY KEY ([Id])
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240707121628_AddedSuppliers'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240707121628_AddedSuppliers', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+

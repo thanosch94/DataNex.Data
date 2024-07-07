@@ -49,6 +49,7 @@ namespace DataNex.Data
         public virtual DbSet<DocumentAdditionalCharge> DocumentAdditionalCharges { get; set; }
         public virtual DbSet<ConnectorJob> ConnectorJobs { get; set; }
         public virtual DbSet<WareHouse> WareHouses { get; set; }
+        public virtual DbSet<Supplier> Suppliers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
