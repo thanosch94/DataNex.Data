@@ -1645,3 +1645,120 @@ DROP PROCEDURE MigrationsScript;
 
 COMMIT;
 
+START TRANSACTION;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240707175644_AddedVatClassOnProducts') THEN
+
+    ALTER TABLE `datanex_products` RENAME COLUMN `Price` TO `WholesalePrice`;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240707175644_AddedVatClassOnProducts') THEN
+
+    ALTER TABLE `datanex_products` ADD `RetailPrice` decimal(18,2) NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240707175644_AddedVatClassOnProducts') THEN
+
+    ALTER TABLE `datanex_products` ADD `VatClassId` char(36) COLLATE ascii_general_ci NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000';
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240707175644_AddedVatClassOnProducts') THEN
+
+    ALTER TABLE `datanex_documentproducts` ADD `TotalVatAmount` decimal(18,2) NOT NULL DEFAULT 0.0;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240707175644_AddedVatClassOnProducts') THEN
+
+    ALTER TABLE `datanex_documentproducts` ADD `VatAmount` decimal(18,2) NOT NULL DEFAULT 0.0;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240707175644_AddedVatClassOnProducts') THEN
+
+    CREATE INDEX `IX_datanex_products_VatClassId` ON `datanex_products` (`VatClassId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240707175644_AddedVatClassOnProducts') THEN
+
+    ALTER TABLE `datanex_products` ADD CONSTRAINT `FK_datanex_products_datanex_vat_classes_VatClassId` FOREIGN KEY (`VatClassId`) REFERENCES `datanex_vat_classes` (`Id`) ON DELETE RESTRICT;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20240707175644_AddedVatClassOnProducts') THEN
+
+    INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+    VALUES ('20240707175644_AddedVatClassOnProducts', '8.0.1');
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+COMMIT;
+

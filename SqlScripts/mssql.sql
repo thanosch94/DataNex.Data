@@ -3281,3 +3281,82 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240707175528_AddedVatClassOnProducts'
+)
+BEGIN
+    EXEC sp_rename N'[datanex_products].[Price]', N'WholesalePrice', N'COLUMN';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240707175528_AddedVatClassOnProducts'
+)
+BEGIN
+    ALTER TABLE [datanex_products] ADD [RetailPrice] decimal(18,2) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240707175528_AddedVatClassOnProducts'
+)
+BEGIN
+    ALTER TABLE [datanex_products] ADD [VatClassId] uniqueidentifier NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240707175528_AddedVatClassOnProducts'
+)
+BEGIN
+    ALTER TABLE [datanex_documentproducts] ADD [TotalVatAmount] decimal(18,2) NOT NULL DEFAULT 0.0;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240707175528_AddedVatClassOnProducts'
+)
+BEGIN
+    ALTER TABLE [datanex_documentproducts] ADD [VatAmount] decimal(18,2) NOT NULL DEFAULT 0.0;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240707175528_AddedVatClassOnProducts'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_products_VatClassId] ON [datanex_products] ([VatClassId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240707175528_AddedVatClassOnProducts'
+)
+BEGIN
+    ALTER TABLE [datanex_products] ADD CONSTRAINT [FK_datanex_products_datanex_vat_classes_VatClassId] FOREIGN KEY ([VatClassId]) REFERENCES [datanex_vat_classes] ([Id]) ON DELETE NO ACTION;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240707175528_AddedVatClassOnProducts'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240707175528_AddedVatClassOnProducts', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+

@@ -475,11 +475,19 @@ namespace DataNex.Data.MySqlMigrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<decimal>("TotalVatAmount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("UserUpdated")
                         .HasColumnType("char(36)");
+
+                    b.Property<decimal>("VatAmount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -618,7 +626,7 @@ namespace DataNex.Data.MySqlMigrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.Property<decimal?>("Price")
+                    b.Property<decimal?>("RetailPrice")
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
@@ -631,9 +639,18 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<Guid?>("UserUpdated")
                         .HasColumnType("char(36)");
 
+                    b.Property<Guid>("VatClassId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<decimal?>("WholesalePrice")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");
+
+                    b.HasIndex("VatClassId");
 
                     b.ToTable("datanex_products");
                 });
@@ -1282,7 +1299,15 @@ namespace DataNex.Data.MySqlMigrations
                         .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Restrict);
 
+                    b.HasOne("DataNex.Model.Models.VatClass", "VatClass")
+                        .WithMany("Products")
+                        .HasForeignKey("VatClassId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Brand");
+
+                    b.Navigation("VatClass");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.ProductBarcode", b =>
@@ -1396,6 +1421,11 @@ namespace DataNex.Data.MySqlMigrations
             modelBuilder.Entity("DataNex.Model.Models.Status", b =>
                 {
                     b.Navigation("Documnents");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.VatClass", b =>
+                {
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.WooConnectionsData", b =>
