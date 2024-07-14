@@ -3360,3 +3360,61 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240714181259_AddedSupplierIdOnDocument'
+)
+BEGIN
+    DECLARE @var31 sysname;
+    SELECT @var31 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_documents]') AND [c].[name] = N'CustomerId');
+    IF @var31 IS NOT NULL EXEC(N'ALTER TABLE [datanex_documents] DROP CONSTRAINT [' + @var31 + '];');
+    ALTER TABLE [datanex_documents] ALTER COLUMN [CustomerId] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240714181259_AddedSupplierIdOnDocument'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [SupplierId] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240714181259_AddedSupplierIdOnDocument'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_documents_SupplierId] ON [datanex_documents] ([SupplierId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240714181259_AddedSupplierIdOnDocument'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD CONSTRAINT [FK_datanex_documents_datanex_suppliers_SupplierId] FOREIGN KEY ([SupplierId]) REFERENCES [datanex_suppliers] ([Id]) ON DELETE NO ACTION;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20240714181259_AddedSupplierIdOnDocument'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20240714181259_AddedSupplierIdOnDocument', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+

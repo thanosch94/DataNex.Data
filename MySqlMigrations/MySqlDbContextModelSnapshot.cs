@@ -267,7 +267,7 @@ namespace DataNex.Data.MySqlMigrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("CustomerId")
+                    b.Property<Guid?>("CustomerId")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime>("DateAdded")
@@ -335,6 +335,9 @@ namespace DataNex.Data.MySqlMigrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
+                    b.Property<Guid?>("SupplierId")
+                        .HasColumnType("char(36)");
+
                     b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
 
@@ -384,6 +387,8 @@ namespace DataNex.Data.MySqlMigrations
                     b.HasIndex("DocumentStatusId");
 
                     b.HasIndex("DocumentTypeId");
+
+                    b.HasIndex("SupplierId");
 
                     b.ToTable("datanex_documents");
                 });
@@ -1226,8 +1231,7 @@ namespace DataNex.Data.MySqlMigrations
                     b.HasOne("DataNex.Model.Models.Customer", "Customer")
                         .WithMany("Documents")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("DataNex.Model.Models.Status", "DocumentStatus")
                         .WithMany("Documnents")
@@ -1240,11 +1244,18 @@ namespace DataNex.Data.MySqlMigrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("DataNex.Model.Models.Supplier", "Supplier")
+                        .WithMany("Documents")
+                        .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.Navigation("Customer");
 
                     b.Navigation("DocumentStatus");
 
                     b.Navigation("DocumentType");
+
+                    b.Navigation("Supplier");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.DocumentAdditionalCharge", b =>
@@ -1421,6 +1432,11 @@ namespace DataNex.Data.MySqlMigrations
             modelBuilder.Entity("DataNex.Model.Models.Status", b =>
                 {
                     b.Navigation("Documnents");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.Supplier", b =>
+                {
+                    b.Navigation("Documents");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.VatClass", b =>
