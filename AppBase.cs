@@ -16,6 +16,8 @@ namespace DataNex.Data
 
         public static Guid magentoDataSource = Guid.Parse("af9c50a7-f71c-43d3-918d-467f0a049c3d");
 
+        public static Guid BaseCompany = Guid.Parse("46e479c2-f572-4fcc-985c-4d97e1233a16");
+
 
     }
 }
