@@ -8,7 +8,7 @@ namespace DataNex.Data
 {
     public static class AppBase
     {
-        public static decimal Version = 1.09M;
+        public static string Version = "1.0.10";
 
         public static Guid DnAdmin = Guid.Parse("7ea7ace0-b13f-474d-95cc-bfd6b62fc0aa");
 
