@@ -3455,3 +3455,37 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241005130711_AddedIsWareHouseAndPersonBalanceAffected'
+)
+BEGIN
+    ALTER TABLE [datanex_documenttypes] ADD [IsPersonBalanceAffected] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241005130711_AddedIsWareHouseAndPersonBalanceAffected'
+)
+BEGIN
+    ALTER TABLE [datanex_documenttypes] ADD [IsWareHouseAffected] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241005130711_AddedIsWareHouseAndPersonBalanceAffected'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20241005130711_AddedIsWareHouseAndPersonBalanceAffected', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
