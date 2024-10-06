@@ -3489,3 +3489,67 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241005165414_ChangedIsWareHouseAndPersonBalanceAffectedToEnums'
+)
+BEGIN
+    DECLARE @var32 sysname;
+    SELECT @var32 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_documenttypes]') AND [c].[name] = N'IsPersonBalanceAffected');
+    IF @var32 IS NOT NULL EXEC(N'ALTER TABLE [datanex_documenttypes] DROP CONSTRAINT [' + @var32 + '];');
+    ALTER TABLE [datanex_documenttypes] DROP COLUMN [IsPersonBalanceAffected];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241005165414_ChangedIsWareHouseAndPersonBalanceAffectedToEnums'
+)
+BEGIN
+    DECLARE @var33 sysname;
+    SELECT @var33 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_documenttypes]') AND [c].[name] = N'IsWareHouseAffected');
+    IF @var33 IS NOT NULL EXEC(N'ALTER TABLE [datanex_documenttypes] DROP CONSTRAINT [' + @var33 + '];');
+    ALTER TABLE [datanex_documenttypes] DROP COLUMN [IsWareHouseAffected];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241005165414_ChangedIsWareHouseAndPersonBalanceAffectedToEnums'
+)
+BEGIN
+    ALTER TABLE [datanex_documenttypes] ADD [PersonBalanceAffectBehavior] int NOT NULL DEFAULT 0;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241005165414_ChangedIsWareHouseAndPersonBalanceAffectedToEnums'
+)
+BEGIN
+    ALTER TABLE [datanex_documenttypes] ADD [WareHouseAffectBehavior] int NOT NULL DEFAULT 0;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241005165414_ChangedIsWareHouseAndPersonBalanceAffectedToEnums'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20241005165414_ChangedIsWareHouseAndPersonBalanceAffectedToEnums', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
