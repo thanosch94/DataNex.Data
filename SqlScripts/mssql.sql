@@ -3553,3 +3553,385 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    DECLARE @var34 sysname;
+    SELECT @var34 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_warehouses]') AND [c].[name] = N'Code');
+    IF @var34 IS NOT NULL EXEC(N'ALTER TABLE [datanex_warehouses] DROP CONSTRAINT [' + @var34 + '];');
+    ALTER TABLE [datanex_warehouses] ALTER COLUMN [Code] nvarchar(25) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_warehouses] ADD [SerialNumber] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_vat_classes] ADD [Code] nvarchar(25) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_vat_classes] ADD [SerialNumber] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_suppliers] ADD [Code] nvarchar(25) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_suppliers] ADD [SerialNumber] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_statuses] ADD [Code] nvarchar(25) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_statuses] ADD [SerialNumber] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_products] ADD [Code] nvarchar(25) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_products] ADD [SerialNumber] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_product_sizes] ADD [Code] nvarchar(25) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_product_sizes] ADD [SerialNumber] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_product_barcodes] ADD [Code] nvarchar(25) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_product_barcodes] ADD [SerialNumber] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_logs] ADD [Code] nvarchar(25) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_logs] ADD [SerialNumber] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_documenttypes] ADD [Code] nvarchar(25) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_documenttypes] ADD [SerialNumber] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [Code] nvarchar(25) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [SerialNumber] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_documentproducts] ADD [Code] nvarchar(25) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_documentproducts] ADD [SerialNumber] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_document_additional_charges] ADD [Code] nvarchar(25) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_document_additional_charges] ADD [SerialNumber] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [Code] nvarchar(25) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [SerialNumber] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_companies] ADD [Code] nvarchar(25) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_companies] ADD [SerialNumber] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_brands] ADD [Code] nvarchar(25) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_brands] ADD [SerialNumber] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_additional_charges] ADD [Code] nvarchar(25) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [datanex_additional_charges] ADD [SerialNumber] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [connector_wooconnectionsdata] ADD [Code] nvarchar(25) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [connector_wooconnectionsdata] ADD [SerialNumber] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [connector_parameters] ADD [Code] nvarchar(25) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [connector_parameters] ADD [SerialNumber] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [connector_jobs] ADD [Code] nvarchar(25) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [connector_jobs] ADD [SerialNumber] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [AspNetUsers] ADD [Code] nvarchar(25) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    ALTER TABLE [AspNetUsers] ADD [SerialNumber] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241009201632_AddedSerialNumberAndCodeToAllEntities'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20241009201632_AddedSerialNumberAndCodeToAllEntities', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+

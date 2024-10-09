@@ -28,6 +28,10 @@ namespace DataNex.Data.MySqlMigrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
+
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
 
@@ -48,6 +52,9 @@ namespace DataNex.Data.MySqlMigrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
+
                     b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
 
@@ -64,6 +71,10 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
@@ -85,6 +96,9 @@ namespace DataNex.Data.MySqlMigrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
+
                     b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
 
@@ -101,6 +115,10 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
@@ -124,6 +142,9 @@ namespace DataNex.Data.MySqlMigrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
+
                     b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
 
@@ -140,6 +161,10 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
 
                     b.Property<Guid>("DataSourceId")
                         .HasColumnType("char(36)");
@@ -174,6 +199,9 @@ namespace DataNex.Data.MySqlMigrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
+
                     b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
 
@@ -196,6 +224,10 @@ namespace DataNex.Data.MySqlMigrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
+
                     b.Property<Guid?>("CompanyId")
                         .HasColumnType("char(36)");
 
@@ -213,6 +245,9 @@ namespace DataNex.Data.MySqlMigrations
 
                     b.Property<bool>("IsSeeded")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
 
                     b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
@@ -245,6 +280,10 @@ namespace DataNex.Data.MySqlMigrations
 
                     b.Property<string>("City")
                         .HasColumnType("longtext");
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
 
                     b.Property<string>("Country")
                         .HasColumnType("longtext");
@@ -283,6 +322,9 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<string>("Region")
                         .HasColumnType("longtext");
 
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
+
                     b.Property<string>("TaxOffice")
                         .HasColumnType("longtext");
 
@@ -305,6 +347,10 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
 
                     b.Property<Guid?>("CustomerId")
                         .HasColumnType("char(36)");
@@ -344,6 +390,9 @@ namespace DataNex.Data.MySqlMigrations
 
                     b.Property<bool>("IsSeeded")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
 
                     b.Property<string>("ShippingAddress")
                         .HasMaxLength(255)
@@ -445,6 +494,10 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<Guid>("AdditionalChargeId")
                         .HasColumnType("char(36)");
 
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
+
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
 
@@ -462,6 +515,9 @@ namespace DataNex.Data.MySqlMigrations
 
                     b.Property<bool>("IsSeeded")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
 
                     b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
@@ -483,6 +539,10 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
@@ -513,6 +573,9 @@ namespace DataNex.Data.MySqlMigrations
                         .HasColumnType("char(36)");
 
                     b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SerialNumber")
                         .HasColumnType("int");
 
                     b.Property<decimal>("TotalPrice")
@@ -555,6 +618,10 @@ namespace DataNex.Data.MySqlMigrations
                         .HasMaxLength(10)
                         .HasColumnType("varchar(10)");
 
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
+
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
 
@@ -582,11 +649,20 @@ namespace DataNex.Data.MySqlMigrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
+                    b.Property<int>("PersonBalanceAffectBehavior")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
+
                     b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("UserUpdated")
                         .HasColumnType("char(36)");
+
+                    b.Property<int>("WareHouseAffectBehavior")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -598,6 +674,10 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
@@ -624,6 +704,9 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<int>("LogType")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
+
                     b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
 
@@ -643,6 +726,10 @@ namespace DataNex.Data.MySqlMigrations
 
                     b.Property<Guid?>("BrandId")
                         .HasColumnType("char(36)");
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
@@ -673,6 +760,9 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<decimal?>("RetailPrice")
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
 
                     b.Property<string>("Sku")
                         .HasColumnType("longtext");
@@ -709,6 +799,10 @@ namespace DataNex.Data.MySqlMigrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
+
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
 
@@ -726,6 +820,9 @@ namespace DataNex.Data.MySqlMigrations
 
                     b.Property<Guid>("ProductId")
                         .HasColumnType("char(36)");
+
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
 
                     b.Property<Guid?>("SizeId")
                         .HasColumnType("char(36)");
@@ -755,6 +852,10 @@ namespace DataNex.Data.MySqlMigrations
                         .HasMaxLength(10)
                         .HasColumnType("varchar(10)");
 
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
+
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
 
@@ -774,6 +875,9 @@ namespace DataNex.Data.MySqlMigrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
+
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
 
                     b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
@@ -819,6 +923,10 @@ namespace DataNex.Data.MySqlMigrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
+
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
 
@@ -838,6 +946,9 @@ namespace DataNex.Data.MySqlMigrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
+
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
 
                     b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
@@ -861,6 +972,10 @@ namespace DataNex.Data.MySqlMigrations
 
                     b.Property<string>("City")
                         .HasColumnType("longtext");
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
 
                     b.Property<string>("Country")
                         .HasColumnType("longtext");
@@ -899,6 +1014,9 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<string>("Region")
                         .HasColumnType("longtext");
 
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
+
                     b.Property<string>("TaxOffice")
                         .HasColumnType("longtext");
 
@@ -924,6 +1042,10 @@ namespace DataNex.Data.MySqlMigrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
 
                     b.Property<Guid?>("CompanyId")
                         .HasColumnType("char(36)");
@@ -981,6 +1103,9 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("longtext");
 
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("tinyint(1)");
 
@@ -1019,6 +1144,10 @@ namespace DataNex.Data.MySqlMigrations
                         .HasMaxLength(10)
                         .HasColumnType("varchar(10)");
 
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
+
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
 
@@ -1046,6 +1175,9 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<short>("Rate")
                         .HasColumnType("smallint");
 
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
+
                     b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
 
@@ -1064,9 +1196,8 @@ namespace DataNex.Data.MySqlMigrations
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("varchar(10)");
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
 
                     b.Property<Guid?>("CompanyId")
                         .HasColumnType("char(36)");
@@ -1094,6 +1225,9 @@ namespace DataNex.Data.MySqlMigrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
+
                     b.Property<Guid?>("UserAdded")
                         .HasColumnType("char(36)");
 
@@ -1110,6 +1244,10 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
@@ -1136,6 +1274,9 @@ namespace DataNex.Data.MySqlMigrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<int>("RequestType")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SerialNumber")
                         .HasColumnType("int");
 
                     b.Property<Guid?>("UserAdded")
