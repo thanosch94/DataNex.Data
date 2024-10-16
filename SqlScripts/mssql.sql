@@ -3935,3 +3935,124 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241015185200_ChangedIntToStrings'
+)
+BEGIN
+    DECLARE @var35 sysname;
+    SELECT @var35 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_suppliers]') AND [c].[name] = N'Phone2');
+    IF @var35 IS NOT NULL EXEC(N'ALTER TABLE [datanex_suppliers] DROP CONSTRAINT [' + @var35 + '];');
+    ALTER TABLE [datanex_suppliers] ALTER COLUMN [Phone2] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241015185200_ChangedIntToStrings'
+)
+BEGIN
+    DECLARE @var36 sysname;
+    SELECT @var36 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_suppliers]') AND [c].[name] = N'Phone1');
+    IF @var36 IS NOT NULL EXEC(N'ALTER TABLE [datanex_suppliers] DROP CONSTRAINT [' + @var36 + '];');
+    ALTER TABLE [datanex_suppliers] ALTER COLUMN [Phone1] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241015185200_ChangedIntToStrings'
+)
+BEGIN
+    DECLARE @var37 sysname;
+    SELECT @var37 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_documents]') AND [c].[name] = N'ShippingPostalCode');
+    IF @var37 IS NOT NULL EXEC(N'ALTER TABLE [datanex_documents] DROP CONSTRAINT [' + @var37 + '];');
+    ALTER TABLE [datanex_documents] ALTER COLUMN [ShippingPostalCode] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241015185200_ChangedIntToStrings'
+)
+BEGIN
+    DECLARE @var38 sysname;
+    SELECT @var38 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_documents]') AND [c].[name] = N'ShippingPhone2');
+    IF @var38 IS NOT NULL EXEC(N'ALTER TABLE [datanex_documents] DROP CONSTRAINT [' + @var38 + '];');
+    ALTER TABLE [datanex_documents] ALTER COLUMN [ShippingPhone2] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241015185200_ChangedIntToStrings'
+)
+BEGIN
+    DECLARE @var39 sysname;
+    SELECT @var39 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_documents]') AND [c].[name] = N'ShippingPhone1');
+    IF @var39 IS NOT NULL EXEC(N'ALTER TABLE [datanex_documents] DROP CONSTRAINT [' + @var39 + '];');
+    ALTER TABLE [datanex_documents] ALTER COLUMN [ShippingPhone1] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241015185200_ChangedIntToStrings'
+)
+BEGIN
+    DECLARE @var40 sysname;
+    SELECT @var40 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_customers]') AND [c].[name] = N'Phone2');
+    IF @var40 IS NOT NULL EXEC(N'ALTER TABLE [datanex_customers] DROP CONSTRAINT [' + @var40 + '];');
+    ALTER TABLE [datanex_customers] ALTER COLUMN [Phone2] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241015185200_ChangedIntToStrings'
+)
+BEGIN
+    DECLARE @var41 sysname;
+    SELECT @var41 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_customers]') AND [c].[name] = N'Phone1');
+    IF @var41 IS NOT NULL EXEC(N'ALTER TABLE [datanex_customers] DROP CONSTRAINT [' + @var41 + '];');
+    ALTER TABLE [datanex_customers] ALTER COLUMN [Phone1] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241015185200_ChangedIntToStrings'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20241015185200_ChangedIntToStrings', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
