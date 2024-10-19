@@ -32,6 +32,9 @@ namespace DataNex.Data.MySqlMigrations
                         .HasMaxLength(25)
                         .HasColumnType("varchar(25)");
 
+                    b.Property<Guid?>("CompanyId")
+                        .HasColumnType("char(36)");
+
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
 
@@ -63,6 +66,8 @@ namespace DataNex.Data.MySqlMigrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CompanyId");
+
                     b.ToTable("datanex_additional_charges");
                 });
 
@@ -75,6 +80,9 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<string>("Code")
                         .HasMaxLength(25)
                         .HasColumnType("varchar(25)");
+
+                    b.Property<Guid?>("CompanyId")
+                        .HasColumnType("char(36)");
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
@@ -106,6 +114,8 @@ namespace DataNex.Data.MySqlMigrations
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("datanex_brands");
                 });
@@ -166,6 +176,9 @@ namespace DataNex.Data.MySqlMigrations
                         .HasMaxLength(25)
                         .HasColumnType("varchar(25)");
 
+                    b.Property<Guid?>("CompanyId")
+                        .HasColumnType("char(36)");
+
                     b.Property<Guid>("DataSourceId")
                         .HasColumnType("char(36)");
 
@@ -212,6 +225,8 @@ namespace DataNex.Data.MySqlMigrations
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
 
                     b.HasIndex("WooConnectionDataSourceId");
 
@@ -266,6 +281,8 @@ namespace DataNex.Data.MySqlMigrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CompanyId");
+
                     b.ToTable("connector_parameters");
                 });
 
@@ -284,6 +301,9 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<string>("Code")
                         .HasMaxLength(25)
                         .HasColumnType("varchar(25)");
+
+                    b.Property<Guid?>("CompanyId")
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("Country")
                         .HasColumnType("longtext");
@@ -310,11 +330,11 @@ namespace DataNex.Data.MySqlMigrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<long?>("Phone1")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Phone1")
+                        .HasColumnType("longtext");
 
-                    b.Property<long?>("Phone2")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Phone2")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("PostalCode")
                         .HasColumnType("longtext");
@@ -339,6 +359,8 @@ namespace DataNex.Data.MySqlMigrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CompanyId");
+
                     b.ToTable("datanex_customers");
                 });
 
@@ -351,6 +373,9 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<string>("Code")
                         .HasMaxLength(25)
                         .HasColumnType("varchar(25)");
+
+                    b.Property<Guid?>("CompanyId")
+                        .HasColumnType("char(36)");
 
                     b.Property<Guid?>("CustomerId")
                         .HasColumnType("char(36)");
@@ -410,14 +435,14 @@ namespace DataNex.Data.MySqlMigrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.Property<long?>("ShippingPhone1")
-                        .HasColumnType("bigint");
+                    b.Property<string>("ShippingPhone1")
+                        .HasColumnType("longtext");
 
-                    b.Property<long?>("ShippingPhone2")
-                        .HasColumnType("bigint");
+                    b.Property<string>("ShippingPhone2")
+                        .HasColumnType("longtext");
 
-                    b.Property<int?>("ShippingPostalCode")
-                        .HasColumnType("int");
+                    b.Property<string>("ShippingPostalCode")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ShippingRegion")
                         .HasMaxLength(50)
@@ -469,6 +494,8 @@ namespace DataNex.Data.MySqlMigrations
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
 
                     b.HasIndex("CustomerId");
 
@@ -622,6 +649,9 @@ namespace DataNex.Data.MySqlMigrations
                         .HasMaxLength(25)
                         .HasColumnType("varchar(25)");
 
+                    b.Property<Guid?>("CompanyId")
+                        .HasColumnType("char(36)");
+
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
 
@@ -666,6 +696,8 @@ namespace DataNex.Data.MySqlMigrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CompanyId");
+
                     b.ToTable("datanex_documenttypes");
                 });
 
@@ -678,6 +710,9 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<string>("Code")
                         .HasMaxLength(25)
                         .HasColumnType("varchar(25)");
+
+                    b.Property<Guid?>("CompanyId")
+                        .HasColumnType("char(36)");
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
@@ -715,6 +750,8 @@ namespace DataNex.Data.MySqlMigrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CompanyId");
+
                     b.ToTable("datanex_logs");
                 });
 
@@ -730,6 +767,9 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<string>("Code")
                         .HasMaxLength(25)
                         .HasColumnType("varchar(25)");
+
+                    b.Property<Guid?>("CompanyId")
+                        .HasColumnType("char(36)");
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
@@ -783,6 +823,8 @@ namespace DataNex.Data.MySqlMigrations
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");
+
+                    b.HasIndex("CompanyId");
 
                     b.HasIndex("VatClassId");
 
@@ -856,6 +898,9 @@ namespace DataNex.Data.MySqlMigrations
                         .HasMaxLength(25)
                         .HasColumnType("varchar(25)");
 
+                    b.Property<Guid?>("CompanyId")
+                        .HasColumnType("char(36)");
+
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
 
@@ -886,6 +931,8 @@ namespace DataNex.Data.MySqlMigrations
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("datanex_product_sizes");
                 });
@@ -927,6 +974,9 @@ namespace DataNex.Data.MySqlMigrations
                         .HasMaxLength(25)
                         .HasColumnType("varchar(25)");
 
+                    b.Property<Guid?>("CompanyId")
+                        .HasColumnType("char(36)");
+
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
 
@@ -958,6 +1008,8 @@ namespace DataNex.Data.MySqlMigrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CompanyId");
+
                     b.ToTable("datanex_statuses");
                 });
 
@@ -976,6 +1028,9 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<string>("Code")
                         .HasMaxLength(25)
                         .HasColumnType("varchar(25)");
+
+                    b.Property<Guid?>("CompanyId")
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("Country")
                         .HasColumnType("longtext");
@@ -1002,11 +1057,11 @@ namespace DataNex.Data.MySqlMigrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<long?>("Phone1")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Phone1")
+                        .HasColumnType("longtext");
 
-                    b.Property<long?>("Phone2")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Phone2")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("PostalCode")
                         .HasColumnType("longtext");
@@ -1030,6 +1085,8 @@ namespace DataNex.Data.MySqlMigrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("datanex_suppliers");
                 });
@@ -1124,6 +1181,8 @@ namespace DataNex.Data.MySqlMigrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CompanyId");
+
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -1147,6 +1206,9 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<string>("Code")
                         .HasMaxLength(25)
                         .HasColumnType("varchar(25)");
+
+                    b.Property<Guid?>("CompanyId")
+                        .HasColumnType("char(36)");
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
@@ -1185,6 +1247,8 @@ namespace DataNex.Data.MySqlMigrations
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("datanex_vat_classes");
                 });
@@ -1236,6 +1300,8 @@ namespace DataNex.Data.MySqlMigrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CompanyId");
+
                     b.ToTable("datanex_warehouses");
                 });
 
@@ -1248,6 +1314,9 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<string>("Code")
                         .HasMaxLength(25)
                         .HasColumnType("varchar(25)");
+
+                    b.Property<Guid?>("CompanyId")
+                        .HasColumnType("char(36)");
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime(6)");
@@ -1289,6 +1358,8 @@ namespace DataNex.Data.MySqlMigrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("connector_wooconnectionsdata");
                 });
@@ -1396,18 +1467,70 @@ namespace DataNex.Data.MySqlMigrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("DataNex.Model.Models.AdditionalCharge", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.Company", "Company")
+                        .WithMany("AdditionalCharges")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.Brand", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.Company", "Company")
+                        .WithMany("Brands")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Company");
+                });
+
             modelBuilder.Entity("DataNex.Model.Models.ConnectorJob", b =>
                 {
+                    b.HasOne("DataNex.Model.Models.Company", "Company")
+                        .WithMany("ConnectorJobs")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("DataNex.Model.Models.WooConnectionsData", "WooConnectionDataSource")
                         .WithMany("ConnectorJobs")
                         .HasForeignKey("WooConnectionDataSourceId")
                         .OnDelete(DeleteBehavior.Restrict);
 
+                    b.Navigation("Company");
+
                     b.Navigation("WooConnectionDataSource");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.ConnectorParameters", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.Company", "Company")
+                        .WithMany("ConnectorsParameters")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.Customer", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.Company", "Company")
+                        .WithMany("Customers")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Document", b =>
                 {
+                    b.HasOne("DataNex.Model.Models.Company", "Company")
+                        .WithMany("Documents")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("DataNex.Model.Models.Customer", "Customer")
                         .WithMany("Documents")
                         .HasForeignKey("CustomerId")
@@ -1428,6 +1551,8 @@ namespace DataNex.Data.MySqlMigrations
                         .WithMany("Documents")
                         .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Company");
 
                     b.Navigation("Customer");
 
@@ -1483,11 +1608,36 @@ namespace DataNex.Data.MySqlMigrations
                     b.Navigation("ProductSize");
                 });
 
+            modelBuilder.Entity("DataNex.Model.Models.DocumentType", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.Company", "Company")
+                        .WithMany("DocumentTypes")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.Log", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.Company", "Company")
+                        .WithMany("Logs")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Company");
+                });
+
             modelBuilder.Entity("DataNex.Model.Models.Product", b =>
                 {
                     b.HasOne("DataNex.Model.Models.Brand", "Brand")
                         .WithMany("Products")
                         .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("DataNex.Model.Models.Company", "Company")
+                        .WithMany("Products")
+                        .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("DataNex.Model.Models.VatClass", "VatClass")
@@ -1497,6 +1647,8 @@ namespace DataNex.Data.MySqlMigrations
                         .IsRequired();
 
                     b.Navigation("Brand");
+
+                    b.Navigation("Company");
 
                     b.Navigation("VatClass");
                 });
@@ -1517,6 +1669,76 @@ namespace DataNex.Data.MySqlMigrations
                     b.Navigation("Product");
 
                     b.Navigation("Size");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.ProductSize", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.Company", "Company")
+                        .WithMany("ProductSizes")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.Status", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.Company", "Company")
+                        .WithMany("Statuses")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.Supplier", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.Company", "Company")
+                        .WithMany("Suppliers")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.User", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.Company", "Company")
+                        .WithMany("Users")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.VatClass", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.Company", "Company")
+                        .WithMany("VatClasses")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.WareHouse", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.Company", "Company")
+                        .WithMany("WareHouses")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.WooConnectionsData", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.Company", "Company")
+                        .WithMany("WooConnectionData")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -1578,6 +1800,41 @@ namespace DataNex.Data.MySqlMigrations
             modelBuilder.Entity("DataNex.Model.Models.Brand", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.Company", b =>
+                {
+                    b.Navigation("AdditionalCharges");
+
+                    b.Navigation("Brands");
+
+                    b.Navigation("ConnectorJobs");
+
+                    b.Navigation("ConnectorsParameters");
+
+                    b.Navigation("Customers");
+
+                    b.Navigation("DocumentTypes");
+
+                    b.Navigation("Documents");
+
+                    b.Navigation("Logs");
+
+                    b.Navigation("ProductSizes");
+
+                    b.Navigation("Products");
+
+                    b.Navigation("Statuses");
+
+                    b.Navigation("Suppliers");
+
+                    b.Navigation("Users");
+
+                    b.Navigation("VatClasses");
+
+                    b.Navigation("WareHouses");
+
+                    b.Navigation("WooConnectionData");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Customer", b =>

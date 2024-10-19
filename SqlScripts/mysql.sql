@@ -2489,3 +2489,750 @@ DROP PROCEDURE MigrationsScript;
 
 COMMIT;
 
+START TRANSACTION;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_vat_classes` ADD `CompanyId` char(36) COLLATE ascii_general_ci NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_suppliers` MODIFY COLUMN `Phone2` longtext CHARACTER SET utf8mb4 NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_suppliers` MODIFY COLUMN `Phone1` longtext CHARACTER SET utf8mb4 NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_suppliers` ADD `CompanyId` char(36) COLLATE ascii_general_ci NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_statuses` ADD `CompanyId` char(36) COLLATE ascii_general_ci NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_products` ADD `CompanyId` char(36) COLLATE ascii_general_ci NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_product_sizes` ADD `CompanyId` char(36) COLLATE ascii_general_ci NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_logs` ADD `CompanyId` char(36) COLLATE ascii_general_ci NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_documenttypes` ADD `CompanyId` char(36) COLLATE ascii_general_ci NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_documents` MODIFY COLUMN `ShippingPostalCode` longtext CHARACTER SET utf8mb4 NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_documents` MODIFY COLUMN `ShippingPhone2` longtext CHARACTER SET utf8mb4 NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_documents` MODIFY COLUMN `ShippingPhone1` longtext CHARACTER SET utf8mb4 NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_documents` ADD `CompanyId` char(36) COLLATE ascii_general_ci NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_customers` MODIFY COLUMN `Phone2` longtext CHARACTER SET utf8mb4 NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_customers` MODIFY COLUMN `Phone1` longtext CHARACTER SET utf8mb4 NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_customers` ADD `CompanyId` char(36) COLLATE ascii_general_ci NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_brands` ADD `CompanyId` char(36) COLLATE ascii_general_ci NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_additional_charges` ADD `CompanyId` char(36) COLLATE ascii_general_ci NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `connector_wooconnectionsdata` ADD `CompanyId` char(36) COLLATE ascii_general_ci NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `connector_jobs` ADD `CompanyId` char(36) COLLATE ascii_general_ci NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    CREATE INDEX `IX_datanex_warehouses_CompanyId` ON `datanex_warehouses` (`CompanyId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    CREATE INDEX `IX_datanex_vat_classes_CompanyId` ON `datanex_vat_classes` (`CompanyId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    CREATE INDEX `IX_datanex_suppliers_CompanyId` ON `datanex_suppliers` (`CompanyId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    CREATE INDEX `IX_datanex_statuses_CompanyId` ON `datanex_statuses` (`CompanyId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    CREATE INDEX `IX_datanex_products_CompanyId` ON `datanex_products` (`CompanyId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    CREATE INDEX `IX_datanex_product_sizes_CompanyId` ON `datanex_product_sizes` (`CompanyId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    CREATE INDEX `IX_datanex_logs_CompanyId` ON `datanex_logs` (`CompanyId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    CREATE INDEX `IX_datanex_documenttypes_CompanyId` ON `datanex_documenttypes` (`CompanyId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    CREATE INDEX `IX_datanex_documents_CompanyId` ON `datanex_documents` (`CompanyId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    CREATE INDEX `IX_datanex_customers_CompanyId` ON `datanex_customers` (`CompanyId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    CREATE INDEX `IX_datanex_brands_CompanyId` ON `datanex_brands` (`CompanyId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    CREATE INDEX `IX_datanex_additional_charges_CompanyId` ON `datanex_additional_charges` (`CompanyId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    CREATE INDEX `IX_connector_wooconnectionsdata_CompanyId` ON `connector_wooconnectionsdata` (`CompanyId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    CREATE INDEX `IX_connector_parameters_CompanyId` ON `connector_parameters` (`CompanyId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    CREATE INDEX `IX_connector_jobs_CompanyId` ON `connector_jobs` (`CompanyId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    CREATE INDEX `IX_AspNetUsers_CompanyId` ON `AspNetUsers` (`CompanyId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `AspNetUsers` ADD CONSTRAINT `FK_AspNetUsers_datanex_companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `datanex_companies` (`Id`) ON DELETE RESTRICT;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `connector_jobs` ADD CONSTRAINT `FK_connector_jobs_datanex_companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `datanex_companies` (`Id`) ON DELETE RESTRICT;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `connector_parameters` ADD CONSTRAINT `FK_connector_parameters_datanex_companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `datanex_companies` (`Id`) ON DELETE RESTRICT;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `connector_wooconnectionsdata` ADD CONSTRAINT `FK_connector_wooconnectionsdata_datanex_companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `datanex_companies` (`Id`) ON DELETE RESTRICT;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_additional_charges` ADD CONSTRAINT `FK_datanex_additional_charges_datanex_companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `datanex_companies` (`Id`) ON DELETE RESTRICT;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_brands` ADD CONSTRAINT `FK_datanex_brands_datanex_companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `datanex_companies` (`Id`) ON DELETE RESTRICT;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_customers` ADD CONSTRAINT `FK_datanex_customers_datanex_companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `datanex_companies` (`Id`) ON DELETE RESTRICT;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_documents` ADD CONSTRAINT `FK_datanex_documents_datanex_companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `datanex_companies` (`Id`) ON DELETE RESTRICT;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_documenttypes` ADD CONSTRAINT `FK_datanex_documenttypes_datanex_companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `datanex_companies` (`Id`) ON DELETE RESTRICT;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_logs` ADD CONSTRAINT `FK_datanex_logs_datanex_companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `datanex_companies` (`Id`) ON DELETE RESTRICT;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_product_sizes` ADD CONSTRAINT `FK_datanex_product_sizes_datanex_companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `datanex_companies` (`Id`) ON DELETE RESTRICT;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_products` ADD CONSTRAINT `FK_datanex_products_datanex_companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `datanex_companies` (`Id`) ON DELETE RESTRICT;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_statuses` ADD CONSTRAINT `FK_datanex_statuses_datanex_companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `datanex_companies` (`Id`) ON DELETE RESTRICT;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_suppliers` ADD CONSTRAINT `FK_datanex_suppliers_datanex_companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `datanex_companies` (`Id`) ON DELETE RESTRICT;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_vat_classes` ADD CONSTRAINT `FK_datanex_vat_classes_datanex_companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `datanex_companies` (`Id`) ON DELETE RESTRICT;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    ALTER TABLE `datanex_warehouses` ADD CONSTRAINT `FK_datanex_warehouses_datanex_companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `datanex_companies` (`Id`) ON DELETE RESTRICT;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20241019193510_AddedCompanyId') THEN
+
+    INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+    VALUES ('20241019193510_AddedCompanyId', '8.0.1');
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+COMMIT;
+

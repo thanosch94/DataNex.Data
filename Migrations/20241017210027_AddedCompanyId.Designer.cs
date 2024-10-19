@@ -4,16 +4,19 @@ using DataNex.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace DataNex.Data.MsSql.Migrations
+namespace DataNex.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241017210027_AddedCompanyId")]
+    partial class AddedCompanyId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -898,9 +901,6 @@ namespace DataNex.Data.MsSql.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
-                    b.Property<Guid?>("CompanyId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime2");
 
@@ -931,8 +931,6 @@ namespace DataNex.Data.MsSql.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
 
                     b.ToTable("datanex_product_sizes");
                 });
@@ -1673,16 +1671,6 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Navigation("Size");
                 });
 
-            modelBuilder.Entity("DataNex.Model.Models.ProductSize", b =>
-                {
-                    b.HasOne("DataNex.Model.Models.Company", "Company")
-                        .WithMany("ProductSizes")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Company");
-                });
-
             modelBuilder.Entity("DataNex.Model.Models.Status", b =>
                 {
                     b.HasOne("DataNex.Model.Models.Company", "Company")
@@ -1821,8 +1809,6 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Navigation("Documents");
 
                     b.Navigation("Logs");
-
-                    b.Navigation("ProductSizes");
 
                     b.Navigation("Products");
 
