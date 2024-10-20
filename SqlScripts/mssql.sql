@@ -4493,3 +4493,104 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241019221951_AddedLotsAndGeneralOptions'
+)
+BEGIN
+    CREATE TABLE [datanex_lots] (
+        [Id] uniqueidentifier NOT NULL,
+        [Name] nvarchar(25) NOT NULL,
+        [Notes] nvarchar(255) NULL,
+        [ProdDate] datetime2 NULL,
+        [ExpDate] datetime2 NULL,
+        [CompanyId] uniqueidentifier NOT NULL,
+        [SerialNumber] int NULL,
+        [Code] nvarchar(25) NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [IsSeeded] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        CONSTRAINT [PK_datanex_lots] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_datanex_lots_datanex_companies_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [datanex_companies] ([Id]) ON DELETE NO ACTION
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241019221951_AddedLotsAndGeneralOptions'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_lots_CompanyId] ON [datanex_lots] ([CompanyId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241019221951_AddedLotsAndGeneralOptions'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20241019221951_AddedLotsAndGeneralOptions', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241020115703_AddedGeneralOptions'
+)
+BEGIN
+    CREATE TABLE [datanex_general_options] (
+        [Id] uniqueidentifier NOT NULL,
+        [LotsEnabled] bit NOT NULL,
+        [CompanyId] uniqueidentifier NOT NULL,
+        [SerialNumber] int NULL,
+        [Code] nvarchar(25) NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [IsSeeded] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        CONSTRAINT [PK_datanex_general_options] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_datanex_general_options_datanex_companies_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [datanex_companies] ([Id]) ON DELETE NO ACTION
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241020115703_AddedGeneralOptions'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_general_options_CompanyId] ON [datanex_general_options] ([CompanyId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241020115703_AddedGeneralOptions'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20241020115703_AddedGeneralOptions', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+

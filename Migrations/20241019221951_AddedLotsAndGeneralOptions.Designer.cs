@@ -4,16 +4,19 @@ using DataNex.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace DataNex.Data.MsSql.Migrations
+namespace DataNex.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241019221951_AddedLotsAndGeneralOptions")]
+    partial class AddedLotsAndGeneralOptions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -699,53 +702,6 @@ namespace DataNex.Data.MsSql.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("datanex_documenttypes");
-                });
-
-            modelBuilder.Entity("DataNex.Model.Models.GeneralOptions", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Code")
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
-
-                    b.Property<Guid>("CompanyId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DateAdded")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsSeeded")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LotsEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("SerialNumber")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("UserAdded")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("UserUpdated")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("datanex_general_options");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Log", b =>
@@ -1726,17 +1682,6 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Navigation("Company");
                 });
 
-            modelBuilder.Entity("DataNex.Model.Models.GeneralOptions", b =>
-                {
-                    b.HasOne("DataNex.Model.Models.Company", "Company")
-                        .WithMany("GeneralAppOptions")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Company");
-                });
-
             modelBuilder.Entity("DataNex.Model.Models.Log", b =>
                 {
                     b.HasOne("DataNex.Model.Models.Company", "Company")
@@ -1947,8 +1892,6 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Navigation("DocumentTypes");
 
                     b.Navigation("Documents");
-
-                    b.Navigation("GeneralAppOptions");
 
                     b.Navigation("Logs");
 
