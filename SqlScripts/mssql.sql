@@ -4594,3 +4594,52 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241020160728_AddedLotSettings'
+)
+BEGIN
+    CREATE TABLE [datanex_lots_settings] (
+        [Id] uniqueidentifier NOT NULL,
+        [LotStrategy] int NOT NULL,
+        [CompanyId] uniqueidentifier NOT NULL,
+        [SerialNumber] int NULL,
+        [Code] nvarchar(25) NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [IsSeeded] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        CONSTRAINT [PK_datanex_lots_settings] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_datanex_lots_settings_datanex_companies_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [datanex_companies] ([Id]) ON DELETE NO ACTION
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241020160728_AddedLotSettings'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_lots_settings_CompanyId] ON [datanex_lots_settings] ([CompanyId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241020160728_AddedLotSettings'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20241020160728_AddedLotSettings', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+

@@ -52,6 +52,9 @@ namespace DataNex.Data
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<VatClass> VatClasses { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<Lot> Lots { get; set; }
+        public virtual DbSet<LotSettings> LotsSettings { get; set; }
+        public virtual DbSet<GeneralOptions> GeneralAppOptions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
