@@ -4,16 +4,19 @@ using DataNex.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace DataNex.Data.MsSql.Migrations
+namespace DataNex.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241026202226_AddedDocumentProductLotsQuantities")]
+    partial class AddedDocumentProductLotsQuantities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,7 +71,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("datanex_additional_charges", (string)null);
+                    b.ToTable("datanex_additional_charges");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Brand", b =>
@@ -117,7 +120,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("datanex_brands", (string)null);
+                    b.ToTable("datanex_brands");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Company", b =>
@@ -163,7 +166,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("datanex_companies", (string)null);
+                    b.ToTable("datanex_companies");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.ConnectorJob", b =>
@@ -230,7 +233,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("WooConnectionDataSourceId");
 
-                    b.ToTable("connector_jobs", (string)null);
+                    b.ToTable("connector_jobs");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.ConnectorParameters", b =>
@@ -283,7 +286,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("connector_parameters", (string)null);
+                    b.ToTable("connector_parameters");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Customer", b =>
@@ -361,7 +364,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("datanex_customers", (string)null);
+                    b.ToTable("datanex_customers");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Document", b =>
@@ -505,7 +508,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("SupplierId");
 
-                    b.ToTable("datanex_documents", (string)null);
+                    b.ToTable("datanex_documents");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.DocumentAdditionalCharge", b =>
@@ -558,7 +561,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("DocumentId");
 
-                    b.ToTable("datanex_document_additional_charges", (string)null);
+                    b.ToTable("datanex_document_additional_charges");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.DocumentProduct", b =>
@@ -631,7 +634,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("ProductSizeId");
 
-                    b.ToTable("datanex_documentproducts", (string)null);
+                    b.ToTable("datanex_documentproducts");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.DocumentProductLotQuantity", b =>
@@ -683,7 +686,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("LotId");
 
-                    b.ToTable("datanex_documentproducts_lots_quantities", (string)null);
+                    b.ToTable("datanex_documentproducts_lots_quantities");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.DocumentType", b =>
@@ -750,7 +753,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("datanex_documenttypes", (string)null);
+                    b.ToTable("datanex_documenttypes");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.GeneralOptions", b =>
@@ -797,7 +800,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("datanex_general_options", (string)null);
+                    b.ToTable("datanex_general_options");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Log", b =>
@@ -851,7 +854,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("datanex_logs", (string)null);
+                    b.ToTable("datanex_logs");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Lot", b =>
@@ -910,7 +913,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("datanex_lots", (string)null);
+                    b.ToTable("datanex_lots");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.LotSettings", b =>
@@ -957,7 +960,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("datanex_lots_settings", (string)null);
+                    b.ToTable("datanex_lots_settings");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Product", b =>
@@ -1033,7 +1036,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("VatClassId");
 
-                    b.ToTable("datanex_products", (string)null);
+                    b.ToTable("datanex_products");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.ProductBarcode", b =>
@@ -1086,7 +1089,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("SizeId");
 
-                    b.ToTable("datanex_product_barcodes", (string)null);
+                    b.ToTable("datanex_product_barcodes");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.ProductSize", b =>
@@ -1139,7 +1142,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("datanex_product_sizes", (string)null);
+                    b.ToTable("datanex_product_sizes");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Roles", b =>
@@ -1216,7 +1219,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("datanex_statuses", (string)null);
+                    b.ToTable("datanex_statuses");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Supplier", b =>
@@ -1294,7 +1297,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("datanex_suppliers", (string)null);
+                    b.ToTable("datanex_suppliers");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.User", b =>
@@ -1457,7 +1460,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("datanex_vat_classes", (string)null);
+                    b.ToTable("datanex_vat_classes");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.WareHouse", b =>
@@ -1509,7 +1512,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("datanex_warehouses", (string)null);
+                    b.ToTable("datanex_warehouses");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.WooConnectionsData", b =>
@@ -1568,7 +1571,7 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("connector_wooconnectionsdata", (string)null);
+                    b.ToTable("connector_wooconnectionsdata");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

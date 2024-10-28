@@ -4643,3 +4643,63 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241026202226_AddedDocumentProductLotsQuantities'
+)
+BEGIN
+    CREATE TABLE [datanex_documentproducts_lots_quantities] (
+        [Id] uniqueidentifier NOT NULL,
+        [DocumentProductId] uniqueidentifier NOT NULL,
+        [LotId] uniqueidentifier NOT NULL,
+        [Quantity] int NOT NULL,
+        [SerialNumber] int NULL,
+        [Code] nvarchar(25) NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [IsSeeded] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        CONSTRAINT [PK_datanex_documentproducts_lots_quantities] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_datanex_documentproducts_lots_quantities_datanex_documentproducts_DocumentProductId] FOREIGN KEY ([DocumentProductId]) REFERENCES [datanex_documentproducts] ([Id]) ON DELETE NO ACTION,
+        CONSTRAINT [FK_datanex_documentproducts_lots_quantities_datanex_lots_LotId] FOREIGN KEY ([LotId]) REFERENCES [datanex_lots] ([Id]) ON DELETE NO ACTION
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241026202226_AddedDocumentProductLotsQuantities'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_documentproducts_lots_quantities_DocumentProductId] ON [datanex_documentproducts_lots_quantities] ([DocumentProductId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241026202226_AddedDocumentProductLotsQuantities'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_documentproducts_lots_quantities_LotId] ON [datanex_documentproducts_lots_quantities] ([LotId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241026202226_AddedDocumentProductLotsQuantities'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20241026202226_AddedDocumentProductLotsQuantities', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+

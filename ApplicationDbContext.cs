@@ -19,9 +19,9 @@ namespace DataNex.Data
         {
             _connectionString = connectionString;
         }
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> contextOptions):base(contextOptions)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> contextOptions) : base(contextOptions)
         {
-           
+
         }
 
         public virtual DbSet<User> Users { get; set; }
@@ -30,7 +30,7 @@ namespace DataNex.Data
 
         public virtual DbSet<Document> Documents { get; set; }
 
-        public virtual DbSet<DocumentType> DocumentTypes { get; set; }  
+        public virtual DbSet<DocumentType> DocumentTypes { get; set; }
 
         public virtual DbSet<Product> Products { get; set; }
 
@@ -45,7 +45,7 @@ namespace DataNex.Data
         public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<ConnectorParameters> ConnectorParameters { get; set; }
         public virtual DbSet<WooConnectionsData> WooConnectionsData { get; set; }
-        public virtual DbSet<AdditionalCharge> AdditionalCharges{ get; set; }
+        public virtual DbSet<AdditionalCharge> AdditionalCharges { get; set; }
         public virtual DbSet<DocumentAdditionalCharge> DocumentAdditionalCharges { get; set; }
         public virtual DbSet<ConnectorJob> ConnectorJobs { get; set; }
         public virtual DbSet<WareHouse> WareHouses { get; set; }
@@ -55,6 +55,7 @@ namespace DataNex.Data
         public virtual DbSet<Lot> Lots { get; set; }
         public virtual DbSet<LotSettings> LotsSettings { get; set; }
         public virtual DbSet<GeneralOptions> GeneralAppOptions { get; set; }
+        public virtual DbSet<DocumentProductLotQuantity> DocumentProductLotsQuantities { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -64,13 +65,18 @@ namespace DataNex.Data
                 {
                     optionsBuilder.UseSqlServer(_connectionString);
                 }
-                
+
             }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<DocumentProduct>()
+    .HasMany(dp => dp.DocumentProductLotsQuantities)
+    .WithOne(lq => lq.DocumentProduct)
+    .HasForeignKey(lq => lq.DocumentProductId)
+    .OnDelete(DeleteBehavior.Cascade); // Enable cascade delete
             var eTypes = modelBuilder.Model.GetEntityTypes();
             foreach (var type in eTypes)
             {
@@ -81,7 +87,7 @@ namespace DataNex.Data
                 }
             }
         }
-        
-       
+
+
     }
 }
