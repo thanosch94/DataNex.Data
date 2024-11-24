@@ -4703,3 +4703,87 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241028120551_AddedRemainingQtyAndSupplierIdOnLots'
+)
+BEGIN
+    ALTER TABLE [datanex_lots] ADD [RemainingQty] int NOT NULL DEFAULT 0;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241028120551_AddedRemainingQtyAndSupplierIdOnLots'
+)
+BEGIN
+    ALTER TABLE [datanex_lots] ADD [SupplierId] uniqueidentifier NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241028120551_AddedRemainingQtyAndSupplierIdOnLots'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20241028120551_AddedRemainingQtyAndSupplierIdOnLots', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241028142805_AddedProductIdOnLots'
+)
+BEGIN
+    ALTER TABLE [datanex_lots] ADD [ProductId] uniqueidentifier NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241028142805_AddedProductIdOnLots'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20241028142805_AddedProductIdOnLots', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241028202947_AddedLotStrategyApplyFieldOnLotsSettings'
+)
+BEGIN
+    ALTER TABLE [datanex_lots_settings] ADD [LotStrategyApplyField] int NOT NULL DEFAULT 0;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241028202947_AddedLotStrategyApplyFieldOnLotsSettings'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20241028202947_AddedLotStrategyApplyFieldOnLotsSettings', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
