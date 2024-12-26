@@ -4787,3 +4787,100 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241207140729_AddedBackingFieldDateAdded'
+)
+BEGIN
+    ALTER TABLE [AspNetRoles] ADD [Code] nvarchar(25) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241207140729_AddedBackingFieldDateAdded'
+)
+BEGIN
+    ALTER TABLE [AspNetRoles] ADD [DateAdded] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241207140729_AddedBackingFieldDateAdded'
+)
+BEGIN
+    ALTER TABLE [AspNetRoles] ADD [DateUpdated] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241207140729_AddedBackingFieldDateAdded'
+)
+BEGIN
+    ALTER TABLE [AspNetRoles] ADD [IsActive] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241207140729_AddedBackingFieldDateAdded'
+)
+BEGIN
+    ALTER TABLE [AspNetRoles] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241207140729_AddedBackingFieldDateAdded'
+)
+BEGIN
+    ALTER TABLE [AspNetRoles] ADD [IsSeeded] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241207140729_AddedBackingFieldDateAdded'
+)
+BEGIN
+    ALTER TABLE [AspNetRoles] ADD [SerialNumber] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241207140729_AddedBackingFieldDateAdded'
+)
+BEGIN
+    ALTER TABLE [AspNetRoles] ADD [UserAdded] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241207140729_AddedBackingFieldDateAdded'
+)
+BEGIN
+    ALTER TABLE [AspNetRoles] ADD [UserUpdated] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20241207140729_AddedBackingFieldDateAdded'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20241207140729_AddedBackingFieldDateAdded', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
