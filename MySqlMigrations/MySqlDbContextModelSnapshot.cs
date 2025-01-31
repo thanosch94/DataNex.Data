@@ -120,6 +120,59 @@ namespace DataNex.Data.MySqlMigrations
                     b.ToTable("datanex_brands");
                 });
 
+            modelBuilder.Entity("DataNex.Model.Models.Category", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<byte>("CategoryLevel")
+                        .HasColumnType("tinyint unsigned");
+
+                    b.Property<int>("CategoryType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
+
+                    b.Property<Guid?>("CompanyId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("IsSeeded")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("UserAdded")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid?>("UserUpdated")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("datanex_categories");
+                });
+
             modelBuilder.Entity("DataNex.Model.Models.Company", b =>
                 {
                     b.Property<Guid>("Id")
@@ -634,6 +687,58 @@ namespace DataNex.Data.MySqlMigrations
                     b.ToTable("datanex_documentproducts");
                 });
 
+            modelBuilder.Entity("DataNex.Model.Models.DocumentProductLotQuantity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<Guid>("DocumentProductId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("IsSeeded")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<Guid>("LotId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("UserAdded")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid?>("UserUpdated")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DocumentProductId");
+
+                    b.HasIndex("LotId");
+
+                    b.ToTable("datanex_documentproducts_lots_quantities");
+                });
+
             modelBuilder.Entity("DataNex.Model.Models.DocumentType", b =>
                 {
                     b.Property<Guid>("Id")
@@ -701,6 +806,53 @@ namespace DataNex.Data.MySqlMigrations
                     b.ToTable("datanex_documenttypes");
                 });
 
+            modelBuilder.Entity("DataNex.Model.Models.GeneralOptions", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
+
+                    b.Property<Guid>("CompanyId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("IsSeeded")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("LotsEnabled")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("UserAdded")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid?>("UserUpdated")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("datanex_general_options");
+                });
+
             modelBuilder.Entity("DataNex.Model.Models.Log", b =>
                 {
                     b.Property<Guid>("Id")
@@ -755,13 +907,144 @@ namespace DataNex.Data.MySqlMigrations
                     b.ToTable("datanex_logs");
                 });
 
+            modelBuilder.Entity("DataNex.Model.Models.Lot", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
+
+                    b.Property<Guid>("CompanyId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("ExpDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("IsSeeded")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
+
+                    b.Property<string>("Notes")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("ProdDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<int>("RemainingQty")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("SupplierId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid?>("UserAdded")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid?>("UserUpdated")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("datanex_lots");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.LotSettings", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
+
+                    b.Property<Guid>("CompanyId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("IsSeeded")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("LotStrategy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LotStrategyApplyField")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("UserAdded")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid?>("UserUpdated")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("datanex_lots_settings");
+                });
+
             modelBuilder.Entity("DataNex.Model.Models.Product", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<string>("Barcode")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
                     b.Property<Guid?>("BrandId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid?>("Category1Id")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid?>("Category2Id")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid?>("Category3Id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Code")
@@ -943,9 +1226,28 @@ namespace DataNex.Data.MySqlMigrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("longtext");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("IsSeeded")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Name")
                         .HasMaxLength(256)
@@ -954,6 +1256,15 @@ namespace DataNex.Data.MySqlMigrations
                     b.Property<string>("NormalizedName")
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
+
+                    b.Property<int?>("SerialNumber")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("UserAdded")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid?>("UserUpdated")
+                        .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
@@ -1608,6 +1919,25 @@ namespace DataNex.Data.MySqlMigrations
                     b.Navigation("ProductSize");
                 });
 
+            modelBuilder.Entity("DataNex.Model.Models.DocumentProductLotQuantity", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.DocumentProduct", "DocumentProduct")
+                        .WithMany("DocumentProductLotsQuantities")
+                        .HasForeignKey("DocumentProductId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("DataNex.Model.Models.Lot", "Lot")
+                        .WithMany("DocumentProductLotsQuantities")
+                        .HasForeignKey("LotId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("DocumentProduct");
+
+                    b.Navigation("Lot");
+                });
+
             modelBuilder.Entity("DataNex.Model.Models.DocumentType", b =>
                 {
                     b.HasOne("DataNex.Model.Models.Company", "Company")
@@ -1618,12 +1948,45 @@ namespace DataNex.Data.MySqlMigrations
                     b.Navigation("Company");
                 });
 
+            modelBuilder.Entity("DataNex.Model.Models.GeneralOptions", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.Company", "Company")
+                        .WithMany("GeneralAppOptions")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+                });
+
             modelBuilder.Entity("DataNex.Model.Models.Log", b =>
                 {
                     b.HasOne("DataNex.Model.Models.Company", "Company")
                         .WithMany("Logs")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.Lot", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.Company", "Company")
+                        .WithMany("Lots")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.LotSettings", b =>
+                {
+                    b.HasOne("DataNex.Model.Models.Company", "Company")
+                        .WithMany("LotsSettings")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Company");
                 });
@@ -1818,7 +2181,13 @@ namespace DataNex.Data.MySqlMigrations
 
                     b.Navigation("Documents");
 
+                    b.Navigation("GeneralAppOptions");
+
                     b.Navigation("Logs");
+
+                    b.Navigation("Lots");
+
+                    b.Navigation("LotsSettings");
 
                     b.Navigation("ProductSizes");
 
@@ -1849,9 +2218,19 @@ namespace DataNex.Data.MySqlMigrations
                     b.Navigation("DocumentProducts");
                 });
 
+            modelBuilder.Entity("DataNex.Model.Models.DocumentProduct", b =>
+                {
+                    b.Navigation("DocumentProductLotsQuantities");
+                });
+
             modelBuilder.Entity("DataNex.Model.Models.DocumentType", b =>
                 {
                     b.Navigation("Documents");
+                });
+
+            modelBuilder.Entity("DataNex.Model.Models.Lot", b =>
+                {
+                    b.Navigation("DocumentProductLotsQuantities");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Product", b =>

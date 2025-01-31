@@ -4884,3 +4884,123 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250126152637_AddedCategories'
+)
+BEGIN
+    ALTER TABLE [datanex_products] ADD [Barcode] nvarchar(255) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250126152637_AddedCategories'
+)
+BEGIN
+    ALTER TABLE [datanex_products] ADD [Category1Id] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250126152637_AddedCategories'
+)
+BEGIN
+    ALTER TABLE [datanex_products] ADD [Category2Id] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250126152637_AddedCategories'
+)
+BEGIN
+    ALTER TABLE [datanex_products] ADD [Category3Id] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250126152637_AddedCategories'
+)
+BEGIN
+    CREATE TABLE [datanex_categories] (
+        [Id] uniqueidentifier NOT NULL,
+        [Name] nvarchar(255) NOT NULL,
+        [CategoryType] int NOT NULL,
+        [CategoryLevel] tinyint NOT NULL,
+        [CompanyId] uniqueidentifier NULL,
+        [SerialNumber] int NULL,
+        [Code] nvarchar(25) NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [IsSeeded] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        CONSTRAINT [PK_datanex_categories] PRIMARY KEY ([Id])
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250126152637_AddedCategories'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250126152637_AddedCategories', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250131224620_AddedVatClassOnDocuments'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [VatClassId] uniqueidentifier NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250131224620_AddedVatClassOnDocuments'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_documents_VatClassId] ON [datanex_documents] ([VatClassId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250131224620_AddedVatClassOnDocuments'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD CONSTRAINT [FK_datanex_documents_datanex_vat_classes_VatClassId] FOREIGN KEY ([VatClassId]) REFERENCES [datanex_vat_classes] ([Id]) ON DELETE NO ACTION;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250131224620_AddedVatClassOnDocuments'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250131224620_AddedVatClassOnDocuments', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+

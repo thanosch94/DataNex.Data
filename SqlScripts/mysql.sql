@@ -3236,3 +3236,429 @@ DROP PROCEDURE MigrationsScript;
 
 COMMIT;
 
+START TRANSACTION;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    ALTER TABLE `datanex_products` ADD `Barcode` varchar(255) CHARACTER SET utf8mb4 NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    ALTER TABLE `datanex_products` ADD `Category1Id` char(36) COLLATE ascii_general_ci NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    ALTER TABLE `datanex_products` ADD `Category2Id` char(36) COLLATE ascii_general_ci NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    ALTER TABLE `datanex_products` ADD `Category3Id` char(36) COLLATE ascii_general_ci NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    ALTER TABLE `AspNetRoles` ADD `Code` varchar(25) CHARACTER SET utf8mb4 NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    ALTER TABLE `AspNetRoles` ADD `DateAdded` datetime(6) NOT NULL DEFAULT '0001-01-01 00:00:00';
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    ALTER TABLE `AspNetRoles` ADD `DateUpdated` datetime(6) NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    ALTER TABLE `AspNetRoles` ADD `IsActive` tinyint(1) NOT NULL DEFAULT FALSE;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    ALTER TABLE `AspNetRoles` ADD `IsDeleted` tinyint(1) NOT NULL DEFAULT FALSE;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    ALTER TABLE `AspNetRoles` ADD `IsSeeded` tinyint(1) NOT NULL DEFAULT FALSE;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    ALTER TABLE `AspNetRoles` ADD `SerialNumber` int NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    ALTER TABLE `AspNetRoles` ADD `UserAdded` char(36) COLLATE ascii_general_ci NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    ALTER TABLE `AspNetRoles` ADD `UserUpdated` char(36) COLLATE ascii_general_ci NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    CREATE TABLE `datanex_categories` (
+        `Id` char(36) COLLATE ascii_general_ci NOT NULL,
+        `Name` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+        `CategoryType` int NOT NULL,
+        `CategoryLevel` tinyint unsigned NOT NULL,
+        `CompanyId` char(36) COLLATE ascii_general_ci NULL,
+        `SerialNumber` int NULL,
+        `Code` varchar(25) CHARACTER SET utf8mb4 NULL,
+        `IsActive` tinyint(1) NOT NULL,
+        `IsDeleted` tinyint(1) NOT NULL,
+        `IsSeeded` tinyint(1) NOT NULL,
+        `DateAdded` datetime(6) NOT NULL,
+        `UserAdded` char(36) COLLATE ascii_general_ci NULL,
+        `DateUpdated` datetime(6) NULL,
+        `UserUpdated` char(36) COLLATE ascii_general_ci NULL,
+        CONSTRAINT `PK_datanex_categories` PRIMARY KEY (`Id`)
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    CREATE TABLE `datanex_general_options` (
+        `Id` char(36) COLLATE ascii_general_ci NOT NULL,
+        `LotsEnabled` tinyint(1) NOT NULL,
+        `CompanyId` char(36) COLLATE ascii_general_ci NOT NULL,
+        `SerialNumber` int NULL,
+        `Code` varchar(25) CHARACTER SET utf8mb4 NULL,
+        `IsActive` tinyint(1) NOT NULL,
+        `IsDeleted` tinyint(1) NOT NULL,
+        `IsSeeded` tinyint(1) NOT NULL,
+        `DateAdded` datetime(6) NOT NULL,
+        `UserAdded` char(36) COLLATE ascii_general_ci NULL,
+        `DateUpdated` datetime(6) NULL,
+        `UserUpdated` char(36) COLLATE ascii_general_ci NULL,
+        CONSTRAINT `PK_datanex_general_options` PRIMARY KEY (`Id`),
+        CONSTRAINT `FK_datanex_general_options_datanex_companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `datanex_companies` (`Id`) ON DELETE RESTRICT
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    CREATE TABLE `datanex_lots` (
+        `Id` char(36) COLLATE ascii_general_ci NOT NULL,
+        `Name` varchar(25) CHARACTER SET utf8mb4 NOT NULL,
+        `ProductId` char(36) COLLATE ascii_general_ci NOT NULL,
+        `Notes` varchar(255) CHARACTER SET utf8mb4 NULL,
+        `ProdDate` datetime(6) NULL,
+        `ExpDate` datetime(6) NULL,
+        `SupplierId` char(36) COLLATE ascii_general_ci NOT NULL,
+        `RemainingQty` int NOT NULL,
+        `CompanyId` char(36) COLLATE ascii_general_ci NOT NULL,
+        `SerialNumber` int NULL,
+        `Code` varchar(25) CHARACTER SET utf8mb4 NULL,
+        `IsActive` tinyint(1) NOT NULL,
+        `IsDeleted` tinyint(1) NOT NULL,
+        `IsSeeded` tinyint(1) NOT NULL,
+        `DateAdded` datetime(6) NOT NULL,
+        `UserAdded` char(36) COLLATE ascii_general_ci NULL,
+        `DateUpdated` datetime(6) NULL,
+        `UserUpdated` char(36) COLLATE ascii_general_ci NULL,
+        CONSTRAINT `PK_datanex_lots` PRIMARY KEY (`Id`),
+        CONSTRAINT `FK_datanex_lots_datanex_companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `datanex_companies` (`Id`) ON DELETE RESTRICT
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    CREATE TABLE `datanex_lots_settings` (
+        `Id` char(36) COLLATE ascii_general_ci NOT NULL,
+        `LotStrategy` int NOT NULL,
+        `LotStrategyApplyField` int NOT NULL,
+        `CompanyId` char(36) COLLATE ascii_general_ci NOT NULL,
+        `SerialNumber` int NULL,
+        `Code` varchar(25) CHARACTER SET utf8mb4 NULL,
+        `IsActive` tinyint(1) NOT NULL,
+        `IsDeleted` tinyint(1) NOT NULL,
+        `IsSeeded` tinyint(1) NOT NULL,
+        `DateAdded` datetime(6) NOT NULL,
+        `UserAdded` char(36) COLLATE ascii_general_ci NULL,
+        `DateUpdated` datetime(6) NULL,
+        `UserUpdated` char(36) COLLATE ascii_general_ci NULL,
+        CONSTRAINT `PK_datanex_lots_settings` PRIMARY KEY (`Id`),
+        CONSTRAINT `FK_datanex_lots_settings_datanex_companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `datanex_companies` (`Id`) ON DELETE RESTRICT
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    CREATE TABLE `datanex_documentproducts_lots_quantities` (
+        `Id` char(36) COLLATE ascii_general_ci NOT NULL,
+        `DocumentProductId` char(36) COLLATE ascii_general_ci NOT NULL,
+        `LotId` char(36) COLLATE ascii_general_ci NOT NULL,
+        `Quantity` int NOT NULL,
+        `SerialNumber` int NULL,
+        `Code` varchar(25) CHARACTER SET utf8mb4 NULL,
+        `IsActive` tinyint(1) NOT NULL,
+        `IsDeleted` tinyint(1) NOT NULL,
+        `IsSeeded` tinyint(1) NOT NULL,
+        `DateAdded` datetime(6) NOT NULL,
+        `UserAdded` char(36) COLLATE ascii_general_ci NULL,
+        `DateUpdated` datetime(6) NULL,
+        `UserUpdated` char(36) COLLATE ascii_general_ci NULL,
+        CONSTRAINT `PK_datanex_documentproducts_lots_quantities` PRIMARY KEY (`Id`),
+        CONSTRAINT `FK_datanex_documentproducts_lots_quantities_datanex_documentpro~` FOREIGN KEY (`DocumentProductId`) REFERENCES `datanex_documentproducts` (`Id`) ON DELETE RESTRICT,
+        CONSTRAINT `FK_datanex_documentproducts_lots_quantities_datanex_lots_LotId` FOREIGN KEY (`LotId`) REFERENCES `datanex_lots` (`Id`) ON DELETE RESTRICT
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    CREATE INDEX `IX_datanex_documentproducts_lots_quantities_DocumentProductId` ON `datanex_documentproducts_lots_quantities` (`DocumentProductId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    CREATE INDEX `IX_datanex_documentproducts_lots_quantities_LotId` ON `datanex_documentproducts_lots_quantities` (`LotId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    CREATE INDEX `IX_datanex_general_options_CompanyId` ON `datanex_general_options` (`CompanyId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    CREATE INDEX `IX_datanex_lots_CompanyId` ON `datanex_lots` (`CompanyId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    CREATE INDEX `IX_datanex_lots_settings_CompanyId` ON `datanex_lots_settings` (`CompanyId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250126152901_AddedCategories') THEN
+
+    INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+    VALUES ('20250126152901_AddedCategories', '8.0.1');
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+COMMIT;
+

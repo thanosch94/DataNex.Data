@@ -4,16 +4,19 @@ using DataNex.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace DataNex.Data.MsSql.Migrations
+namespace DataNex.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250126152637_AddedCategories")]
+    partial class AddedCategories
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -546,9 +549,6 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Property<Guid?>("UserUpdated")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("VatClassId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
@@ -560,8 +560,6 @@ namespace DataNex.Data.MsSql.Migrations
                     b.HasIndex("DocumentTypeId");
 
                     b.HasIndex("SupplierId");
-
-                    b.HasIndex("VatClassId");
 
                     b.ToTable("datanex_documents");
                 });
@@ -1870,12 +1868,6 @@ namespace DataNex.Data.MsSql.Migrations
                         .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("DataNex.Model.Models.VatClass", "VatClass")
-                        .WithMany()
-                        .HasForeignKey("VatClassId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Company");
 
                     b.Navigation("Customer");
@@ -1885,8 +1877,6 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Navigation("DocumentType");
 
                     b.Navigation("Supplier");
-
-                    b.Navigation("VatClass");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.DocumentAdditionalCharge", b =>
