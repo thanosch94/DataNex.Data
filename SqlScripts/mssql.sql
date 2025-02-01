@@ -5004,3 +5004,76 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250201211121_AddedClients'
+)
+BEGIN
+    ALTER TABLE [datanex_companies] ADD [ClientId] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250201211121_AddedClients'
+)
+BEGIN
+    CREATE TABLE [datanex_clients] (
+        [Id] uniqueidentifier NOT NULL,
+        [Name] nvarchar(255) NOT NULL,
+        [Address] nvarchar(255) NOT NULL,
+        [Region] nvarchar(255) NULL,
+        [PostalCode] nvarchar(15) NOT NULL,
+        [City] nvarchar(100) NOT NULL,
+        [Country] nvarchar(100) NOT NULL,
+        [Phone1] nvarchar(25) NOT NULL,
+        [Phone2] nvarchar(25) NULL,
+        [Email] nvarchar(100) NOT NULL,
+        [SerialNumber] int NULL,
+        [Code] nvarchar(25) NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [IsSeeded] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        CONSTRAINT [PK_datanex_clients] PRIMARY KEY ([Id])
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250201211121_AddedClients'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_companies_ClientId] ON [datanex_companies] ([ClientId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250201211121_AddedClients'
+)
+BEGIN
+    ALTER TABLE [datanex_companies] ADD CONSTRAINT [FK_datanex_companies_datanex_clients_ClientId] FOREIGN KEY ([ClientId]) REFERENCES [datanex_clients] ([Id]) ON DELETE NO ACTION;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250201211121_AddedClients'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250201211121_AddedClients', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+

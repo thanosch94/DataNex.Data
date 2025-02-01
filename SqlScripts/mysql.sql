@@ -3662,3 +3662,141 @@ DROP PROCEDURE MigrationsScript;
 
 COMMIT;
 
+START TRANSACTION;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250201213008_AddedClients') THEN
+
+    ALTER TABLE `datanex_documents` ADD `VatClassId` char(36) COLLATE ascii_general_ci NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000';
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250201213008_AddedClients') THEN
+
+    ALTER TABLE `datanex_companies` ADD `ClientId` char(36) COLLATE ascii_general_ci NULL;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250201213008_AddedClients') THEN
+
+    CREATE TABLE `datanex_clients` (
+        `Id` char(36) COLLATE ascii_general_ci NOT NULL,
+        `Name` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+        `Address` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+        `Region` varchar(255) CHARACTER SET utf8mb4 NULL,
+        `PostalCode` varchar(15) CHARACTER SET utf8mb4 NOT NULL,
+        `City` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
+        `Country` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
+        `Phone1` varchar(25) CHARACTER SET utf8mb4 NOT NULL,
+        `Phone2` varchar(25) CHARACTER SET utf8mb4 NULL,
+        `Email` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
+        `SerialNumber` int NULL,
+        `Code` varchar(25) CHARACTER SET utf8mb4 NULL,
+        `IsActive` tinyint(1) NOT NULL,
+        `IsDeleted` tinyint(1) NOT NULL,
+        `IsSeeded` tinyint(1) NOT NULL,
+        `DateAdded` datetime(6) NOT NULL,
+        `UserAdded` char(36) COLLATE ascii_general_ci NULL,
+        `DateUpdated` datetime(6) NULL,
+        `UserUpdated` char(36) COLLATE ascii_general_ci NULL,
+        CONSTRAINT `PK_datanex_clients` PRIMARY KEY (`Id`)
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250201213008_AddedClients') THEN
+
+    CREATE INDEX `IX_datanex_documents_VatClassId` ON `datanex_documents` (`VatClassId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250201213008_AddedClients') THEN
+
+    CREATE INDEX `IX_datanex_companies_ClientId` ON `datanex_companies` (`ClientId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250201213008_AddedClients') THEN
+
+    ALTER TABLE `datanex_companies` ADD CONSTRAINT `FK_datanex_companies_datanex_clients_ClientId` FOREIGN KEY (`ClientId`) REFERENCES `datanex_clients` (`Id`) ON DELETE RESTRICT;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250201213008_AddedClients') THEN
+
+    ALTER TABLE `datanex_documents` ADD CONSTRAINT `FK_datanex_documents_datanex_vat_classes_VatClassId` FOREIGN KEY (`VatClassId`) REFERENCES `datanex_vat_classes` (`Id`) ON DELETE RESTRICT;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20250201213008_AddedClients') THEN
+
+    INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+    VALUES ('20250201213008_AddedClients', '8.0.1');
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+COMMIT;
+

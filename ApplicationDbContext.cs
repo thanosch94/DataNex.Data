@@ -57,6 +57,7 @@ namespace DataNex.Data
         public virtual DbSet<GeneralOptions> GeneralAppOptions { get; set; }
         public virtual DbSet<DocumentProductLotQuantity> DocumentProductLotsQuantities { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Client> Clients { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
