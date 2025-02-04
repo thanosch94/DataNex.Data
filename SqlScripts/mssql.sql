@@ -5077,3 +5077,58 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250202194827_AddedCompanyLoginCode'
+)
+BEGIN
+    DECLARE @var42 sysname;
+    SELECT @var42 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[AspNetRoles]') AND [c].[name] = N'Code');
+    IF @var42 IS NOT NULL EXEC(N'ALTER TABLE [AspNetRoles] DROP CONSTRAINT [' + @var42 + '];');
+    ALTER TABLE [AspNetRoles] DROP COLUMN [Code];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250202194827_AddedCompanyLoginCode'
+)
+BEGIN
+    DECLARE @var43 sysname;
+    SELECT @var43 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[AspNetRoles]') AND [c].[name] = N'SerialNumber');
+    IF @var43 IS NOT NULL EXEC(N'ALTER TABLE [AspNetRoles] DROP CONSTRAINT [' + @var43 + '];');
+    ALTER TABLE [AspNetRoles] DROP COLUMN [SerialNumber];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250202194827_AddedCompanyLoginCode'
+)
+BEGIN
+    ALTER TABLE [datanex_companies] ADD [CompanyLoginCode] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250202194827_AddedCompanyLoginCode'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250202194827_AddedCompanyLoginCode', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+

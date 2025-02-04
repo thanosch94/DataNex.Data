@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DataNex.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<User, Roles, Guid>
+    public class ApplicationDbContext : IdentityDbContext<User, Role, Guid>
     {
         private string _connectionString;
         public ApplicationDbContext(string connectionString)

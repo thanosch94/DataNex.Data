@@ -19,6 +19,12 @@ namespace DataNex.Data
 
         public static Guid BaseCompany = Guid.Parse("46e479c2-f572-4fcc-985c-4d97e1233a16");
 
+        public static Guid DnAdminRoleId = Guid.Parse("47bb0b5d-12c1-4a2e-86ab-6be74f488499");
 
+        public static Guid SupervisorRoleId = Guid.Parse("5839db80-9584-4d96-9ac7-5ac44b990ca9");
+
+        public static Guid AdminRoleId = Guid.Parse("b9d63f45-c0b7-4dd2-94d3-13173ddd8ff3");
+
+        public static Guid UserRoleId = Guid.Parse("2aa7696b-012a-4a0e-b7e7-09e07025c05a");
     }
 }
