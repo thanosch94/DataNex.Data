@@ -5132,3 +5132,136 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250211192708_AddedCompanyData'
+)
+BEGIN
+    ALTER TABLE [datanex_companies] DROP CONSTRAINT [FK_datanex_companies_datanex_clients_ClientId];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250211192708_AddedCompanyData'
+)
+BEGIN
+    DROP TABLE [datanex_clients];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250211192708_AddedCompanyData'
+)
+BEGIN
+    DROP INDEX [IX_datanex_companies_ClientId] ON [datanex_companies];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250211192708_AddedCompanyData'
+)
+BEGIN
+    ALTER TABLE [datanex_companies] ADD [Address] nvarchar(max) NOT NULL DEFAULT N'';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250211192708_AddedCompanyData'
+)
+BEGIN
+    ALTER TABLE [datanex_companies] ADD [City] nvarchar(max) NOT NULL DEFAULT N'';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250211192708_AddedCompanyData'
+)
+BEGIN
+    ALTER TABLE [datanex_companies] ADD [Country] nvarchar(max) NOT NULL DEFAULT N'';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250211192708_AddedCompanyData'
+)
+BEGIN
+    ALTER TABLE [datanex_companies] ADD [Email] nvarchar(max) NOT NULL DEFAULT N'';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250211192708_AddedCompanyData'
+)
+BEGIN
+    ALTER TABLE [datanex_companies] ADD [Phone1] nvarchar(max) NOT NULL DEFAULT N'';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250211192708_AddedCompanyData'
+)
+BEGIN
+    ALTER TABLE [datanex_companies] ADD [Phone2] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250211192708_AddedCompanyData'
+)
+BEGIN
+    ALTER TABLE [datanex_companies] ADD [PostalCode] nvarchar(max) NOT NULL DEFAULT N'';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250211192708_AddedCompanyData'
+)
+BEGIN
+    ALTER TABLE [datanex_companies] ADD [Region] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250211192708_AddedCompanyData'
+)
+BEGIN
+    ALTER TABLE [datanex_companies] ADD [TaxOffice] nvarchar(max) NOT NULL DEFAULT N'';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250211192708_AddedCompanyData'
+)
+BEGIN
+    ALTER TABLE [datanex_companies] ADD [VatNumber] nvarchar(max) NOT NULL DEFAULT N'';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250211192708_AddedCompanyData'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250211192708_AddedCompanyData', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+

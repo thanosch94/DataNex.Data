@@ -9,7 +9,10 @@ namespace DataNex.Data
     public static class AppBase
     {
         public static string Version = "1.0.12";
-        public static string ConnectionString = string.Empty;
+        public static string CoreConnectionString = string.Empty; // Core Db Connection String for Client Data
+        public static string ConnectionString = string.Empty; // Customer Db Connection String After successful login
+        public static string ClientConnectionString = string.Empty; // Initial Customer Db Connection String before replacement
+        public static string MasterConnectionString = string.Empty; // Initial Customer Db Connection String before replacement
 
         public static Guid DnAdmin = Guid.Parse("7ea7ace0-b13f-474d-95cc-bfd6b62fc0aa");
 

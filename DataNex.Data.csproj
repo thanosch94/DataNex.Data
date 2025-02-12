@@ -28,6 +28,7 @@
 
   <ItemGroup>
     <Folder Include="MySqlMigrations\" />
+    <Folder Include="CoreMigrations\" />
   </ItemGroup>
 
 </Project>
