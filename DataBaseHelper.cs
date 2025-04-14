@@ -34,18 +34,19 @@ namespace DataNex.Data
                     try
                     {
                         // Creates the database if it does not already exist
-                        await context.Database.MigrateAsync();
+                        await UpdateDatabase(context);
                     }
                     catch (Exception ex)
                     {
                         //Send an email to dnAdmin to inform about the error 
+                        var dropDbQuery = $"DROP DATABASE [dn_clnt_{dbName}]";
+                        using (SqlCommand command = new SqlCommand(dropDbQuery, conn))
+                        {
+                            command.ExecuteNonQuery();
+                        }
+
                         throw;
                     }
-                }
-                var dropDbQuery = $"DROP DATABASE [dn_clnt_{dbName}]";
-                using (SqlCommand command = new SqlCommand(dropDbQuery, conn))
-                {
-                    command.ExecuteNonQuery();
                 }
 
                 conn.Close();
@@ -55,7 +56,11 @@ namespace DataNex.Data
 
         }
 
+        public async Task UpdateDatabase(ApplicationDbContext context)
+        {
+            await context.Database.MigrateAsync();
 
+        }
 
         public async Task DropDatabase(string dbName)
         {

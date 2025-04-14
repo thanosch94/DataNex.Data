@@ -4,16 +4,19 @@ using DataNex.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace DataNex.Data.MsSql.Migrations
+namespace DataNex.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250330151612_AddedStatusTypeOnStatuses")]
+    partial class AddedStatusTypeOnStatuses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1758,58 +1761,6 @@ namespace DataNex.Data.MsSql.Migrations
                     b.ToTable("connector_wooconnectionsdata");
                 });
 
-            modelBuilder.Entity("DataNex.Model.Models.WorkItemType", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Code")
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
-
-                    b.Property<Guid?>("CompanyId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DateAdded")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsSeeded")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int?>("SerialNumber")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("UserAdded")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("UserUpdated")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("datanex_workitem_types");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
                     b.Property<int>("Id")
@@ -2247,16 +2198,6 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Navigation("Company");
                 });
 
-            modelBuilder.Entity("DataNex.Model.Models.WorkItemType", b =>
-                {
-                    b.HasOne("DataNex.Model.Models.Company", "Company")
-                        .WithMany("WorkItemTypes")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Company");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
                     b.HasOne("DataNex.Model.Models.Role", null)
@@ -2357,8 +2298,6 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Navigation("WareHouses");
 
                     b.Navigation("WooConnectionData");
-
-                    b.Navigation("WorkItemTypes");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Customer", b =>

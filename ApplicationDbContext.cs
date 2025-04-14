@@ -1,14 +1,6 @@
-﻿using DataNex.Model.Dtos;
-using DataNex.Model.Enums;
-using DataNex.Model.Models;
+﻿using DataNex.Model.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataNex.Data
 {
@@ -57,6 +49,7 @@ namespace DataNex.Data
         public virtual DbSet<GeneralOptions> GeneralAppOptions { get; set; }
         public virtual DbSet<DocumentProductLotQuantity> DocumentProductLotsQuantities { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<WorkItemType> WorkItemTypes { get; set; }
 
 
 

@@ -108,9 +108,9 @@ namespace DataNex.Data
 
         public async Task SeedUsers(ApplicationDbContext context)
         {
-            var dnadmin = await context.Users.FirstOrDefaultAsync(x => x.Id == AppBase.DnAdmin);
+            var users = await context.Users.ToListAsync();
 
-            if (dnadmin == null)
+            if (!users.Any(x=>x.Id==AppBase.DnAdmin))
             {
                 var userToAdd = new User()
                 {
@@ -118,7 +118,21 @@ namespace DataNex.Data
                     Name = "dnadmin",
                     UserName = "dnadmin",
                     PasswordHash = "$2a$11$EwNeaOAFF8eyD2dMXxS/1uPEqMKPlTWNRFa9HR0c7bAgSAPT8wELy",
-                    UserRole = UserRolesEnum.DnAdmin,
+                    UserAdded = AppBase.DnAdmin,
+                };
+
+                context.Users.Add(userToAdd);
+                context.SaveChanges();
+            }
+
+            if (!users.Any(x => x.Id == AppBase.Admin))
+            {
+                var userToAdd = new User()
+                {
+                    Id = AppBase.Admin,
+                    Name = "admin",
+                    UserName = "admin",
+                    PasswordHash = "$2a$11$EwNeaOAFF8eyD2dMXxS/1uPEqMKPlTWNRFa9HR0c7bAgSAPT8wELy",
                     UserAdded = AppBase.DnAdmin,
                 };
 
@@ -129,14 +143,28 @@ namespace DataNex.Data
 
             //Set DnAdmin User Role
 
-            var dnADminUserRole = await context.UserRoles.FirstOrDefaultAsync(x => x.RoleId == AppBase.DnAdminRoleId && x.UserId == AppBase.DnAdmin);
+            var dnAdminUserRole = await context.UserRoles.FirstOrDefaultAsync(x => x.RoleId == AppBase.DnAdminRoleId && x.UserId == AppBase.DnAdmin);
 
-            if(dnADminUserRole == null)
+            if(dnAdminUserRole == null)
             {
                 var userRoleToAdd = new UserRole()
                 {
                     UserId = AppBase.DnAdmin,
                     RoleId = AppBase.DnAdminRoleId,
+                };
+
+                context.UserRoles.Add(userRoleToAdd);
+                context.SaveChanges();
+            }
+
+            var adminUserRole = await context.UserRoles.FirstOrDefaultAsync(x => x.RoleId == AppBase.AdminRoleId && x.UserId == AppBase.Admin);
+
+            if (adminUserRole == null)
+            {
+                var userRoleToAdd = new UserRole()
+                {
+                    UserId = AppBase.Admin,
+                    RoleId = AppBase.AdminRoleId,
                 };
 
                 context.UserRoles.Add(userRoleToAdd);
@@ -349,6 +377,7 @@ namespace DataNex.Data
                 {
                     Id = DataSeedIds.Pending,
                     Name = "Pending",
+                    StatusType = StatusTypeEnum.Document,
                     IsSeeded = true
                 };
                 context.Statuses.Add(status);
@@ -362,6 +391,7 @@ namespace DataNex.Data
                 {
                     Id = DataSeedIds.OnHold,
                     Name = "OnHold",
+                    StatusType = StatusTypeEnum.Document,
                     IsSeeded = true
                 };
                 context.Statuses.Add(status);
@@ -375,6 +405,7 @@ namespace DataNex.Data
                 {
                     Id = DataSeedIds.Processing,
                     Name = "Processing",
+                    StatusType = StatusTypeEnum.Document,
                     IsSeeded = true
                 };
                 context.Statuses.Add(status);
@@ -388,6 +419,7 @@ namespace DataNex.Data
                 {
                     Id = DataSeedIds.Completed,
                     Name = "Completed",
+                    StatusType = StatusTypeEnum.Document,
                     IsSeeded = true
                 };
                 context.Statuses.Add(status);
@@ -401,6 +433,7 @@ namespace DataNex.Data
                 {
                     Id = DataSeedIds.Returned,
                     Name = "Returned",
+                    StatusType = StatusTypeEnum.Document,
                     IsSeeded = true
                 };
                 context.Statuses.Add(status);

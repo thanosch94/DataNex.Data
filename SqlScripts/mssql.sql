@@ -5265,3 +5265,226 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250325145303_AddedBasicFieldsOnUser'
+)
+BEGIN
+    DECLARE @var44 sysname;
+    SELECT @var44 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[AspNetUsers]') AND [c].[name] = N'UserRole');
+    IF @var44 IS NOT NULL EXEC(N'ALTER TABLE [AspNetUsers] DROP CONSTRAINT [' + @var44 + '];');
+    ALTER TABLE [AspNetUsers] DROP COLUMN [UserRole];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250325145303_AddedBasicFieldsOnUser'
+)
+BEGIN
+    ALTER TABLE [AspNetUsers] ADD [Address] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250325145303_AddedBasicFieldsOnUser'
+)
+BEGIN
+    ALTER TABLE [AspNetUsers] ADD [BirthDay] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250325145303_AddedBasicFieldsOnUser'
+)
+BEGIN
+    ALTER TABLE [AspNetUsers] ADD [City] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250325145303_AddedBasicFieldsOnUser'
+)
+BEGIN
+    ALTER TABLE [AspNetUsers] ADD [Country] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250325145303_AddedBasicFieldsOnUser'
+)
+BEGIN
+    ALTER TABLE [AspNetUsers] ADD [FacebookUrl] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250325145303_AddedBasicFieldsOnUser'
+)
+BEGIN
+    ALTER TABLE [AspNetUsers] ADD [Image] varbinary(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250325145303_AddedBasicFieldsOnUser'
+)
+BEGIN
+    ALTER TABLE [AspNetUsers] ADD [InstagramUrl] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250325145303_AddedBasicFieldsOnUser'
+)
+BEGIN
+    ALTER TABLE [AspNetUsers] ADD [LinkedInUrl] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250325145303_AddedBasicFieldsOnUser'
+)
+BEGIN
+    ALTER TABLE [AspNetUsers] ADD [Notes] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250325145303_AddedBasicFieldsOnUser'
+)
+BEGIN
+    ALTER TABLE [AspNetUsers] ADD [Occupation] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250325145303_AddedBasicFieldsOnUser'
+)
+BEGIN
+    ALTER TABLE [AspNetUsers] ADD [Phone1] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250325145303_AddedBasicFieldsOnUser'
+)
+BEGIN
+    ALTER TABLE [AspNetUsers] ADD [Phone2] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250325145303_AddedBasicFieldsOnUser'
+)
+BEGIN
+    ALTER TABLE [AspNetUsers] ADD [PostalCode] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250325145303_AddedBasicFieldsOnUser'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250325145303_AddedBasicFieldsOnUser', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250330151612_AddedStatusTypeOnStatuses'
+)
+BEGIN
+    ALTER TABLE [datanex_statuses] ADD [StatusType] int NOT NULL DEFAULT 0;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250330151612_AddedStatusTypeOnStatuses'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250330151612_AddedStatusTypeOnStatuses', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250414191409_AddedWorkItemTypes'
+)
+BEGIN
+    CREATE TABLE [datanex_workitem_types] (
+        [Id] uniqueidentifier NOT NULL,
+        [Name] nvarchar(50) NOT NULL,
+        [Type] int NOT NULL,
+        [CompanyId] uniqueidentifier NULL,
+        [SerialNumber] int NULL,
+        [Code] nvarchar(25) NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [IsSeeded] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        CONSTRAINT [PK_datanex_workitem_types] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_datanex_workitem_types_datanex_companies_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [datanex_companies] ([Id]) ON DELETE NO ACTION
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250414191409_AddedWorkItemTypes'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_workitem_types_CompanyId] ON [datanex_workitem_types] ([CompanyId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250414191409_AddedWorkItemTypes'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250414191409_AddedWorkItemTypes', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
