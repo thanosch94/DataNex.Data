@@ -5488,3 +5488,99 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250415193314_AddedWorkItems'
+)
+BEGIN
+    EXEC sp_rename N'[datanex_workitem_types].[Type]', N'Category', N'COLUMN';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250415193314_AddedWorkItems'
+)
+BEGIN
+    CREATE TABLE [datanex_workitems] (
+        [Id] uniqueidentifier NOT NULL,
+        [Name] nvarchar(100) NOT NULL,
+        [Description] nvarchar(max) NULL,
+        [MasterTaskId] uniqueidentifier NULL,
+        [StatusId] uniqueidentifier NULL,
+        [AssigneeId] uniqueidentifier NULL,
+        [WorkItemTypeId] uniqueidentifier NULL,
+        [WorkItemCategory] int NOT NULL,
+        [SprintId] uniqueidentifier NULL,
+        [DueDate] datetime2 NULL,
+        [CompanyId] uniqueidentifier NULL,
+        [SerialNumber] int NULL,
+        [Code] nvarchar(25) NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [IsSeeded] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        CONSTRAINT [PK_datanex_workitems] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_datanex_workitems_AspNetUsers_AssigneeId] FOREIGN KEY ([AssigneeId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE NO ACTION,
+        CONSTRAINT [FK_datanex_workitems_datanex_companies_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [datanex_companies] ([Id]) ON DELETE NO ACTION,
+        CONSTRAINT [FK_datanex_workitems_datanex_statuses_StatusId] FOREIGN KEY ([StatusId]) REFERENCES [datanex_statuses] ([Id]) ON DELETE NO ACTION,
+        CONSTRAINT [FK_datanex_workitems_datanex_workitem_types_WorkItemTypeId] FOREIGN KEY ([WorkItemTypeId]) REFERENCES [datanex_workitem_types] ([Id]) ON DELETE NO ACTION
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250415193314_AddedWorkItems'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_workitems_AssigneeId] ON [datanex_workitems] ([AssigneeId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250415193314_AddedWorkItems'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_workitems_CompanyId] ON [datanex_workitems] ([CompanyId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250415193314_AddedWorkItems'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_workitems_StatusId] ON [datanex_workitems] ([StatusId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250415193314_AddedWorkItems'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_workitems_WorkItemTypeId] ON [datanex_workitems] ([WorkItemTypeId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250415193314_AddedWorkItems'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250415193314_AddedWorkItems', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+

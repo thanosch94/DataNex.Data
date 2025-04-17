@@ -49,6 +49,7 @@ namespace DataNex.Data
         public virtual DbSet<GeneralOptions> GeneralAppOptions { get; set; }
         public virtual DbSet<DocumentProductLotQuantity> DocumentProductLotsQuantities { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<WorkItem> WorkItems { get; set; }
         public virtual DbSet<WorkItemType> WorkItemTypes { get; set; }
 
 
