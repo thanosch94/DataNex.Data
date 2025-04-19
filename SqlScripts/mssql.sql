@@ -5584,3 +5584,98 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250417122351_AddedOrderAndIconOnStatusAndWorkItemTypes'
+)
+BEGIN
+    ALTER TABLE [datanex_workitem_types] ADD [Icon] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250417122351_AddedOrderAndIconOnStatusAndWorkItemTypes'
+)
+BEGIN
+    ALTER TABLE [datanex_statuses] ADD [Icon] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250417122351_AddedOrderAndIconOnStatusAndWorkItemTypes'
+)
+BEGIN
+    ALTER TABLE [datanex_statuses] ADD [Order] smallint NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250417122351_AddedOrderAndIconOnStatusAndWorkItemTypes'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250417122351_AddedOrderAndIconOnStatusAndWorkItemTypes', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250417124645_AddedIconColorAndIsDefaultOnStatusesAndWorkItemTypes'
+)
+BEGIN
+    ALTER TABLE [datanex_workitem_types] ADD [IconColor] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250417124645_AddedIconColorAndIsDefaultOnStatusesAndWorkItemTypes'
+)
+BEGIN
+    ALTER TABLE [datanex_workitem_types] ADD [IsDefault] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250417124645_AddedIconColorAndIsDefaultOnStatusesAndWorkItemTypes'
+)
+BEGIN
+    ALTER TABLE [datanex_statuses] ADD [IconColor] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250417124645_AddedIconColorAndIsDefaultOnStatusesAndWorkItemTypes'
+)
+BEGIN
+    ALTER TABLE [datanex_statuses] ADD [IsDefault] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250417124645_AddedIconColorAndIsDefaultOnStatusesAndWorkItemTypes'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250417124645_AddedIconColorAndIsDefaultOnStatusesAndWorkItemTypes', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
