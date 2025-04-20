@@ -5679,3 +5679,28 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250419182000_AddedWorkItemPriorityOnWorkItems'
+)
+BEGIN
+    ALTER TABLE [datanex_workitems] ADD [WorkItemPriority] int NOT NULL DEFAULT 0;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250419182000_AddedWorkItemPriorityOnWorkItems'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250419182000_AddedWorkItemPriorityOnWorkItems', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
