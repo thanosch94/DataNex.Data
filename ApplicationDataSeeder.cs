@@ -109,7 +109,6 @@ namespace DataNex.Data
         public async Task SeedUsers(ApplicationDbContext context)
         {
             var users = await context.Users.ToListAsync();
-
             if (!users.Any(x=>x.Id==AppBase.DnAdmin))
             {
                 var userToAdd = new User()
