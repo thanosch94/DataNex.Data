@@ -51,6 +51,7 @@ namespace DataNex.Data
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<WorkItem> WorkItems { get; set; }
         public virtual DbSet<WorkItemType> WorkItemTypes { get; set; }
+        public virtual DbSet<AppPermission> AppPermissions { get; set; }
 
 
 
