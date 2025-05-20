@@ -5754,3 +5754,238 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250510193315_AddedWarehouseOnDocuments'
+)
+BEGIN
+    ALTER TABLE [dn_permissions] ADD [AppEntity] int NOT NULL DEFAULT 0;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250510193315_AddedWarehouseOnDocuments'
+)
+BEGIN
+    ALTER TABLE [dn_permissions] ADD [EntityId] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250510193315_AddedWarehouseOnDocuments'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [WarehouseId] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250510193315_AddedWarehouseOnDocuments'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_documents_WarehouseId] ON [datanex_documents] ([WarehouseId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250510193315_AddedWarehouseOnDocuments'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD CONSTRAINT [FK_datanex_documents_datanex_warehouses_WarehouseId] FOREIGN KEY ([WarehouseId]) REFERENCES [datanex_warehouses] ([Id]) ON DELETE NO ACTION;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250510193315_AddedWarehouseOnDocuments'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250510193315_AddedWarehouseOnDocuments', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250518202044_UpdatePermissions'
+)
+BEGIN
+    ALTER TABLE [dn_permissions] DROP CONSTRAINT [FK_dn_permissions_datanex_companies_CompanyId];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250518202044_UpdatePermissions'
+)
+BEGIN
+    ALTER TABLE [dn_permissions] DROP CONSTRAINT [PK_dn_permissions];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250518202044_UpdatePermissions'
+)
+BEGIN
+    EXEC sp_rename N'[dn_permissions]', N'datanex_permissions';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250518202044_UpdatePermissions'
+)
+BEGIN
+    EXEC sp_rename N'[datanex_permissions].[EntityId]', N'MasterEntityId', N'COLUMN';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250518202044_UpdatePermissions'
+)
+BEGIN
+    EXEC sp_rename N'[datanex_permissions].[IX_dn_permissions_CompanyId]', N'IX_datanex_permissions_CompanyId', N'INDEX';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250518202044_UpdatePermissions'
+)
+BEGIN
+    ALTER TABLE [datanex_permissions] ADD CONSTRAINT [PK_datanex_permissions] PRIMARY KEY ([Id]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250518202044_UpdatePermissions'
+)
+BEGIN
+    ALTER TABLE [datanex_permissions] ADD CONSTRAINT [FK_datanex_permissions_datanex_companies_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [datanex_companies] ([Id]) ON DELETE NO ACTION;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250518202044_UpdatePermissions'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250518202044_UpdatePermissions', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250520120012_AddedMasterEntityDescr'
+)
+BEGIN
+    ALTER TABLE [datanex_permissions] ADD [MasterEntityDescr] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250520120012_AddedMasterEntityDescr'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250520120012_AddedMasterEntityDescr', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250520203647_AddedUserAppPermissions'
+)
+BEGIN
+    CREATE TABLE [datanex_user_permissions] (
+        [Id] uniqueidentifier NOT NULL,
+        [AppPermissionId] uniqueidentifier NULL,
+        [UserId] uniqueidentifier NULL,
+        [CompanyId] uniqueidentifier NULL,
+        [SerialNumber] int NULL,
+        [Code] nvarchar(25) NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [IsSeeded] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        CONSTRAINT [PK_datanex_user_permissions] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_datanex_user_permissions_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE NO ACTION,
+        CONSTRAINT [FK_datanex_user_permissions_datanex_companies_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [datanex_companies] ([Id]) ON DELETE NO ACTION,
+        CONSTRAINT [FK_datanex_user_permissions_datanex_permissions_AppPermissionId] FOREIGN KEY ([AppPermissionId]) REFERENCES [datanex_permissions] ([Id]) ON DELETE NO ACTION
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250520203647_AddedUserAppPermissions'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_user_permissions_AppPermissionId] ON [datanex_user_permissions] ([AppPermissionId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250520203647_AddedUserAppPermissions'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_user_permissions_CompanyId] ON [datanex_user_permissions] ([CompanyId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250520203647_AddedUserAppPermissions'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_user_permissions_UserId] ON [datanex_user_permissions] ([UserId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250520203647_AddedUserAppPermissions'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250520203647_AddedUserAppPermissions', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+

@@ -4,16 +4,19 @@ using DataNex.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace DataNex.Data.MsSql.Migrations
+namespace DataNex.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250520120012_AddedMasterEntityDescr")]
+    partial class AddedMasterEntityDescr
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1667,60 +1670,6 @@ namespace DataNex.Data.MsSql.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("DataNex.Model.Models.UserAppPermission", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("AppPermissionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Code")
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
-
-                    b.Property<Guid?>("CompanyId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DateAdded")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsSeeded")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("SerialNumber")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("UserAdded")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("UserUpdated")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppPermissionId");
-
-                    b.HasIndex("CompanyId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("datanex_user_permissions");
-                });
-
             modelBuilder.Entity("DataNex.Model.Models.VatClass", b =>
                 {
                     b.Property<Guid>("Id")
@@ -2460,30 +2409,6 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Navigation("Company");
                 });
 
-            modelBuilder.Entity("DataNex.Model.Models.UserAppPermission", b =>
-                {
-                    b.HasOne("DataNex.Model.Models.AppPermission", "AppPermission")
-                        .WithMany("UserAppPermissions")
-                        .HasForeignKey("AppPermissionId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("DataNex.Model.Models.Company", "Company")
-                        .WithMany("UserAppPermissions")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("DataNex.Model.Models.User", "User")
-                        .WithMany("UserAppPermissions")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("AppPermission");
-
-                    b.Navigation("Company");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("DataNex.Model.Models.VatClass", b =>
                 {
                     b.HasOne("DataNex.Model.Models.Company", "Company")
@@ -2611,11 +2536,6 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Navigation("DocumentAdditionalCharges");
                 });
 
-            modelBuilder.Entity("DataNex.Model.Models.AppPermission", b =>
-                {
-                    b.Navigation("UserAppPermissions");
-                });
-
             modelBuilder.Entity("DataNex.Model.Models.Brand", b =>
                 {
                     b.Navigation("Products");
@@ -2654,8 +2574,6 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Navigation("Statuses");
 
                     b.Navigation("Suppliers");
-
-                    b.Navigation("UserAppPermissions");
 
                     b.Navigation("Users");
 
@@ -2719,11 +2637,6 @@ namespace DataNex.Data.MsSql.Migrations
             modelBuilder.Entity("DataNex.Model.Models.Supplier", b =>
                 {
                     b.Navigation("Documents");
-                });
-
-            modelBuilder.Entity("DataNex.Model.Models.User", b =>
-                {
-                    b.Navigation("UserAppPermissions");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.VatClass", b =>
