@@ -8,7 +8,7 @@ namespace DataNex.Data
 {
     public static class AppBase
     {
-        public static string Version = "1.0.13";
+        public static string Version = "1.0.14";
         public static string CoreConnectionString = string.Empty; // Core Db Connection String for Client Data
         public static string ConnectionString = string.Empty; // Customer Db Connection String After successful login
         public static string ClientConnectionString = string.Empty; // Initial Customer Db Connection String before replacement
