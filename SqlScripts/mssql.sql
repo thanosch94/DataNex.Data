@@ -5989,3 +5989,121 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250602191014_AddedConnectorDatasources'
+)
+BEGIN
+    CREATE TABLE [cntor_datasources] (
+        [Id] uniqueidentifier NOT NULL,
+        [Name] nvarchar(100) NOT NULL,
+        [Description] nvarchar(250) NULL,
+        [Icon] nvarchar(max) NULL,
+        [IconColor] nvarchar(max) NULL,
+        [HasCustomImage] bit NOT NULL,
+        [CustomImagePath] nvarchar(max) NULL,
+        [CustomImageWidth] int NULL,
+        [CompanyId] uniqueidentifier NULL,
+        [SerialNumber] int NULL,
+        [Code] nvarchar(25) NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [IsSeeded] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        CONSTRAINT [PK_cntor_datasources] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_cntor_datasources_datanex_companies_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [datanex_companies] ([Id]) ON DELETE NO ACTION
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250602191014_AddedConnectorDatasources'
+)
+BEGIN
+    CREATE INDEX [IX_cntor_datasources_CompanyId] ON [cntor_datasources] ([CompanyId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250602191014_AddedConnectorDatasources'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250602191014_AddedConnectorDatasources', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250607080609_AddedConnectorDatasourceEntities'
+)
+BEGIN
+    CREATE TABLE [cntor_datasource_entities] (
+        [Id] uniqueidentifier NOT NULL,
+        [Name] nvarchar(100) NOT NULL,
+        [Description] nvarchar(250) NULL,
+        [Icon] nvarchar(max) NULL,
+        [IconColor] nvarchar(max) NULL,
+        [CntorDatasourceId] uniqueidentifier NOT NULL,
+        [CompanyId] uniqueidentifier NULL,
+        [SerialNumber] int NULL,
+        [Code] nvarchar(25) NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [IsSeeded] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        CONSTRAINT [PK_cntor_datasource_entities] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_cntor_datasource_entities_cntor_datasources_CntorDatasourceId] FOREIGN KEY ([CntorDatasourceId]) REFERENCES [cntor_datasources] ([Id]) ON DELETE NO ACTION,
+        CONSTRAINT [FK_cntor_datasource_entities_datanex_companies_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [datanex_companies] ([Id]) ON DELETE NO ACTION
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250607080609_AddedConnectorDatasourceEntities'
+)
+BEGIN
+    CREATE INDEX [IX_cntor_datasource_entities_CntorDatasourceId] ON [cntor_datasource_entities] ([CntorDatasourceId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250607080609_AddedConnectorDatasourceEntities'
+)
+BEGIN
+    CREATE INDEX [IX_cntor_datasource_entities_CompanyId] ON [cntor_datasource_entities] ([CompanyId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250607080609_AddedConnectorDatasourceEntities'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250607080609_AddedConnectorDatasourceEntities', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+

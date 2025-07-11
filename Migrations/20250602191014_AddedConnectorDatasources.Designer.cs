@@ -4,16 +4,19 @@ using DataNex.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace DataNex.Data.MsSql.Migrations
+namespace DataNex.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250602191014_AddedConnectorDatasources")]
+    partial class AddedConnectorDatasources
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -302,70 +305,6 @@ namespace DataNex.Data.MsSql.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("cntor_datasources");
-                });
-
-            modelBuilder.Entity("DataNex.Model.Models.CntorDatasourceEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CntorDatasourceId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Code")
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
-
-                    b.Property<Guid?>("CompanyId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DateAdded")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("Icon")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IconColor")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsSeeded")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int?>("SerialNumber")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("UserAdded")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("UserUpdated")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CntorDatasourceId");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("cntor_datasource_entities");
                 });
 
             modelBuilder.Entity("DataNex.Model.Models.Company", b =>
@@ -2311,24 +2250,6 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Navigation("Company");
                 });
 
-            modelBuilder.Entity("DataNex.Model.Models.CntorDatasourceEntity", b =>
-                {
-                    b.HasOne("DataNex.Model.Models.CntorDatasource", "CntorDatasource")
-                        .WithMany("CntorDatasourceEntities")
-                        .HasForeignKey("CntorDatasourceId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("DataNex.Model.Models.Company", "Company")
-                        .WithMany("CntorDatasourceEntities")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("CntorDatasource");
-
-                    b.Navigation("Company");
-                });
-
             modelBuilder.Entity("DataNex.Model.Models.ConnectorJob", b =>
                 {
                     b.HasOne("DataNex.Model.Models.Company", "Company")
@@ -2781,11 +2702,6 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("DataNex.Model.Models.CntorDatasource", b =>
-                {
-                    b.Navigation("CntorDatasourceEntities");
-                });
-
             modelBuilder.Entity("DataNex.Model.Models.Company", b =>
                 {
                     b.Navigation("AdditionalCharges");
@@ -2793,8 +2709,6 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Navigation("AppPermissions");
 
                     b.Navigation("Brands");
-
-                    b.Navigation("CntorDatasourceEntities");
 
                     b.Navigation("CntorDatasources");
 

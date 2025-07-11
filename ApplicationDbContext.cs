@@ -53,6 +53,8 @@ namespace DataNex.Data
         public virtual DbSet<WorkItemType> WorkItemTypes { get; set; }
         public virtual DbSet<AppPermission> AppPermissions { get; set; }
         public virtual DbSet<UserAppPermission> UserAppPermissions { get; set; }
+        public virtual DbSet<CntorDatasource> CntorDatasources { get; set; }
+        public virtual DbSet<CntorDatasourceEntity> CntorDatasourceEntities { get; set; }
 
 
 
