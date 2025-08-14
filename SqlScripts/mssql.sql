@@ -6107,3 +6107,602 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    DECLARE @var45 sysname;
+    SELECT @var45 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_suppliers]') AND [c].[name] = N'TaxOffice');
+    IF @var45 IS NOT NULL EXEC(N'ALTER TABLE [datanex_suppliers] DROP CONSTRAINT [' + @var45 + '];');
+    ALTER TABLE [datanex_suppliers] ALTER COLUMN [TaxOffice] nvarchar(50) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    DECLARE @var46 sysname;
+    SELECT @var46 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_suppliers]') AND [c].[name] = N'Region');
+    IF @var46 IS NOT NULL EXEC(N'ALTER TABLE [datanex_suppliers] DROP CONSTRAINT [' + @var46 + '];');
+    ALTER TABLE [datanex_suppliers] ALTER COLUMN [Region] nvarchar(255) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    DECLARE @var47 sysname;
+    SELECT @var47 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_suppliers]') AND [c].[name] = N'PostalCode');
+    IF @var47 IS NOT NULL EXEC(N'ALTER TABLE [datanex_suppliers] DROP CONSTRAINT [' + @var47 + '];');
+    ALTER TABLE [datanex_suppliers] ALTER COLUMN [PostalCode] nvarchar(10) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    DECLARE @var48 sysname;
+    SELECT @var48 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_suppliers]') AND [c].[name] = N'Phone2');
+    IF @var48 IS NOT NULL EXEC(N'ALTER TABLE [datanex_suppliers] DROP CONSTRAINT [' + @var48 + '];');
+    ALTER TABLE [datanex_suppliers] ALTER COLUMN [Phone2] nvarchar(20) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    DECLARE @var49 sysname;
+    SELECT @var49 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_suppliers]') AND [c].[name] = N'Phone1');
+    IF @var49 IS NOT NULL EXEC(N'ALTER TABLE [datanex_suppliers] DROP CONSTRAINT [' + @var49 + '];');
+    ALTER TABLE [datanex_suppliers] ALTER COLUMN [Phone1] nvarchar(20) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    DECLARE @var50 sysname;
+    SELECT @var50 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_suppliers]') AND [c].[name] = N'Name');
+    IF @var50 IS NOT NULL EXEC(N'ALTER TABLE [datanex_suppliers] DROP CONSTRAINT [' + @var50 + '];');
+    ALTER TABLE [datanex_suppliers] ALTER COLUMN [Name] nvarchar(255) NOT NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    DECLARE @var51 sysname;
+    SELECT @var51 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_suppliers]') AND [c].[name] = N'Email');
+    IF @var51 IS NOT NULL EXEC(N'ALTER TABLE [datanex_suppliers] DROP CONSTRAINT [' + @var51 + '];');
+    ALTER TABLE [datanex_suppliers] ALTER COLUMN [Email] nvarchar(100) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    DECLARE @var52 sysname;
+    SELECT @var52 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_suppliers]') AND [c].[name] = N'Country');
+    IF @var52 IS NOT NULL EXEC(N'ALTER TABLE [datanex_suppliers] DROP CONSTRAINT [' + @var52 + '];');
+    ALTER TABLE [datanex_suppliers] ALTER COLUMN [Country] nvarchar(50) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    DECLARE @var53 sysname;
+    SELECT @var53 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_suppliers]') AND [c].[name] = N'City');
+    IF @var53 IS NOT NULL EXEC(N'ALTER TABLE [datanex_suppliers] DROP CONSTRAINT [' + @var53 + '];');
+    ALTER TABLE [datanex_suppliers] ALTER COLUMN [City] nvarchar(100) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_suppliers] ADD [Notes] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_suppliers] ADD [UserDate1] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_suppliers] ADD [UserDate2] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_suppliers] ADD [UserDate3] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_suppliers] ADD [UserDate4] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_suppliers] ADD [UserNumber1] bigint NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_suppliers] ADD [UserNumber2] bigint NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_suppliers] ADD [UserNumber3] bigint NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_suppliers] ADD [UserNumber4] bigint NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_suppliers] ADD [UserText1] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_suppliers] ADD [UserText2] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_suppliers] ADD [UserText3] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_suppliers] ADD [UserText4] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    DECLARE @var54 sysname;
+    SELECT @var54 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_customers]') AND [c].[name] = N'TaxOffice');
+    IF @var54 IS NOT NULL EXEC(N'ALTER TABLE [datanex_customers] DROP CONSTRAINT [' + @var54 + '];');
+    ALTER TABLE [datanex_customers] ALTER COLUMN [TaxOffice] nvarchar(50) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    DECLARE @var55 sysname;
+    SELECT @var55 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_customers]') AND [c].[name] = N'Region');
+    IF @var55 IS NOT NULL EXEC(N'ALTER TABLE [datanex_customers] DROP CONSTRAINT [' + @var55 + '];');
+    ALTER TABLE [datanex_customers] ALTER COLUMN [Region] nvarchar(255) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    DECLARE @var56 sysname;
+    SELECT @var56 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_customers]') AND [c].[name] = N'PostalCode');
+    IF @var56 IS NOT NULL EXEC(N'ALTER TABLE [datanex_customers] DROP CONSTRAINT [' + @var56 + '];');
+    ALTER TABLE [datanex_customers] ALTER COLUMN [PostalCode] nvarchar(10) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    DECLARE @var57 sysname;
+    SELECT @var57 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_customers]') AND [c].[name] = N'Phone2');
+    IF @var57 IS NOT NULL EXEC(N'ALTER TABLE [datanex_customers] DROP CONSTRAINT [' + @var57 + '];');
+    ALTER TABLE [datanex_customers] ALTER COLUMN [Phone2] nvarchar(20) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    DECLARE @var58 sysname;
+    SELECT @var58 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_customers]') AND [c].[name] = N'Phone1');
+    IF @var58 IS NOT NULL EXEC(N'ALTER TABLE [datanex_customers] DROP CONSTRAINT [' + @var58 + '];');
+    ALTER TABLE [datanex_customers] ALTER COLUMN [Phone1] nvarchar(20) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    DECLARE @var59 sysname;
+    SELECT @var59 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_customers]') AND [c].[name] = N'Name');
+    IF @var59 IS NOT NULL EXEC(N'ALTER TABLE [datanex_customers] DROP CONSTRAINT [' + @var59 + '];');
+    ALTER TABLE [datanex_customers] ALTER COLUMN [Name] nvarchar(255) NOT NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    DECLARE @var60 sysname;
+    SELECT @var60 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_customers]') AND [c].[name] = N'Email');
+    IF @var60 IS NOT NULL EXEC(N'ALTER TABLE [datanex_customers] DROP CONSTRAINT [' + @var60 + '];');
+    ALTER TABLE [datanex_customers] ALTER COLUMN [Email] nvarchar(100) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    DECLARE @var61 sysname;
+    SELECT @var61 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_customers]') AND [c].[name] = N'Country');
+    IF @var61 IS NOT NULL EXEC(N'ALTER TABLE [datanex_customers] DROP CONSTRAINT [' + @var61 + '];');
+    ALTER TABLE [datanex_customers] ALTER COLUMN [Country] nvarchar(50) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    DECLARE @var62 sysname;
+    SELECT @var62 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[datanex_customers]') AND [c].[name] = N'City');
+    IF @var62 IS NOT NULL EXEC(N'ALTER TABLE [datanex_customers] DROP CONSTRAINT [' + @var62 + '];');
+    ALTER TABLE [datanex_customers] ALTER COLUMN [City] nvarchar(100) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [Notes] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [UserDate1] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [UserDate2] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [UserDate3] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [UserDate4] datetime2 NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [UserNumber1] bigint NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [UserNumber2] bigint NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [UserNumber3] bigint NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [UserNumber4] bigint NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [UserText1] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [UserText2] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [UserText3] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [UserText4] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [VatClassId] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_customers_VatClassId] ON [datanex_customers] ([VatClassId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD CONSTRAINT [FK_datanex_customers_datanex_vat_classes_VatClassId] FOREIGN KEY ([VatClassId]) REFERENCES [datanex_vat_classes] ([Id]) ON DELETE NO ACTION;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250711201819_AddedNewCustomerFields'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250711201819_AddedNewCustomerFields', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250713151127_AddedCompanyNameAndOccupationOnCustomer'
+)
+BEGIN
+    ALTER TABLE [datanex_suppliers] ADD [CompanyName] nvarchar(255) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250713151127_AddedCompanyNameAndOccupationOnCustomer'
+)
+BEGIN
+    ALTER TABLE [datanex_suppliers] ADD [Occupation] nvarchar(255) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250713151127_AddedCompanyNameAndOccupationOnCustomer'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [CompanyName] nvarchar(255) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250713151127_AddedCompanyNameAndOccupationOnCustomer'
+)
+BEGIN
+    ALTER TABLE [datanex_customers] ADD [Occupation] nvarchar(255) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250713151127_AddedCompanyNameAndOccupationOnCustomer'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250713151127_AddedCompanyNameAndOccupationOnCustomer', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
