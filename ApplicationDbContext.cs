@@ -55,6 +55,8 @@ namespace DataNex.Data
         public virtual DbSet<UserAppPermission> UserAppPermissions { get; set; }
         public virtual DbSet<CntorDatasource> CntorDatasources { get; set; }
         public virtual DbSet<CntorDatasourceEntity> CntorDatasourceEntities { get; set; }
+        public virtual DbSet<Address> Addresses { get; set; }
+        public virtual DbSet<CustomerAddress> CustomerAddresses { get; set; }
 
 
 

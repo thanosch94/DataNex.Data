@@ -6706,3 +6706,111 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250816143659_AddedAddresses'
+)
+BEGIN
+    CREATE TABLE [dn_addresses] (
+        [Id] uniqueidentifier NOT NULL,
+        [Street] nvarchar(max) NOT NULL,
+        [StreetNumber] nvarchar(max) NULL,
+        [PostalCode] nvarchar(max) NULL,
+        [City] nvarchar(max) NOT NULL,
+        [Country] nvarchar(max) NULL,
+        [CompanyId] uniqueidentifier NOT NULL,
+        [SerialNumber] int NULL,
+        [Code] nvarchar(25) NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [IsSeeded] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        CONSTRAINT [PK_dn_addresses] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_dn_addresses_datanex_companies_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [datanex_companies] ([Id]) ON DELETE NO ACTION
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250816143659_AddedAddresses'
+)
+BEGIN
+    CREATE TABLE [dn_customer_addresses] (
+        [Id] uniqueidentifier NOT NULL,
+        [AddressType] int NOT NULL,
+        [AddressId] uniqueidentifier NOT NULL,
+        [CustomerId] uniqueidentifier NOT NULL,
+        [CompanyId] uniqueidentifier NOT NULL,
+        [SerialNumber] int NULL,
+        [Code] nvarchar(25) NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [IsSeeded] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        CONSTRAINT [PK_dn_customer_addresses] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_dn_customer_addresses_datanex_companies_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [datanex_companies] ([Id]) ON DELETE NO ACTION,
+        CONSTRAINT [FK_dn_customer_addresses_datanex_customers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [datanex_customers] ([Id]) ON DELETE NO ACTION,
+        CONSTRAINT [FK_dn_customer_addresses_dn_addresses_AddressId] FOREIGN KEY ([AddressId]) REFERENCES [dn_addresses] ([Id]) ON DELETE NO ACTION
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250816143659_AddedAddresses'
+)
+BEGIN
+    CREATE INDEX [IX_dn_addresses_CompanyId] ON [dn_addresses] ([CompanyId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250816143659_AddedAddresses'
+)
+BEGIN
+    CREATE INDEX [IX_dn_customer_addresses_AddressId] ON [dn_customer_addresses] ([AddressId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250816143659_AddedAddresses'
+)
+BEGIN
+    CREATE INDEX [IX_dn_customer_addresses_CompanyId] ON [dn_customer_addresses] ([CompanyId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250816143659_AddedAddresses'
+)
+BEGIN
+    CREATE INDEX [IX_dn_customer_addresses_CustomerId] ON [dn_customer_addresses] ([CustomerId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250816143659_AddedAddresses'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250816143659_AddedAddresses', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
