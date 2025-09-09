@@ -6814,3 +6814,37 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250818202657_AddedNotesAndIsDefaultOnCustomerAddresses'
+)
+BEGIN
+    ALTER TABLE [dn_customer_addresses] ADD [IsDefault] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250818202657_AddedNotesAndIsDefaultOnCustomerAddresses'
+)
+BEGIN
+    ALTER TABLE [dn_customer_addresses] ADD [Notes] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250818202657_AddedNotesAndIsDefaultOnCustomerAddresses'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250818202657_AddedNotesAndIsDefaultOnCustomerAddresses', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
