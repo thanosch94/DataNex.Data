@@ -6848,3 +6848,69 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250924174853_AddedDocumentSeries'
+)
+BEGIN
+    CREATE TABLE [dn_document_series] (
+        [Id] uniqueidentifier NOT NULL,
+        [Name] nvarchar(50) NOT NULL,
+        [Notes] nvarchar(255) NULL,
+        [Abbreviation] nvarchar(10) NOT NULL,
+        [Prefix] nvarchar(10) NULL,
+        [Suffix] nvarchar(10) NULL,
+        [CurrentNumber] int NOT NULL,
+        [AllowManualNumbering] bit NOT NULL,
+        [CompanyId] uniqueidentifier NULL,
+        [DocumentTypeId] uniqueidentifier NOT NULL,
+        [SerialNumber] int NULL,
+        [Code] nvarchar(25) NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [IsSeeded] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        CONSTRAINT [PK_dn_document_series] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_dn_document_series_datanex_companies_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [datanex_companies] ([Id]) ON DELETE NO ACTION,
+        CONSTRAINT [FK_dn_document_series_datanex_documenttypes_DocumentTypeId] FOREIGN KEY ([DocumentTypeId]) REFERENCES [datanex_documenttypes] ([Id]) ON DELETE NO ACTION
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250924174853_AddedDocumentSeries'
+)
+BEGIN
+    CREATE INDEX [IX_dn_document_series_CompanyId] ON [dn_document_series] ([CompanyId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250924174853_AddedDocumentSeries'
+)
+BEGIN
+    CREATE INDEX [IX_dn_document_series_DocumentTypeId] ON [dn_document_series] ([DocumentTypeId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250924174853_AddedDocumentSeries'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250924174853_AddedDocumentSeries', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+

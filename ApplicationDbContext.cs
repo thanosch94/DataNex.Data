@@ -57,7 +57,7 @@ namespace DataNex.Data
         public virtual DbSet<CntorDatasourceEntity> CntorDatasourceEntities { get; set; }
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<CustomerAddress> CustomerAddresses { get; set; }
-
+        public virtual DbSet<DocumentSeries> DocumentSeries { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
