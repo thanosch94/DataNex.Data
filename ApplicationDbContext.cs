@@ -1,4 +1,5 @@
-﻿using DataNex.Model.Models;
+﻿using DataNex.Model.Dtos;
+using DataNex.Model.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -58,6 +59,9 @@ namespace DataNex.Data
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<CustomerAddress> CustomerAddresses { get; set; }
         public virtual DbSet<DocumentSeries> DocumentSeries { get; set; }
+        public virtual DbSet<DocTypeTransformation> DocTypeTransformations { get; set; }
+        public virtual DbSet<PaymentMethod> PaymentMethods { get; set; }
+        public virtual DbSet<ShippingMethod> ShippingMethods { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -76,10 +80,10 @@ namespace DataNex.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<DocumentProduct>()
-    .HasMany(dp => dp.DocumentProductLotsQuantities)
-    .WithOne(lq => lq.DocumentProduct)
-    .HasForeignKey(lq => lq.DocumentProductId)
-    .OnDelete(DeleteBehavior.Cascade); // Enable cascade delete
+            .HasMany(dp => dp.DocumentProductLotsQuantities)
+            .WithOne(lq => lq.DocumentProduct)
+            .HasForeignKey(lq => lq.DocumentProductId)
+            .OnDelete(DeleteBehavior.Cascade); // Enable cascade delete
             var eTypes = modelBuilder.Model.GetEntityTypes();
             foreach (var type in eTypes)
             {

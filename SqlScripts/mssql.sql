@@ -6964,3 +6964,168 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251028122310_AddedPaymentAndShippingMethods'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [DocumentSeriesId] uniqueidentifier NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000';
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251028122310_AddedPaymentAndShippingMethods'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [PaymentMethodId] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251028122310_AddedPaymentAndShippingMethods'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [ShippingMethodId] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251028122310_AddedPaymentAndShippingMethods'
+)
+BEGIN
+    CREATE TABLE [dn_payment_methods] (
+        [Id] uniqueidentifier NOT NULL,
+        [Name] nvarchar(50) NOT NULL,
+        [Notes] nvarchar(255) NULL,
+        [CompanyId] uniqueidentifier NOT NULL,
+        [SerialNumber] int NULL,
+        [Code] nvarchar(25) NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [IsSeeded] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        CONSTRAINT [PK_dn_payment_methods] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_dn_payment_methods_datanex_companies_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [datanex_companies] ([Id]) ON DELETE NO ACTION
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251028122310_AddedPaymentAndShippingMethods'
+)
+BEGIN
+    CREATE TABLE [dn_shipping_methods] (
+        [Id] uniqueidentifier NOT NULL,
+        [Name] nvarchar(50) NOT NULL,
+        [Notes] nvarchar(255) NULL,
+        [CompanyId] uniqueidentifier NOT NULL,
+        [SerialNumber] int NULL,
+        [Code] nvarchar(25) NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [IsSeeded] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        CONSTRAINT [PK_dn_shipping_methods] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_dn_shipping_methods_datanex_companies_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [datanex_companies] ([Id]) ON DELETE NO ACTION
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251028122310_AddedPaymentAndShippingMethods'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_documents_DocumentSeriesId] ON [datanex_documents] ([DocumentSeriesId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251028122310_AddedPaymentAndShippingMethods'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_documents_PaymentMethodId] ON [datanex_documents] ([PaymentMethodId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251028122310_AddedPaymentAndShippingMethods'
+)
+BEGIN
+    CREATE INDEX [IX_datanex_documents_ShippingMethodId] ON [datanex_documents] ([ShippingMethodId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251028122310_AddedPaymentAndShippingMethods'
+)
+BEGIN
+    CREATE INDEX [IX_dn_payment_methods_CompanyId] ON [dn_payment_methods] ([CompanyId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251028122310_AddedPaymentAndShippingMethods'
+)
+BEGIN
+    CREATE INDEX [IX_dn_shipping_methods_CompanyId] ON [dn_shipping_methods] ([CompanyId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251028122310_AddedPaymentAndShippingMethods'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD CONSTRAINT [FK_datanex_documents_dn_document_series_DocumentSeriesId] FOREIGN KEY ([DocumentSeriesId]) REFERENCES [dn_document_series] ([Id]) ON DELETE NO ACTION;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251028122310_AddedPaymentAndShippingMethods'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD CONSTRAINT [FK_datanex_documents_dn_payment_methods_PaymentMethodId] FOREIGN KEY ([PaymentMethodId]) REFERENCES [dn_payment_methods] ([Id]) ON DELETE NO ACTION;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251028122310_AddedPaymentAndShippingMethods'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD CONSTRAINT [FK_datanex_documents_dn_shipping_methods_ShippingMethodId] FOREIGN KEY ([ShippingMethodId]) REFERENCES [dn_shipping_methods] ([Id]) ON DELETE NO ACTION;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251028122310_AddedPaymentAndShippingMethods'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20251028122310_AddedPaymentAndShippingMethods', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
