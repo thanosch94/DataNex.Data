@@ -6914,3 +6914,53 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251002200720_AddedDocumentTypesTransformations'
+)
+BEGIN
+    CREATE TABLE [dn_doctypes_transformations] (
+        [Id] uniqueidentifier NOT NULL,
+        [From] uniqueidentifier NOT NULL,
+        [To] uniqueidentifier NOT NULL,
+        [CompanyId] uniqueidentifier NOT NULL,
+        [SerialNumber] int NULL,
+        [Code] nvarchar(25) NULL,
+        [IsActive] bit NOT NULL,
+        [IsDeleted] bit NOT NULL,
+        [IsSeeded] bit NOT NULL,
+        [DateAdded] datetime2 NOT NULL,
+        [UserAdded] uniqueidentifier NULL,
+        [DateUpdated] datetime2 NULL,
+        [UserUpdated] uniqueidentifier NULL,
+        CONSTRAINT [PK_dn_doctypes_transformations] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_dn_doctypes_transformations_datanex_companies_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [datanex_companies] ([Id]) ON DELETE NO ACTION
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251002200720_AddedDocumentTypesTransformations'
+)
+BEGIN
+    CREATE INDEX [IX_dn_doctypes_transformations_CompanyId] ON [dn_doctypes_transformations] ([CompanyId]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251002200720_AddedDocumentTypesTransformations'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20251002200720_AddedDocumentTypesTransformations', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
