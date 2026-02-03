@@ -4,16 +4,19 @@ using DataNex.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace DataNex.Data.MsSql.Migrations
+namespace DataNex.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251108192344_AddedTransformationDetails")]
+    partial class AddedTransformationDetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -999,9 +1002,6 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Property<string>("TargetDocIds")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TransfromationStatus")
-                        .HasColumnType("int");
-
                     b.Property<Guid?>("UserAdded")
                         .HasColumnType("uniqueidentifier");
 
@@ -1144,10 +1144,6 @@ namespace DataNex.Data.MsSql.Migrations
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("DiscountPercentage")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<Guid>("DocumentId")
                         .HasColumnType("uniqueidentifier");
 
@@ -1175,10 +1171,6 @@ namespace DataNex.Data.MsSql.Migrations
 
                     b.Property<int?>("SerialNumber")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("TotalDiscount")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("TotalPrice")
                         .HasPrecision(18, 2)

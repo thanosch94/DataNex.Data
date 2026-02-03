@@ -7129,3 +7129,141 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251028164109_AddedConfigPropertiesOnDocTypes'
+)
+BEGIN
+    ALTER TABLE [datanex_documenttypes] ADD [AutoIncrementCodeEnabled] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251028164109_AddedConfigPropertiesOnDocTypes'
+)
+BEGIN
+    ALTER TABLE [datanex_documenttypes] ADD [CancellationDocTypeId] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251028164109_AddedConfigPropertiesOnDocTypes'
+)
+BEGIN
+    ALTER TABLE [datanex_documenttypes] ADD [UsesPrices] int NOT NULL DEFAULT 0;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251028164109_AddedConfigPropertiesOnDocTypes'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20251028164109_AddedConfigPropertiesOnDocTypes', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251108192344_AddedTransformationDetails'
+)
+BEGIN
+    ALTER TABLE [dn_doctypes_transformations] ADD [SourceStatusId] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251108192344_AddedTransformationDetails'
+)
+BEGIN
+    ALTER TABLE [dn_doctypes_transformations] ADD [TargetStatusId] uniqueidentifier NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251108192344_AddedTransformationDetails'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [SourceDocIds] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251108192344_AddedTransformationDetails'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [TargetDocIds] nvarchar(max) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20251108192344_AddedTransformationDetails'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20251108192344_AddedTransformationDetails', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260201175102_AddedDiscountsOnDocumentProduct'
+)
+BEGIN
+    ALTER TABLE [datanex_documents] ADD [TransfromationStatus] int NOT NULL DEFAULT 0;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260201175102_AddedDiscountsOnDocumentProduct'
+)
+BEGIN
+    ALTER TABLE [datanex_documentproducts] ADD [DiscountPercentage] decimal(18,2) NOT NULL DEFAULT 0.0;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260201175102_AddedDiscountsOnDocumentProduct'
+)
+BEGIN
+    ALTER TABLE [datanex_documentproducts] ADD [TotalDiscount] decimal(18,2) NOT NULL DEFAULT 0.0;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260201175102_AddedDiscountsOnDocumentProduct'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20260201175102_AddedDiscountsOnDocumentProduct', N'8.0.1');
+END;
+GO
+
+COMMIT;
+GO
+
